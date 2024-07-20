@@ -1,0 +1,21 @@
+services:
+  db:
+    container_name: acalstrapidb
+    image: postgres:16.3-alpine
+    environment:
+      - POSTGRES_USER=acal
+      - POSTGRES_PASSWORD=acal
+      - POSTGRES_DB=acaldb
+    volumes:
+      - db:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+    networks:
+      - acalnet
+
+networks:
+  acalnet:
+    name: acalnet
+
+volumes:
+  db:
