@@ -78,14 +78,12 @@ export interface SectionsHero extends Schema.Component {
     name: 'Hero';
     displayName: 'Hero';
     icon: 'heading';
+    description: '';
   };
   attributes: {
-    title: Attribute.String;
-    label: Attribute.String;
-    description: Attribute.String;
     picture: Attribute.Media<'images'>;
-    smallTextWithLink: Attribute.RichText;
-    buttons: Attribute.Component<'links.button-link', true>;
+    callToAction: Attribute.Component<'links.button-link'>;
+    logo: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
   };
 }
 

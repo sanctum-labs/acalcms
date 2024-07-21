@@ -814,6 +814,29 @@ export interface ApiGlobalGlobal extends Schema.SingleType {
   };
 }
 
+export interface ApiHomeHome extends Schema.SingleType {
+  collectionName: 'homes';
+  info: {
+    singularName: 'home';
+    pluralName: 'homes';
+    displayName: 'Home';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Hero: Attribute.Component<'sections.hero'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiLeadFormSubmissionLeadFormSubmission
   extends Schema.CollectionType {
   collectionName: 'lead_form_submissions';
@@ -933,6 +956,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::global.global': ApiGlobalGlobal;
+      'api::home.home': ApiHomeHome;
       'api::lead-form-submission.lead-form-submission': ApiLeadFormSubmissionLeadFormSubmission;
       'api::page.page': ApiPagePage;
     }

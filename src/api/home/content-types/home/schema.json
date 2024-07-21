@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "homes",
+  "info": {
+    "singularName": "home",
+    "pluralName": "homes",
+    "displayName": "Home",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero"
+    }
+  }
+}
