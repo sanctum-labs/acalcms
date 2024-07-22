@@ -826,7 +826,13 @@ export interface ApiHomeHome extends Schema.SingleType {
     draftAndPublish: true;
   };
   attributes: {
-    Hero: Attribute.Component<'sections.hero'>;
+    Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
+    Overview: Attribute.Component<'sections.overview'>;
+    Projects: Attribute.Relation<
+      'api::home.home',
+      'oneToMany',
+      'api::project.project'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -938,6 +944,46 @@ export interface ApiPagePage extends Schema.CollectionType {
   };
 }
 
+export interface ApiProjectProject extends Schema.CollectionType {
+  collectionName: 'projects';
+  info: {
+    singularName: 'project';
+    pluralName: 'projects';
+    displayName: 'Project';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String & Attribute.Required & Attribute.Unique;
+    ProjectDetails: Attribute.Component<'elements.label-and-text', true> &
+      Attribute.Required;
+    Background: Attribute.RichText & Attribute.Required;
+    Assignment: Attribute.RichText & Attribute.Required;
+    Image: Attribute.Media<'images'> & Attribute.Required;
+    Approach: Attribute.Component<'sections.overview'>;
+    Abbreviation: Attribute.String & Attribute.Required & Attribute.Unique;
+    ProjectType: Attribute.String & Attribute.Required;
+    Description: Attribute.Text & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::project.project',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::project.project',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -959,6 +1005,7 @@ declare module '@strapi/types' {
       'api::home.home': ApiHomeHome;
       'api::lead-form-submission.lead-form-submission': ApiLeadFormSubmissionLeadFormSubmission;
       'api::page.page': ApiPagePage;
+      'api::project.project': ApiProjectProject;
     }
   }
 }

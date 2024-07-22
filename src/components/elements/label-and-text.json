@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_elements_label_and_texts",
+  "info": {
+    "displayName": "Label & text",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Label": {
+      "type": "string",
+      "required": true
+    },
+    "Text": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

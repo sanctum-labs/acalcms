@@ -14,7 +14,19 @@
     "Hero": {
       "type": "component",
       "repeatable": false,
-      "component": "sections.hero"
+      "component": "sections.hero",
+      "required": true
+    },
+    "Overview": {
+      "displayName": "Overview",
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.overview"
+    },
+    "Projects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project.project"
     }
   }
 }

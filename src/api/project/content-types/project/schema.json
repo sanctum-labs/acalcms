@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "singularName": "project",
+    "pluralName": "projects",
+    "displayName": "Project",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "ProjectDetails": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.label-and-text",
+      "required": true
+    },
+    "Background": {
+      "type": "richtext",
+      "required": true
+    },
+    "Assignment": {
+      "type": "richtext",
+      "required": true
+    },
+    "Image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Approach": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.overview"
+    },
+    "Abbreviation": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "ProjectType": {
+      "type": "string",
+      "required": true
+    },
+    "Description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

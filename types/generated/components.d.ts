@@ -1,5 +1,24 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface MetaMetadata extends Schema.Component {
+  collectionName: 'components_meta_metadata';
+  info: {
+    name: 'Metadata';
+    displayName: 'Metadata';
+    icon: 'robot';
+  };
+  attributes: {
+    metaTitle: Attribute.String & Attribute.Required;
+    metaDescription: Attribute.Text & Attribute.Required;
+    shareImage: Attribute.Media<'images'>;
+    twitterCardType: Attribute.Enumeration<
+      ['summary', 'summary_large_image', 'app', 'player']
+    > &
+      Attribute.DefaultTo<'summary'>;
+    twitterUsername: Attribute.String;
+  };
+}
+
 export interface SectionsTestimonialsGroup extends Schema.Component {
   collectionName: 'components_slices_testimonials_groups';
   info: {
@@ -38,6 +57,20 @@ export interface SectionsPricing extends Schema.Component {
   attributes: {
     title: Attribute.String;
     plans: Attribute.Component<'elements.plan', true>;
+  };
+}
+
+export interface SectionsOverview extends Schema.Component {
+  collectionName: 'components_sections_overviews';
+  info: {
+    displayName: 'Overview';
+    icon: 'pencil';
+    description: '';
+  };
+  attributes: {
+    Title: Attribute.String & Attribute.Required;
+    Description: Attribute.Blocks;
+    Image: Attribute.Media<'images'>;
   };
 }
 
@@ -81,7 +114,7 @@ export interface SectionsHero extends Schema.Component {
     description: '';
   };
   attributes: {
-    picture: Attribute.Media<'images'>;
+    picture: Attribute.Media<'images'> & Attribute.Required;
     callToAction: Attribute.Component<'links.button-link'>;
     logo: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
   };
@@ -121,25 +154,6 @@ export interface SectionsBottomActions extends Schema.Component {
   attributes: {
     title: Attribute.String;
     buttons: Attribute.Component<'links.button-link', true>;
-  };
-}
-
-export interface MetaMetadata extends Schema.Component {
-  collectionName: 'components_meta_metadata';
-  info: {
-    name: 'Metadata';
-    displayName: 'Metadata';
-    icon: 'robot';
-  };
-  attributes: {
-    metaTitle: Attribute.String & Attribute.Required;
-    metaDescription: Attribute.Text & Attribute.Required;
-    shareImage: Attribute.Media<'images'>;
-    twitterCardType: Attribute.Enumeration<
-      ['summary', 'summary_large_image', 'app', 'player']
-    > &
-      Attribute.DefaultTo<'summary'>;
-    twitterUsername: Attribute.String;
   };
 }
 
@@ -278,6 +292,18 @@ export interface ElementsLogos extends Schema.Component {
   };
 }
 
+export interface ElementsLabelAndText extends Schema.Component {
+  collectionName: 'components_elements_label_and_texts';
+  info: {
+    displayName: 'Label & text';
+    description: '';
+  };
+  attributes: {
+    Label: Attribute.String & Attribute.Required;
+    Text: Attribute.String & Attribute.Required;
+  };
+}
+
 export interface ElementsFooterSection extends Schema.Component {
   collectionName: 'components_links_footer_sections';
   info: {
@@ -337,16 +363,17 @@ export interface ElementsFeatureColumn extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'meta.metadata': MetaMetadata;
       'sections.testimonials-group': SectionsTestimonialsGroup;
       'sections.rich-text': SectionsRichText;
       'sections.pricing': SectionsPricing;
+      'sections.overview': SectionsOverview;
       'sections.lead-form': SectionsLeadForm;
       'sections.large-video': SectionsLargeVideo;
       'sections.hero': SectionsHero;
       'sections.feature-rows-group': SectionsFeatureRowsGroup;
       'sections.feature-columns-group': SectionsFeatureColumnsGroup;
       'sections.bottom-actions': SectionsBottomActions;
-      'meta.metadata': MetaMetadata;
       'links.link': LinksLink;
       'links.button': LinksButton;
       'links.button-link': LinksButtonLink;
@@ -356,6 +383,7 @@ declare module '@strapi/types' {
       'elements.plan': ElementsPlan;
       'elements.notification-banner': ElementsNotificationBanner;
       'elements.logos': ElementsLogos;
+      'elements.label-and-text': ElementsLabelAndText;
       'elements.footer-section': ElementsFooterSection;
       'elements.feature': ElementsFeature;
       'elements.feature-row': ElementsFeatureRow;
