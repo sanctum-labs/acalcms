@@ -590,6 +590,127 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginEntityNotesNote extends Schema.CollectionType {
+  collectionName: 'notes';
+  info: {
+    singularName: 'note';
+    pluralName: 'notes';
+    displayName: 'notes';
+  };
+  options: {
+    draftAndPublish: false;
+    comment: '';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    title: Attribute.String;
+    content: Attribute.Text;
+    entityId: Attribute.Integer;
+    entitySlug: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::entity-notes.note',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::entity-notes.note',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginSlugifySlug extends Schema.CollectionType {
+  collectionName: 'slugs';
+  info: {
+    singularName: 'slug';
+    pluralName: 'slugs';
+    displayName: 'slug';
+  };
+  options: {
+    draftAndPublish: false;
+    comment: '';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    slug: Attribute.Text;
+    count: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::slugify.slug',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::slugify.slug',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginPublisherAction extends Schema.CollectionType {
+  collectionName: 'actions';
+  info: {
+    singularName: 'action';
+    pluralName: 'actions';
+    displayName: 'actions';
+  };
+  options: {
+    draftAndPublish: false;
+    comment: '';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    executeAt: Attribute.DateTime;
+    mode: Attribute.String;
+    entityId: Attribute.Integer;
+    entitySlug: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::publisher.action',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::publisher.action',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUsersPermissionsPermission
   extends Schema.CollectionType {
   collectionName: 'up_permissions';
@@ -741,6 +862,50 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface PluginGraphsBuilderGraph extends Schema.CollectionType {
+  collectionName: 'graphs_builder_graph';
+  info: {
+    name: 'graph';
+    description: '';
+    singularName: 'graph';
+    pluralName: 'graphs';
+    displayName: 'Graph';
+  };
+  options: {
+    draftAndPublish: false;
+    timestamps: true;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: true;
+    };
+    'content-type-builder': {
+      visible: true;
+    };
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    type: Attribute.Enumeration<['pie', 'bar', 'line', 'dateLine']> &
+      Attribute.Required;
+    collectionX: Attribute.String & Attribute.Required;
+    collectionXAttribute: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::graphs-builder.graph',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::graphs-builder.graph',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiGlobalGlobal extends Schema.SingleType {
   collectionName: 'globals';
   info: {
@@ -811,6 +976,9 @@ export interface ApiGlobalGlobal extends Schema.SingleType {
       'admin::user'
     > &
       Attribute.Private;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
   };
 }
 
@@ -826,6 +994,9 @@ export interface ApiHomeHome extends Schema.SingleType {
     draftAndPublish: true;
   };
   attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
     Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
     Overview: Attribute.Component<'sections.overview'>;
     Projects: Attribute.Relation<
@@ -833,6 +1004,7 @@ export interface ApiHomeHome extends Schema.SingleType {
       'oneToMany',
       'api::project.project'
     >;
+    UUID: Attribute.UID & Attribute.CustomField<'plugin::field-uuid.uuid'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -875,6 +1047,9 @@ export interface ApiLeadFormSubmissionLeadFormSubmission
       'admin::user'
     > &
       Attribute.Private;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
   };
 }
 
@@ -941,6 +1116,9 @@ export interface ApiPagePage extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
       Attribute.Private;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
   };
 }
 
@@ -956,6 +1134,9 @@ export interface ApiProjectProject extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
     Name: Attribute.String & Attribute.Required & Attribute.Unique;
     ProjectDetails: Attribute.Component<'elements.label-and-text', true> &
       Attribute.Required;
@@ -966,6 +1147,8 @@ export interface ApiProjectProject extends Schema.CollectionType {
     Abbreviation: Attribute.String & Attribute.Required & Attribute.Unique;
     ProjectType: Attribute.String & Attribute.Required;
     Description: Attribute.Text & Attribute.Required;
+    Tags: Attribute.UID & Attribute.CustomField<'plugin::field-uuid.uuid'>;
+    UUID: Attribute.UID & Attribute.CustomField<'plugin::field-uuid.uuid'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -998,9 +1181,13 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::entity-notes.note': PluginEntityNotesNote;
+      'plugin::slugify.slug': PluginSlugifySlug;
+      'plugin::publisher.action': PluginPublisherAction;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'plugin::graphs-builder.graph': PluginGraphsBuilderGraph;
       'api::global.global': ApiGlobalGlobal;
       'api::home.home': ApiHomeHome;
       'api::lead-form-submission.lead-form-submission': ApiLeadFormSubmissionLeadFormSubmission;

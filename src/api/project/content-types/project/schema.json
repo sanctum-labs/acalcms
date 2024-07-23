@@ -11,6 +11,27 @@
     "draftAndPublish": true
   },
   "attributes": {
+    "_softDeletedAt": {
+      "type": "datetime",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedById": {
+      "type": "integer",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedByType": {
+      "type": "string",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
     "Name": {
       "type": "string",
       "required": true,
@@ -55,6 +76,14 @@
     "Description": {
       "type": "text",
       "required": true
+    },
+    "Tags": {
+      "type": "customField",
+      "customField": "plugin::field-uuid.uuid"
+    },
+    "UUID": {
+      "type": "customField",
+      "customField": "plugin::field-uuid.uuid"
     }
   }
 }
