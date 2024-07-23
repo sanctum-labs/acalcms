@@ -1004,6 +1004,11 @@ export interface ApiHomeHome extends Schema.SingleType {
       'oneToMany',
       'api::project.project'
     >;
+    people: Attribute.Relation<
+      'api::home.home',
+      'oneToMany',
+      'api::person.person'
+    >;
     UUID: Attribute.UID & Attribute.CustomField<'plugin::field-uuid.uuid'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1122,6 +1127,78 @@ export interface ApiPagePage extends Schema.CollectionType {
   };
 }
 
+export interface ApiPersonPerson extends Schema.CollectionType {
+  collectionName: 'people';
+  info: {
+    singularName: 'person';
+    pluralName: 'people';
+    displayName: 'People';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Avatar: Attribute.Media<'images', true> & Attribute.Required;
+    Name: Attribute.String & Attribute.Required & Attribute.Unique;
+    JobTitle: Attribute.String & Attribute.Required;
+    Location: Attribute.String;
+    Bio: Attribute.Text & Attribute.Required;
+    Quote: Attribute.Text;
+    Contact: Attribute.Component<'links.link', true> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::person.person',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::person.person',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPersonPerson extends Schema.CollectionType {
+  collectionName: 'people';
+  info: {
+    singularName: 'person';
+    pluralName: 'people';
+    displayName: 'People';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Avatar: Attribute.Media<'images', true> & Attribute.Required;
+    Name: Attribute.String & Attribute.Required & Attribute.Unique;
+    JobTitle: Attribute.String & Attribute.Required;
+    Location: Attribute.String;
+    Bio: Attribute.Text & Attribute.Required;
+    Quote: Attribute.Text;
+    Contact: Attribute.Component<'links.link', true> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::person.person',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::person.person',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiProjectProject extends Schema.CollectionType {
   collectionName: 'projects';
   info: {
@@ -1192,6 +1269,7 @@ declare module '@strapi/types' {
       'api::home.home': ApiHomeHome;
       'api::lead-form-submission.lead-form-submission': ApiLeadFormSubmissionLeadFormSubmission;
       'api::page.page': ApiPagePage;
+      'api::person.person': ApiPersonPerson;
       'api::project.project': ApiProjectProject;
     }
   }
