@@ -41,6 +41,8 @@ export default ({ env }) => ({
       seo: {
         enabled: true,
       },
+      // Ref: https://github.com/lautr/strapi-plugin-duplicate-button
+      'duplicate-button': true,
       //Ref: https://market.strapi.io/plugins/strapi-plugin-publisher
       publisher: {
         enabled: true,
