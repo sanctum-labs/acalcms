@@ -1004,12 +1004,12 @@ export interface ApiHomeHome extends Schema.SingleType {
       'oneToMany',
       'api::project.project'
     >;
+    UUID: Attribute.UID & Attribute.CustomField<'plugin::field-uuid.uuid'>;
     people: Attribute.Relation<
       'api::home.home',
       'oneToMany',
       'api::person.person'
     >;
-    UUID: Attribute.UID & Attribute.CustomField<'plugin::field-uuid.uuid'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1133,54 +1133,24 @@ export interface ApiPersonPerson extends Schema.CollectionType {
     singularName: 'person';
     pluralName: 'people';
     displayName: 'People';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Avatar: Attribute.Media<'images', true> & Attribute.Required;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+    Avatar: Attribute.Media<'images'> & Attribute.Required;
     Name: Attribute.String & Attribute.Required & Attribute.Unique;
     JobTitle: Attribute.String & Attribute.Required;
     Location: Attribute.String;
     Bio: Attribute.Text & Attribute.Required;
     Quote: Attribute.Text;
-    Contact: Attribute.Component<'links.link', true> & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::person.person',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::person.person',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPersonPerson extends Schema.CollectionType {
-  collectionName: 'people';
-  info: {
-    singularName: 'person';
-    pluralName: 'people';
-    displayName: 'People';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Avatar: Attribute.Media<'images', true> & Attribute.Required;
-    Name: Attribute.String & Attribute.Required & Attribute.Unique;
-    JobTitle: Attribute.String & Attribute.Required;
-    Location: Attribute.String;
-    Bio: Attribute.Text & Attribute.Required;
-    Quote: Attribute.Text;
-    Contact: Attribute.Component<'links.link', true> & Attribute.Required;
+    Social: Attribute.Component<'shared.meta-social', true> &
+      Attribute.Required;
+    slug: Attribute.UID<'api::person.person', 'Name'> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1226,6 +1196,7 @@ export interface ApiProjectProject extends Schema.CollectionType {
     Description: Attribute.Text & Attribute.Required;
     Tags: Attribute.UID & Attribute.CustomField<'plugin::field-uuid.uuid'>;
     UUID: Attribute.UID & Attribute.CustomField<'plugin::field-uuid.uuid'>;
+    uid: Attribute.UID<'api::project.project', 'Name'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -3,9 +3,11 @@
 import { Hero } from '../../../../components/sections/interfaces/Hero';
 import { Overview } from '../../../../components/sections/interfaces/Overview';
 import { Project } from '../../../project/content-types/project/project';
+import { Person } from '../../../person/content-types/person/person';
 import { Hero_Plain } from '../../../../components/sections/interfaces/Hero';
 import { Overview_Plain } from '../../../../components/sections/interfaces/Overview';
 import { Project_Plain } from '../../../project/content-types/project/project';
+import { Person_Plain } from '../../../person/content-types/person/person';
 import { Hero_NoRelations } from '../../../../components/sections/interfaces/Hero';
 import { Overview_NoRelations } from '../../../../components/sections/interfaces/Overview';
 import { AdminPanelRelationPropertyModification } from '../../../../common/schemas-to-ts/AdminPanelRelationPropertyModification';
@@ -20,6 +22,7 @@ export interface Home {
     Overview?: Overview;
     Projects: { data: Project[] };
     UUID?: any;
+    people: { data: Person[] };
   };
 }
 export interface Home_Plain {
@@ -31,6 +34,7 @@ export interface Home_Plain {
   Overview?: Overview_Plain;
   Projects: Project_Plain[];
   UUID?: any;
+  people: Person_Plain[];
 }
 
 export interface Home_NoRelations {
@@ -42,6 +46,7 @@ export interface Home_NoRelations {
   Overview?: Overview_NoRelations;
   Projects: number[];
   UUID?: any;
+  people: number[];
 }
 
 export interface Home_AdminPanelLifeCycle {
@@ -53,4 +58,5 @@ export interface Home_AdminPanelLifeCycle {
   Overview?: Overview_Plain;
   Projects: AdminPanelRelationPropertyModification<Project_Plain>;
   UUID?: any;
+  people: AdminPanelRelationPropertyModification<Person_Plain>;
 }

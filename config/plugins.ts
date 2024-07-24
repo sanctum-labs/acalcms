@@ -4,7 +4,7 @@ export default ({ env }) => ({
           endpoint: '/graphql',
           shadowCRUD: true,
           playgroundAlways: false,
-          depthLimit: 20,
+          depthLimit: 50,
           amountLimit: 100,
           apolloServer: {
             tracing: true,
@@ -29,9 +29,11 @@ export default ({ env }) => ({
       slugify: {
         enabled: true,
         config: {
-          projects: {
-            name: 'slug',
-            references: 'name'
+          contentTypes: {
+            // project: {
+            //   field: 'slug',
+            //   references: 'name'
+            // }
           }
         }
       },

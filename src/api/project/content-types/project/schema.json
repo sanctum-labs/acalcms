@@ -84,6 +84,10 @@
     "UUID": {
       "type": "customField",
       "customField": "plugin::field-uuid.uuid"
+    },
+    "uid": {
+      "type": "uid",
+      "targetField": "Name"
     }
   }
 }

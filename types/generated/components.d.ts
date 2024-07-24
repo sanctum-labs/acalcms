@@ -33,9 +33,12 @@ export interface SharedMetaSocial extends Schema.Component {
   info: {
     displayName: 'metaSocial';
     icon: 'project-diagram';
+    description: '';
   };
   attributes: {
-    socialNetwork: Attribute.Enumeration<['Facebook', 'Twitter']> &
+    socialNetwork: Attribute.Enumeration<
+      ['Facebook', 'Twitter', 'Email', 'LinkedIn', 'Instagram']
+    > &
       Attribute.Required;
     title: Attribute.String &
       Attribute.Required &
@@ -48,6 +51,7 @@ export interface SharedMetaSocial extends Schema.Component {
         maxLength: 65;
       }>;
     image: Attribute.Media<'images' | 'files' | 'videos'>;
+    Url: Attribute.String & Attribute.Required & Attribute.Unique;
   };
 }
 
@@ -101,8 +105,8 @@ export interface SectionsOverview extends Schema.Component {
   };
   attributes: {
     Title: Attribute.String & Attribute.Required;
-    Description: Attribute.Blocks;
     Image: Attribute.Media<'images'>;
+    description: Attribute.RichText;
   };
 }
 

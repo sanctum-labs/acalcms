@@ -48,19 +48,15 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::project.project"
-<<<<<<< HEAD
     },
     "UUID": {
       "type": "customField",
       "customField": "plugin::field-uuid.uuid"
-||||||| parent of 408009d (feat(collection): person collection)
-=======
     },
     "people": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::person.person"
->>>>>>> 408009d (feat(collection): person collection)
     }
   }
 }

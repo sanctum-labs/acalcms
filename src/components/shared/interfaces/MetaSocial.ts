@@ -5,19 +5,24 @@ import { Media_Plain } from '../../../common/schemas-to-ts/Media';
 
 export enum SocialNetwork {
   Facebook = 'Facebook',
-  Twitter = 'Twitter',}
+  Twitter = 'Twitter',
+  Email = 'Email',
+  LinkedIn = 'LinkedIn',
+  Instagram = 'Instagram',}
 
 export interface MetaSocial {
   socialNetwork: SocialNetwork;
   title: string;
   description: string;
   image?: { data: Media };
+  Url: string;
 }
 export interface MetaSocial_Plain {
   socialNetwork: SocialNetwork;
   title: string;
   description: string;
   image?: Media_Plain;
+  Url: string;
 }
 
 export interface MetaSocial_NoRelations {
@@ -25,5 +30,6 @@ export interface MetaSocial_NoRelations {
   title: string;
   description: string;
   image?: number;
+  Url: string;
 }
 

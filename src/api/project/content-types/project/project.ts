@@ -27,6 +27,7 @@ export interface Project {
     Description: string;
     Tags?: any;
     UUID?: any;
+    uid?: string;
   };
 }
 export interface Project_Plain {
@@ -45,6 +46,7 @@ export interface Project_Plain {
   Description: string;
   Tags?: any;
   UUID?: any;
+  uid?: string;
 }
 
 export interface Project_NoRelations {
@@ -63,6 +65,7 @@ export interface Project_NoRelations {
   Description: string;
   Tags?: any;
   UUID?: any;
+  uid?: string;
 }
 
 export interface Project_AdminPanelLifeCycle {
@@ -81,4 +84,5 @@ export interface Project_AdminPanelLifeCycle {
   Description: string;
   Tags?: any;
   UUID?: any;
+  uid?: string;
 }

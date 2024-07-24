@@ -5,18 +5,18 @@ import { Media_Plain } from '../../../common/schemas-to-ts/Media';
 
 export interface Overview {
   Title: string;
-  Description?: any;
   Image?: { data: Media };
+  description?: string;
 }
 export interface Overview_Plain {
   Title: string;
-  Description?: any;
   Image?: Media_Plain;
+  description?: string;
 }
 
 export interface Overview_NoRelations {
   Title: string;
-  Description?: any;
   Image?: number;
+  description?: string;
 }
 
