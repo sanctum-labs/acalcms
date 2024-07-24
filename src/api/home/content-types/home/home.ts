@@ -4,12 +4,17 @@ import { Hero } from '../../../../components/sections/interfaces/Hero';
 import { Overview } from '../../../../components/sections/interfaces/Overview';
 import { Project } from '../../../project/content-types/project/project';
 import { Person } from '../../../person/content-types/person/person';
+import { Card } from '../../../../components/elements/interfaces/Card';
+import { Client } from '../../../client/content-types/client/client';
 import { Hero_Plain } from '../../../../components/sections/interfaces/Hero';
 import { Overview_Plain } from '../../../../components/sections/interfaces/Overview';
 import { Project_Plain } from '../../../project/content-types/project/project';
 import { Person_Plain } from '../../../person/content-types/person/person';
+import { Card_Plain } from '../../../../components/elements/interfaces/Card';
+import { Client_Plain } from '../../../client/content-types/client/client';
 import { Hero_NoRelations } from '../../../../components/sections/interfaces/Hero';
 import { Overview_NoRelations } from '../../../../components/sections/interfaces/Overview';
+import { Card_NoRelations } from '../../../../components/elements/interfaces/Card';
 import { AdminPanelRelationPropertyModification } from '../../../../common/schemas-to-ts/AdminPanelRelationPropertyModification';
 
 export interface Home {
@@ -23,6 +28,8 @@ export interface Home {
     Projects: { data: Project[] };
     UUID?: any;
     people: { data: Person[] };
+    JoinTheTeam: Card[];
+    OurClients: { data: Client[] };
   };
 }
 export interface Home_Plain {
@@ -35,6 +42,8 @@ export interface Home_Plain {
   Projects: Project_Plain[];
   UUID?: any;
   people: Person_Plain[];
+  JoinTheTeam: Card_Plain[];
+  OurClients: Client_Plain[];
 }
 
 export interface Home_NoRelations {
@@ -47,6 +56,8 @@ export interface Home_NoRelations {
   Projects: number[];
   UUID?: any;
   people: number[];
+  JoinTheTeam: Card_NoRelations[];
+  OurClients: number[];
 }
 
 export interface Home_AdminPanelLifeCycle {
@@ -59,4 +70,6 @@ export interface Home_AdminPanelLifeCycle {
   Projects: AdminPanelRelationPropertyModification<Project_Plain>;
   UUID?: any;
   people: AdminPanelRelationPropertyModification<Person_Plain>;
+  JoinTheTeam: Card_Plain[];
+  OurClients: AdminPanelRelationPropertyModification<Client_Plain>;
 }

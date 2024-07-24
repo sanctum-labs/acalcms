@@ -57,6 +57,17 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::person.person"
+    },
+    "JoinTheTeam": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.card",
+      "required": true
+    },
+    "OurClients": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::client.client"
     }
   }
 }

@@ -286,6 +286,18 @@ export interface LayoutFooter extends Schema.Component {
   };
 }
 
+export interface ElementsUrl extends Schema.Component {
+  collectionName: 'components_elements_urls';
+  info: {
+    displayName: 'URL';
+    icon: 'link';
+    description: '';
+  };
+  attributes: {
+    value: Attribute.String & Attribute.Required;
+  };
+}
+
 export interface ElementsTestimonial extends Schema.Component {
   collectionName: 'components_slices_testimonials';
   info: {
@@ -415,6 +427,22 @@ export interface ElementsFeatureColumn extends Schema.Component {
   };
 }
 
+export interface ElementsCard extends Schema.Component {
+  collectionName: 'components_elements_cards';
+  info: {
+    displayName: 'Card';
+    icon: 'folder';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+    picture: Attribute.Media<'images'> & Attribute.Required;
+    url: Attribute.Component<'elements.url'>;
+    tag: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -436,6 +464,7 @@ declare module '@strapi/types' {
       'links.button-link': LinksButtonLink;
       'layout.navbar': LayoutNavbar;
       'layout.footer': LayoutFooter;
+      'elements.url': ElementsUrl;
       'elements.testimonial': ElementsTestimonial;
       'elements.plan': ElementsPlan;
       'elements.notification-banner': ElementsNotificationBanner;
@@ -445,6 +474,7 @@ declare module '@strapi/types' {
       'elements.feature': ElementsFeature;
       'elements.feature-row': ElementsFeatureRow;
       'elements.feature-column': ElementsFeatureColumn;
+      'elements.card': ElementsCard;
     }
   }
 }

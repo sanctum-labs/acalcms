@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "why_uses",
+  "info": {
+    "singularName": "why-us",
+    "pluralName": "why-uses",
+    "displayName": "Why Us"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero"
+    },
+    "Overview": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.overview"
+    }
+  }
+}
