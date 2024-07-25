@@ -68,6 +68,11 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::client.client"
+    },
+    "SocialMediaLinks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::social-media-link.social-media-link"
     }
   }
 }

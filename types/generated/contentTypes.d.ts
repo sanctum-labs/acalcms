@@ -1054,6 +1054,11 @@ export interface ApiHomeHome extends Schema.SingleType {
       'oneToMany',
       'api::client.client'
     >;
+    SocialMediaLinks: Attribute.Relation<
+      'api::home.home',
+      'oneToMany',
+      'api::social-media-link.social-media-link'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1259,6 +1264,43 @@ export interface ApiProjectProject extends Schema.CollectionType {
   };
 }
 
+export interface ApiSocialMediaLinkSocialMediaLink
+  extends Schema.CollectionType {
+  collectionName: 'social_media_links';
+  info: {
+    singularName: 'social-media-link';
+    pluralName: 'social-media-links';
+    displayName: 'Social Media Link';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    url: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.UID<'api::social-media-link.social-media-link', 'title'> &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::social-media-link.social-media-link',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::social-media-link.social-media-link',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+  };
+}
+
 export interface ApiWhyUsWhyUs extends Schema.SingleType {
   collectionName: 'why_uses';
   info: {
@@ -1321,6 +1363,7 @@ declare module '@strapi/types' {
       'api::page.page': ApiPagePage;
       'api::person.person': ApiPersonPerson;
       'api::project.project': ApiProjectProject;
+      'api::social-media-link.social-media-link': ApiSocialMediaLinkSocialMediaLink;
       'api::why-us.why-us': ApiWhyUsWhyUs;
     }
   }
