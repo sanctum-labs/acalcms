@@ -4,7 +4,7 @@ export default ({ env }) => ({
           endpoint: '/graphql',
           shadowCRUD: true,
           playgroundAlways: false,
-          depthLimit: 50,
+          depthLimit: 100,
           amountLimit: 100,
           apolloServer: {
             tracing: true,

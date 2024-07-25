@@ -1049,16 +1049,6 @@ export interface ApiHomeHome extends Schema.SingleType {
     >;
     JoinTheTeam: Attribute.Component<'elements.card', true> &
       Attribute.Required;
-    OurClients: Attribute.Relation<
-      'api::home.home',
-      'oneToMany',
-      'api::client.client'
-    >;
-    SocialMediaLinks: Attribute.Relation<
-      'api::home.home',
-      'oneToMany',
-      'api::social-media-link.social-media-link'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1104,6 +1094,48 @@ export interface ApiLeadFormSubmissionLeadFormSubmission
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
+  };
+}
+
+export interface ApiLocationLocation extends Schema.CollectionType {
+  collectionName: 'locations';
+  info: {
+    singularName: 'location';
+    pluralName: 'locations';
+    displayName: 'Location';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+    street: Attribute.String & Attribute.Required;
+    building: Attribute.String;
+    postOfficeBox: Attribute.String;
+    slug: Attribute.UID & Attribute.Required;
+    communication: Attribute.Component<'elements.label-and-text', true>;
+    country: Attribute.String &
+      Attribute.Required &
+      Attribute.CustomField<'plugin::country-select.country'>;
+    city: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::location.location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::location.location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
   };
 }
 
@@ -1360,6 +1392,7 @@ declare module '@strapi/types' {
       'api::global.global': ApiGlobalGlobal;
       'api::home.home': ApiHomeHome;
       'api::lead-form-submission.lead-form-submission': ApiLeadFormSubmissionLeadFormSubmission;
+      'api::location.location': ApiLocationLocation;
       'api::page.page': ApiPagePage;
       'api::person.person': ApiPersonPerson;
       'api::project.project': ApiProjectProject;

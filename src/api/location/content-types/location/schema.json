@@ -1,0 +1,64 @@
+{
+  "kind": "collectionType",
+  "collectionName": "locations",
+  "info": {
+    "singularName": "location",
+    "pluralName": "locations",
+    "displayName": "Location",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "_softDeletedAt": {
+      "type": "datetime",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedById": {
+      "type": "integer",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedByType": {
+      "type": "string",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "street": {
+      "type": "string",
+      "required": true
+    },
+    "building": {
+      "type": "string"
+    },
+    "postOfficeBox": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "required": true
+    },
+    "communication": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.label-and-text"
+    },
+    "country": {
+      "type": "customField",
+      "required": true,
+      "customField": "plugin::country-select.country"
+    },
+    "city": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
