@@ -13,10 +13,10 @@ export interface Location {
     street: string;
     building?: string;
     postOfficeBox?: string;
-    slug: string;
     communication: LabelAndText[];
     country: any;
     city: string;
+    slug?: string;
   };
 }
 export interface Location_Plain {
@@ -27,10 +27,10 @@ export interface Location_Plain {
   street: string;
   building?: string;
   postOfficeBox?: string;
-  slug: string;
   communication: LabelAndText_Plain[];
   country: any;
   city: string;
+  slug?: string;
 }
 
 export interface Location_NoRelations {
@@ -41,10 +41,10 @@ export interface Location_NoRelations {
   street: string;
   building?: string;
   postOfficeBox?: string;
-  slug: string;
   communication: LabelAndText_NoRelations[];
   country: any;
   city: string;
+  slug?: string;
 }
 
 export interface Location_AdminPanelLifeCycle {
@@ -55,8 +55,8 @@ export interface Location_AdminPanelLifeCycle {
   street: string;
   building?: string;
   postOfficeBox?: string;
-  slug: string;
   communication: LabelAndText_Plain[];
   country: any;
   city: string;
+  slug?: string;
 }

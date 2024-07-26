@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-07-26T11:03:20.356Z"
+    "x-generation-date": "2024-07-26T12:27:22.039Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -3052,7 +3052,6 @@
           "data": {
             "required": [
               "street",
-              "slug",
               "country",
               "city"
             ],
@@ -3077,9 +3076,6 @@
               "postOfficeBox": {
                 "type": "string"
               },
-              "slug": {
-                "type": "string"
-              },
               "communication": {
                 "type": "array",
                 "items": {
@@ -3090,6 +3086,9 @@
                 "type": "string"
               },
               "city": {
+                "type": "string"
+              },
+              "slug": {
                 "type": "string"
               }
             }
@@ -3146,7 +3145,6 @@
         "type": "object",
         "required": [
           "street",
-          "slug",
           "country",
           "city"
         ],
@@ -3170,9 +3168,6 @@
           "postOfficeBox": {
             "type": "string"
           },
-          "slug": {
-            "type": "string"
-          },
           "communication": {
             "type": "array",
             "items": {
@@ -3183,6 +3178,9 @@
             "type": "string"
           },
           "city": {
+            "type": "string"
+          },
+          "slug": {
             "type": "string"
           },
           "createdAt": {

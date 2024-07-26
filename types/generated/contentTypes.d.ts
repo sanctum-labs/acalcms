@@ -1114,12 +1114,12 @@ export interface ApiLocationLocation extends Schema.CollectionType {
     street: Attribute.String & Attribute.Required;
     building: Attribute.String;
     postOfficeBox: Attribute.String;
-    slug: Attribute.UID & Attribute.Required;
     communication: Attribute.Component<'elements.label-and-text', true>;
     country: Attribute.String &
       Attribute.Required &
       Attribute.CustomField<'plugin::country-select.country'>;
     city: Attribute.String & Attribute.Required;
+    slug: Attribute.UID<'api::location.location', 'city'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

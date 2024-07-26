@@ -42,10 +42,6 @@
     "postOfficeBox": {
       "type": "string"
     },
-    "slug": {
-      "type": "uid",
-      "required": true
-    },
     "communication": {
       "type": "component",
       "repeatable": true,
@@ -59,6 +55,10 @@
     "city": {
       "type": "string",
       "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "city"
     }
   }
 }
