@@ -25,8 +25,6 @@ export interface Project {
     Abbreviation: string;
     ProjectType: string;
     Description: string;
-    Tags?: any;
-    UUID?: any;
     uid?: string;
   };
 }
@@ -44,8 +42,6 @@ export interface Project_Plain {
   Abbreviation: string;
   ProjectType: string;
   Description: string;
-  Tags?: any;
-  UUID?: any;
   uid?: string;
 }
 
@@ -63,8 +59,6 @@ export interface Project_NoRelations {
   Abbreviation: string;
   ProjectType: string;
   Description: string;
-  Tags?: any;
-  UUID?: any;
   uid?: string;
 }
 
@@ -82,7 +76,5 @@ export interface Project_AdminPanelLifeCycle {
   Abbreviation: string;
   ProjectType: string;
   Description: string;
-  Tags?: any;
-  UUID?: any;
   uid?: string;
 }

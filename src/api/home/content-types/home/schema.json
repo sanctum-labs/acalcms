@@ -49,10 +49,6 @@
       "relation": "oneToMany",
       "target": "api::project.project"
     },
-    "UUID": {
-      "type": "customField",
-      "customField": "plugin::field-uuid.uuid"
-    },
     "people": {
       "type": "relation",
       "relation": "oneToMany",

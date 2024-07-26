@@ -24,7 +24,6 @@ export interface Home {
     Hero: Hero;
     Overview?: Overview;
     Projects: { data: Project[] };
-    UUID?: any;
     people: { data: Person[] };
     JoinTheTeam: Card[];
   };
@@ -37,7 +36,6 @@ export interface Home_Plain {
   Hero: Hero_Plain;
   Overview?: Overview_Plain;
   Projects: Project_Plain[];
-  UUID?: any;
   people: Person_Plain[];
   JoinTheTeam: Card_Plain[];
 }
@@ -50,7 +48,6 @@ export interface Home_NoRelations {
   Hero: Hero_NoRelations;
   Overview?: Overview_NoRelations;
   Projects: number[];
-  UUID?: any;
   people: number[];
   JoinTheTeam: Card_NoRelations[];
 }
@@ -63,7 +60,6 @@ export interface Home_AdminPanelLifeCycle {
   Hero: Hero_Plain;
   Overview?: Overview_Plain;
   Projects: AdminPanelRelationPropertyModification<Project_Plain>;
-  UUID?: any;
   people: AdminPanelRelationPropertyModification<Person_Plain>;
   JoinTheTeam: Card_Plain[];
 }

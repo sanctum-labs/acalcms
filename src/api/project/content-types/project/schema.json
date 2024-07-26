@@ -77,14 +77,6 @@
       "type": "text",
       "required": true
     },
-    "Tags": {
-      "type": "customField",
-      "customField": "plugin::field-uuid.uuid"
-    },
-    "UUID": {
-      "type": "customField",
-      "customField": "plugin::field-uuid.uuid"
-    },
     "uid": {
       "type": "uid",
       "targetField": "Name"

@@ -1041,7 +1041,6 @@ export interface ApiHomeHome extends Schema.SingleType {
       'oneToMany',
       'api::project.project'
     >;
-    UUID: Attribute.UID & Attribute.CustomField<'plugin::field-uuid.uuid'>;
     people: Attribute.Relation<
       'api::home.home',
       'oneToMany',
@@ -1275,8 +1274,6 @@ export interface ApiProjectProject extends Schema.CollectionType {
     Abbreviation: Attribute.String & Attribute.Required & Attribute.Unique;
     ProjectType: Attribute.String & Attribute.Required;
     Description: Attribute.Text & Attribute.Required;
-    Tags: Attribute.UID & Attribute.CustomField<'plugin::field-uuid.uuid'>;
-    UUID: Attribute.UID & Attribute.CustomField<'plugin::field-uuid.uuid'>;
     uid: Attribute.UID<'api::project.project', 'Name'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
