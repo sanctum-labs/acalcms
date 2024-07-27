@@ -1,0 +1,36 @@
+{
+  "kind": "singleType",
+  "collectionName": "approaches",
+  "info": {
+    "singularName": "approach",
+    "pluralName": "approaches",
+    "displayName": "Approach"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero"
+    },
+    "Overview": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.overview"
+    },
+    "body": {
+      "type": "richtext",
+      "required": true
+    },
+    "mediaBanner": {
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

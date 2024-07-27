@@ -55,25 +55,6 @@ export interface SharedMetaSocial extends Schema.Component {
   };
 }
 
-export interface MetaMetadata extends Schema.Component {
-  collectionName: 'components_meta_metadata';
-  info: {
-    name: 'Metadata';
-    displayName: 'Metadata';
-    icon: 'robot';
-  };
-  attributes: {
-    metaTitle: Attribute.String & Attribute.Required;
-    metaDescription: Attribute.Text & Attribute.Required;
-    shareImage: Attribute.Media<'images'>;
-    twitterCardType: Attribute.Enumeration<
-      ['summary', 'summary_large_image', 'app', 'player']
-    > &
-      Attribute.DefaultTo<'summary'>;
-    twitterUsername: Attribute.String;
-  };
-}
-
 export interface SectionsTestimonialsGroup extends Schema.Component {
   collectionName: 'components_slices_testimonials_groups';
   info: {
@@ -209,6 +190,25 @@ export interface SectionsBottomActions extends Schema.Component {
   attributes: {
     title: Attribute.String;
     buttons: Attribute.Component<'links.button-link', true>;
+  };
+}
+
+export interface MetaMetadata extends Schema.Component {
+  collectionName: 'components_meta_metadata';
+  info: {
+    name: 'Metadata';
+    displayName: 'Metadata';
+    icon: 'robot';
+  };
+  attributes: {
+    metaTitle: Attribute.String & Attribute.Required;
+    metaDescription: Attribute.Text & Attribute.Required;
+    shareImage: Attribute.Media<'images'>;
+    twitterCardType: Attribute.Enumeration<
+      ['summary', 'summary_large_image', 'app', 'player']
+    > &
+      Attribute.DefaultTo<'summary'>;
+    twitterUsername: Attribute.String;
   };
 }
 
@@ -448,7 +448,6 @@ declare module '@strapi/types' {
     export interface Components {
       'shared.seo': SharedSeo;
       'shared.meta-social': SharedMetaSocial;
-      'meta.metadata': MetaMetadata;
       'sections.testimonials-group': SectionsTestimonialsGroup;
       'sections.rich-text': SectionsRichText;
       'sections.pricing': SectionsPricing;
@@ -459,6 +458,7 @@ declare module '@strapi/types' {
       'sections.feature-rows-group': SectionsFeatureRowsGroup;
       'sections.feature-columns-group': SectionsFeatureColumnsGroup;
       'sections.bottom-actions': SectionsBottomActions;
+      'meta.metadata': MetaMetadata;
       'links.link': LinksLink;
       'links.button': LinksButton;
       'links.button-link': LinksButtonLink;

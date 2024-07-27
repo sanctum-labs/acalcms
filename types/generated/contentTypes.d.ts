@@ -906,6 +906,42 @@ export interface PluginGraphsBuilderGraph extends Schema.CollectionType {
   };
 }
 
+export interface ApiApproachApproach extends Schema.SingleType {
+  collectionName: 'approaches';
+  info: {
+    singularName: 'approach';
+    pluralName: 'approaches';
+    displayName: 'Approach';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Hero: Attribute.Component<'sections.hero'>;
+    Overview: Attribute.Component<'sections.overview'>;
+    body: Attribute.RichText & Attribute.Required;
+    mediaBanner: Attribute.Media<'images' | 'videos'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::approach.approach',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::approach.approach',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+  };
+}
+
 export interface ApiClientClient extends Schema.CollectionType {
   collectionName: 'clients';
   info: {
@@ -1386,6 +1422,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::graphs-builder.graph': PluginGraphsBuilderGraph;
+      'api::approach.approach': ApiApproachApproach;
       'api::client.client': ApiClientClient;
       'api::global.global': ApiGlobalGlobal;
       'api::home.home': ApiHomeHome;
