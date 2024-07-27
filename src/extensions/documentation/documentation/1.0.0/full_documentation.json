@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-07-27T05:44:56.540Z"
+    "x-generation-date": "2024-07-27T13:13:18.859Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -5831,13 +5831,17 @@
           }
         }
       },
-      "WhyUsRequest": {
+      "TheNeedRequest": {
         "type": "object",
         "required": [
           "data"
         ],
         "properties": {
           "data": {
+            "required": [
+              "Hero",
+              "body"
+            ],
             "type": "object",
             "properties": {
               "Hero": {
@@ -5845,6 +5849,9 @@
               },
               "Overview": {
                 "$ref": "#/components/schemas/SectionsOverviewComponent"
+              },
+              "body": {
+                "type": "string"
               },
               "_softDeletedAt": {
                 "type": "string",
@@ -5860,24 +5867,24 @@
           }
         }
       },
-      "WhyUsListResponseDataItem": {
+      "TheNeedListResponseDataItem": {
         "type": "object",
         "properties": {
           "id": {
             "type": "number"
           },
           "attributes": {
-            "$ref": "#/components/schemas/WhyUs"
+            "$ref": "#/components/schemas/TheNeed"
           }
         }
       },
-      "WhyUsListResponse": {
+      "TheNeedListResponse": {
         "type": "object",
         "properties": {
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/WhyUsListResponseDataItem"
+              "$ref": "#/components/schemas/TheNeedListResponseDataItem"
             }
           },
           "meta": {
@@ -5906,14 +5913,21 @@
           }
         }
       },
-      "WhyUs": {
+      "TheNeed": {
         "type": "object",
+        "required": [
+          "Hero",
+          "body"
+        ],
         "properties": {
           "Hero": {
             "$ref": "#/components/schemas/SectionsHeroComponent"
           },
           "Overview": {
             "$ref": "#/components/schemas/SectionsOverviewComponent"
+          },
+          "body": {
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -5973,22 +5987,22 @@
           }
         }
       },
-      "WhyUsResponseDataObject": {
+      "TheNeedResponseDataObject": {
         "type": "object",
         "properties": {
           "id": {
             "type": "number"
           },
           "attributes": {
-            "$ref": "#/components/schemas/WhyUs"
+            "$ref": "#/components/schemas/TheNeed"
           }
         }
       },
-      "WhyUsResponse": {
+      "TheNeedResponse": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/WhyUsResponseDataObject"
+            "$ref": "#/components/schemas/TheNeedResponseDataObject"
           },
           "meta": {
             "type": "object"
@@ -9056,7 +9070,7 @@
         "operationId": "delete/social-media-links/{id}"
       }
     },
-    "/why-us": {
+    "/the-need": {
       "get": {
         "responses": {
           "200": {
@@ -9064,7 +9078,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/WhyUsResponse"
+                  "$ref": "#/components/schemas/TheNeedResponse"
                 }
               }
             }
@@ -9121,7 +9135,7 @@
           }
         },
         "tags": [
-          "Why-us"
+          "The-need"
         ],
         "parameters": [
           {
@@ -9227,7 +9241,7 @@
             }
           }
         ],
-        "operationId": "get/why-us"
+        "operationId": "get/the-need"
       },
       "put": {
         "responses": {
@@ -9236,7 +9250,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/WhyUsResponse"
+                  "$ref": "#/components/schemas/TheNeedResponse"
                 }
               }
             }
@@ -9293,16 +9307,16 @@
           }
         },
         "tags": [
-          "Why-us"
+          "The-need"
         ],
         "parameters": [],
-        "operationId": "put/why-us",
+        "operationId": "put/the-need",
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/WhyUsRequest"
+                "$ref": "#/components/schemas/TheNeedRequest"
               }
             }
           }
@@ -9373,10 +9387,10 @@
           }
         },
         "tags": [
-          "Why-us"
+          "The-need"
         ],
         "parameters": [],
-        "operationId": "delete/why-us"
+        "operationId": "delete/the-need"
       }
     },
     "/upload": {

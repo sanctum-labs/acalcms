@@ -7,27 +7,31 @@ import { Overview_Plain } from '../../../../components/sections/interfaces/Overv
 import { Hero_NoRelations } from '../../../../components/sections/interfaces/Hero';
 import { Overview_NoRelations } from '../../../../components/sections/interfaces/Overview';
 
-export interface WhyUs {
+export interface TheNeed {
   id: number;
   attributes: {
-    createdAt: Date;    updatedAt: Date;    publishedAt?: Date;    Hero?: Hero;
+    createdAt: Date;    updatedAt: Date;    publishedAt?: Date;    Hero: Hero;
     Overview?: Overview;
+    body: string;
   };
 }
-export interface WhyUs_Plain {
+export interface TheNeed_Plain {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Hero?: Hero_Plain;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Hero: Hero_Plain;
   Overview?: Overview_Plain;
+  body: string;
 }
 
-export interface WhyUs_NoRelations {
+export interface TheNeed_NoRelations {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Hero?: Hero_NoRelations;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Hero: Hero_NoRelations;
   Overview?: Overview_NoRelations;
+  body: string;
 }
 
-export interface WhyUs_AdminPanelLifeCycle {
+export interface TheNeed_AdminPanelLifeCycle {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Hero?: Hero_Plain;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Hero: Hero_Plain;
   Overview?: Overview_Plain;
+  body: string;
 }

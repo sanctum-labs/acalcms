@@ -1,5 +1,5 @@
 {
-  "/why-us": {
+  "/the-need": {
     "get": {
       "responses": {
         "200": {
@@ -7,7 +7,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/WhyUsResponse"
+                "$ref": "#/components/schemas/TheNeedResponse"
               }
             }
           }
@@ -64,7 +64,7 @@
         }
       },
       "tags": [
-        "Why-us"
+        "The-need"
       ],
       "parameters": [
         {
@@ -170,7 +170,7 @@
           }
         }
       ],
-      "operationId": "get/why-us"
+      "operationId": "get/the-need"
     },
     "put": {
       "responses": {
@@ -179,7 +179,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/WhyUsResponse"
+                "$ref": "#/components/schemas/TheNeedResponse"
               }
             }
           }
@@ -236,16 +236,16 @@
         }
       },
       "tags": [
-        "Why-us"
+        "The-need"
       ],
       "parameters": [],
-      "operationId": "put/why-us",
+      "operationId": "put/the-need",
       "requestBody": {
         "required": true,
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/WhyUsRequest"
+              "$ref": "#/components/schemas/TheNeedRequest"
             }
           }
         }
@@ -316,10 +316,10 @@
         }
       },
       "tags": [
-        "Why-us"
+        "The-need"
       ],
       "parameters": [],
-      "operationId": "delete/why-us"
+      "operationId": "delete/the-need"
     }
   }
 }

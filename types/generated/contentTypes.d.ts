@@ -1330,30 +1330,31 @@ export interface ApiSocialMediaLinkSocialMediaLink
   };
 }
 
-export interface ApiWhyUsWhyUs extends Schema.SingleType {
-  collectionName: 'why_uses';
+export interface ApiTheNeedTheNeed extends Schema.SingleType {
+  collectionName: 'the_needs';
   info: {
-    singularName: 'why-us';
-    pluralName: 'why-uses';
-    displayName: 'Why Us';
+    singularName: 'the-need';
+    pluralName: 'the-needs';
+    displayName: 'The Need';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Hero: Attribute.Component<'sections.hero'>;
+    Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
     Overview: Attribute.Component<'sections.overview'>;
+    body: Attribute.RichText & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::why-us.why-us',
+      'api::the-need.the-need',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::why-us.why-us',
+      'api::the-need.the-need',
       'oneToOne',
       'admin::user'
     > &
@@ -1394,7 +1395,7 @@ declare module '@strapi/types' {
       'api::person.person': ApiPersonPerson;
       'api::project.project': ApiProjectProject;
       'api::social-media-link.social-media-link': ApiSocialMediaLinkSocialMediaLink;
-      'api::why-us.why-us': ApiWhyUsWhyUs;
+      'api::the-need.the-need': ApiTheNeedTheNeed;
     }
   }
 }

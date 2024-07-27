@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "why_uses",
+  "collectionName": "the_needs",
   "info": {
-    "singularName": "why-us",
-    "pluralName": "why-uses",
-    "displayName": "Why Us"
+    "singularName": "the-need",
+    "pluralName": "the-needs",
+    "displayName": "The Need"
   },
   "options": {
     "draftAndPublish": true
@@ -13,12 +13,17 @@
     "Hero": {
       "type": "component",
       "repeatable": false,
-      "component": "sections.hero"
+      "component": "sections.hero",
+      "required": true
     },
     "Overview": {
       "type": "component",
       "repeatable": false,
       "component": "sections.overview"
+    },
+    "body": {
+      "type": "richtext",
+      "required": true
     }
   }
 }
