@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_sections_banners",
+  "info": {
+    "displayName": "Banner",
+    "icon": "landscape"
+  },
+  "options": {},
+  "attributes": {
+    "banner": {
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

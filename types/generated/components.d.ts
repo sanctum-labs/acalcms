@@ -180,6 +180,19 @@ export interface SectionsFeatureColumnsGroup extends Schema.Component {
   };
 }
 
+export interface SectionsCardGrid extends Schema.Component {
+  collectionName: 'components_sections_card_grids';
+  info: {
+    displayName: 'Card Grid';
+    icon: 'apps';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String;
+    cards: Attribute.Component<'elements.card', true> & Attribute.Required;
+  };
+}
+
 export interface SectionsBottomActions extends Schema.Component {
   collectionName: 'components_slices_bottom_actions';
   info: {
@@ -190,6 +203,18 @@ export interface SectionsBottomActions extends Schema.Component {
   attributes: {
     title: Attribute.String;
     buttons: Attribute.Component<'links.button-link', true>;
+  };
+}
+
+export interface SectionsBanner extends Schema.Component {
+  collectionName: 'components_sections_banners';
+  info: {
+    displayName: 'Banner';
+    icon: 'landscape';
+  };
+  attributes: {
+    banner: Attribute.Media<'images' | 'videos'> & Attribute.Required;
+    description: Attribute.RichText & Attribute.Required;
   };
 }
 
@@ -430,6 +455,7 @@ export interface ElementsFeatureColumn extends Schema.Component {
 export interface ElementsCard extends Schema.Component {
   collectionName: 'components_elements_cards';
   info: {
+    name: 'card';
     displayName: 'Card';
     icon: 'folder';
     description: '';
@@ -457,7 +483,9 @@ declare module '@strapi/types' {
       'sections.hero': SectionsHero;
       'sections.feature-rows-group': SectionsFeatureRowsGroup;
       'sections.feature-columns-group': SectionsFeatureColumnsGroup;
+      'sections.card-grid': SectionsCardGrid;
       'sections.bottom-actions': SectionsBottomActions;
+      'sections.banner': SectionsBanner;
       'meta.metadata': MetaMetadata;
       'links.link': LinksLink;
       'links.button': LinksButton;

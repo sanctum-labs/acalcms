@@ -2,43 +2,66 @@
 
 import { Hero } from '../../../../components/sections/interfaces/Hero';
 import { Overview } from '../../../../components/sections/interfaces/Overview';
-import { Media } from '../../../../common/schemas-to-ts/Media';
+import { Banner } from '../../../../components/sections/interfaces/Banner';
+import { CardGrid } from '../../../../components/sections/interfaces/CardGrid';
 import { Hero_Plain } from '../../../../components/sections/interfaces/Hero';
 import { Overview_Plain } from '../../../../components/sections/interfaces/Overview';
-import { Media_Plain } from '../../../../common/schemas-to-ts/Media';
+import { Banner_Plain } from '../../../../components/sections/interfaces/Banner';
+import { CardGrid_Plain } from '../../../../components/sections/interfaces/CardGrid';
 import { Hero_NoRelations } from '../../../../components/sections/interfaces/Hero';
 import { Overview_NoRelations } from '../../../../components/sections/interfaces/Overview';
-import { AdminPanelRelationPropertyModification } from '../../../../common/schemas-to-ts/AdminPanelRelationPropertyModification';
+import { Banner_NoRelations } from '../../../../components/sections/interfaces/Banner';
+import { CardGrid_NoRelations } from '../../../../components/sections/interfaces/CardGrid';
 
 export interface Approach {
   id: number;
   attributes: {
-    createdAt: Date;    updatedAt: Date;    publishedAt?: Date;    Hero?: Hero;
+    createdAt: Date;    updatedAt: Date;    publishedAt?: Date;    _softDeletedAt?: Date;
+    _softDeletedById?: number;
+    _softDeletedByType?: string;
+    Hero?: Hero;
     Overview?: Overview;
     body: string;
-    mediaBanner?: { data: Media };
+    banner?: Banner;
+    quote: string;
+    clientFocus: CardGrid;
   };
 }
 export interface Approach_Plain {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Hero?: Hero_Plain;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
+  Hero?: Hero_Plain;
   Overview?: Overview_Plain;
   body: string;
-  mediaBanner?: Media_Plain;
+  banner?: Banner_Plain;
+  quote: string;
+  clientFocus: CardGrid_Plain;
 }
 
 export interface Approach_NoRelations {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Hero?: Hero_NoRelations;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
+  Hero?: Hero_NoRelations;
   Overview?: Overview_NoRelations;
   body: string;
-  mediaBanner?: number;
+  banner?: Banner_NoRelations;
+  quote: string;
+  clientFocus: CardGrid_NoRelations;
 }
 
 export interface Approach_AdminPanelLifeCycle {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Hero?: Hero_Plain;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
+  Hero?: Hero_Plain;
   Overview?: Overview_Plain;
   body: string;
-  mediaBanner?: AdminPanelRelationPropertyModification<Media_Plain>;
+  banner?: Banner_Plain;
+  quote: string;
+  clientFocus: CardGrid_Plain;
 }

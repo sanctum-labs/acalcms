@@ -912,15 +912,21 @@ export interface ApiApproachApproach extends Schema.SingleType {
     singularName: 'approach';
     pluralName: 'approaches';
     displayName: 'Approach';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
     Hero: Attribute.Component<'sections.hero'>;
     Overview: Attribute.Component<'sections.overview'>;
     body: Attribute.RichText & Attribute.Required;
-    mediaBanner: Attribute.Media<'images' | 'videos'>;
+    banner: Attribute.Component<'sections.banner'>;
+    quote: Attribute.Text & Attribute.Required;
+    clientFocus: Attribute.Component<'sections.card-grid'> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -936,9 +942,6 @@ export interface ApiApproachApproach extends Schema.SingleType {
       'admin::user'
     > &
       Attribute.Private;
-    _softDeletedAt: Attribute.DateTime & Attribute.Private;
-    _softDeletedById: Attribute.Integer & Attribute.Private;
-    _softDeletedByType: Attribute.String & Attribute.Private;
   };
 }
 

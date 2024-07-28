@@ -4,12 +4,34 @@
   "info": {
     "singularName": "approach",
     "pluralName": "approaches",
-    "displayName": "Approach"
+    "displayName": "Approach",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
+    "_softDeletedAt": {
+      "type": "datetime",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedById": {
+      "type": "integer",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedByType": {
+      "type": "string",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
     "Hero": {
       "type": "component",
       "repeatable": false,
@@ -24,13 +46,20 @@
       "type": "richtext",
       "required": true
     },
-    "mediaBanner": {
-      "allowedTypes": [
-        "images",
-        "videos"
-      ],
-      "type": "media",
-      "multiple": false
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.banner"
+    },
+    "quote": {
+      "type": "text",
+      "required": true
+    },
+    "clientFocus": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.card-grid",
+      "required": true
     }
   }
 }

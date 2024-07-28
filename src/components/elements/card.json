@@ -1,6 +1,7 @@
 {
   "collectionName": "components_elements_cards",
   "info": {
+    "name": "card",
     "displayName": "Card",
     "icon": "folder",
     "description": ""
