@@ -218,6 +218,25 @@ export interface SectionsBanner extends Schema.Component {
   };
 }
 
+export interface MetaMetadata extends Schema.Component {
+  collectionName: 'components_meta_metadata';
+  info: {
+    name: 'Metadata';
+    displayName: 'Metadata';
+    icon: 'robot';
+  };
+  attributes: {
+    metaTitle: Attribute.String & Attribute.Required;
+    metaDescription: Attribute.Text & Attribute.Required;
+    shareImage: Attribute.Media<'images'>;
+    twitterCardType: Attribute.Enumeration<
+      ['summary', 'summary_large_image', 'app', 'player']
+    > &
+      Attribute.DefaultTo<'summary'>;
+    twitterUsername: Attribute.String;
+  };
+}
+
 export interface LinksLink extends Schema.Component {
   collectionName: 'components_links_links';
   info: {
@@ -260,25 +279,6 @@ export interface LinksButtonLink extends Schema.Component {
     newTab: Attribute.Boolean & Attribute.DefaultTo<false>;
     text: Attribute.String;
     type: Attribute.Enumeration<['primary', 'secondary']>;
-  };
-}
-
-export interface MetaMetadata extends Schema.Component {
-  collectionName: 'components_meta_metadata';
-  info: {
-    name: 'Metadata';
-    displayName: 'Metadata';
-    icon: 'robot';
-  };
-  attributes: {
-    metaTitle: Attribute.String & Attribute.Required;
-    metaDescription: Attribute.Text & Attribute.Required;
-    shareImage: Attribute.Media<'images'>;
-    twitterCardType: Attribute.Enumeration<
-      ['summary', 'summary_large_image', 'app', 'player']
-    > &
-      Attribute.DefaultTo<'summary'>;
-    twitterUsername: Attribute.String;
   };
 }
 
@@ -486,10 +486,10 @@ declare module '@strapi/types' {
       'sections.card-grid': SectionsCardGrid;
       'sections.bottom-actions': SectionsBottomActions;
       'sections.banner': SectionsBanner;
+      'meta.metadata': MetaMetadata;
       'links.link': LinksLink;
       'links.button': LinksButton;
       'links.button-link': LinksButtonLink;
-      'meta.metadata': MetaMetadata;
       'layout.navbar': LayoutNavbar;
       'layout.footer': LayoutFooter;
       'elements.url': ElementsUrl;
