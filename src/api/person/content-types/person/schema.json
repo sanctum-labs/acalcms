@@ -69,6 +69,14 @@
       "type": "uid",
       "targetField": "Name",
       "required": true
+    },
+    "PhoneNumber": {
+      "type": "customField",
+      "required": false,
+      "options": {
+        "country": "ke"
+      },
+      "customField": "plugin::strapi-phone-validator.phone"
     }
   }
 }

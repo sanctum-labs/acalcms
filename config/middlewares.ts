@@ -13,8 +13,13 @@ export default [
     name: "strapi::security",
     config: {
       contentSecurityPolicy: {
+        useDefaults: true,
         directives: {
           "frame-src": [ "http://localhost:*", "self", "sandbox.embed.apollographql.com" ],
+          "connect-src": ["'self'", "https:"],
+          "script-src": ["https://cdnjs.cloudflare.com"],
+          "media-src": ["https://cdnjs.cloudflare.com"],
+          "img-src": ["https://cdnjs.cloudflare.com"],          
         },
       },
     },

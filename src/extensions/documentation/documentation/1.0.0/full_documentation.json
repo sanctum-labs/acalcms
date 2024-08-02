@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-08-02T07:44:16.750Z"
+    "x-generation-date": "2024-08-02T14:55:14.851Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -3276,6 +3276,9 @@
                         "slug": {
                           "type": "string"
                         },
+                        "PhoneNumber": {
+                          "type": "string"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -4109,6 +4112,9 @@
               },
               "slug": {
                 "type": "string"
+              },
+              "PhoneNumber": {
+                "type": "string"
               }
             }
           }
@@ -4825,6 +4831,9 @@
             }
           },
           "slug": {
+            "type": "string"
+          },
+          "PhoneNumber": {
             "type": "string"
           },
           "createdAt": {

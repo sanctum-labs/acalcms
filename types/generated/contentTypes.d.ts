@@ -1270,6 +1270,13 @@ export interface ApiPersonPerson extends Schema.CollectionType {
     Social: Attribute.Component<'shared.meta-social', true> &
       Attribute.Required;
     slug: Attribute.UID<'api::person.person', 'Name'> & Attribute.Required;
+    PhoneNumber: Attribute.String &
+      Attribute.CustomField<
+        'plugin::strapi-phone-validator.phone',
+        {
+          country: 'ke';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

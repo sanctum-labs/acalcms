@@ -21,6 +21,7 @@ export interface Person {
     Quote?: string;
     Social: MetaSocial[];
     slug: string;
+    PhoneNumber?: any;
   };
 }
 export interface Person_Plain {
@@ -36,6 +37,7 @@ export interface Person_Plain {
   Quote?: string;
   Social: MetaSocial_Plain[];
   slug: string;
+  PhoneNumber?: any;
 }
 
 export interface Person_NoRelations {
@@ -51,6 +53,7 @@ export interface Person_NoRelations {
   Quote?: string;
   Social: MetaSocial_NoRelations[];
   slug: string;
+  PhoneNumber?: any;
 }
 
 export interface Person_AdminPanelLifeCycle {
@@ -66,4 +69,5 @@ export interface Person_AdminPanelLifeCycle {
   Quote?: string;
   Social: MetaSocial_Plain[];
   slug: string;
+  PhoneNumber?: any;
 }
