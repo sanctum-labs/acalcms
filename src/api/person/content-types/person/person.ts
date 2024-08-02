@@ -2,8 +2,10 @@
 
 import { Media } from '../../../../common/schemas-to-ts/Media';
 import { MetaSocial } from '../../../../components/shared/interfaces/MetaSocial';
+import { Expertise } from '../../../expertise/content-types/expertise/expertise';
 import { Media_Plain } from '../../../../common/schemas-to-ts/Media';
 import { MetaSocial_Plain } from '../../../../components/shared/interfaces/MetaSocial';
+import { Expertise_Plain } from '../../../expertise/content-types/expertise/expertise';
 import { MetaSocial_NoRelations } from '../../../../components/shared/interfaces/MetaSocial';
 import { AdminPanelRelationPropertyModification } from '../../../../common/schemas-to-ts/AdminPanelRelationPropertyModification';
 
@@ -22,6 +24,7 @@ export interface Person {
     Social: MetaSocial[];
     slug: string;
     PhoneNumber?: any;
+    expertise: { data: Expertise[] };
   };
 }
 export interface Person_Plain {
@@ -38,6 +41,7 @@ export interface Person_Plain {
   Social: MetaSocial_Plain[];
   slug: string;
   PhoneNumber?: any;
+  expertise: Expertise_Plain[];
 }
 
 export interface Person_NoRelations {
@@ -54,6 +58,7 @@ export interface Person_NoRelations {
   Social: MetaSocial_NoRelations[];
   slug: string;
   PhoneNumber?: any;
+  expertise: number[];
 }
 
 export interface Person_AdminPanelLifeCycle {
@@ -70,4 +75,5 @@ export interface Person_AdminPanelLifeCycle {
   Social: MetaSocial_Plain[];
   slug: string;
   PhoneNumber?: any;
+  expertise: AdminPanelRelationPropertyModification<Expertise_Plain>;
 }

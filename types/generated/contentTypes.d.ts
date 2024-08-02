@@ -982,6 +982,53 @@ export interface ApiClientClient extends Schema.CollectionType {
   };
 }
 
+export interface ApiExpertiseExpertise extends Schema.CollectionType {
+  collectionName: 'expertisen';
+  info: {
+    singularName: 'expertise';
+    pluralName: 'expertisen';
+    displayName: 'Expertise';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    description: Attribute.RichText & Attribute.Required;
+    mediaBanner: Attribute.Media<'images' | 'videos'>;
+    projects: Attribute.Relation<
+      'api::expertise.expertise',
+      'oneToMany',
+      'api::project.project'
+    >;
+    slug: Attribute.UID<'api::expertise.expertise', 'name'> &
+      Attribute.Required;
+    banner: Attribute.Media<'images'> & Attribute.Required;
+    category: Attribute.Enumeration<['Industries', 'Services']> &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::expertise.expertise',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::expertise.expertise',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiGlobalGlobal extends Schema.SingleType {
   collectionName: 'globals';
   info: {
@@ -1277,6 +1324,11 @@ export interface ApiPersonPerson extends Schema.CollectionType {
           country: 'ke';
         }
       >;
+    expertise: Attribute.Relation<
+      'api::person.person',
+      'oneToMany',
+      'api::expertise.expertise'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1321,6 +1373,11 @@ export interface ApiProjectProject extends Schema.CollectionType {
     ProjectType: Attribute.String & Attribute.Required;
     Description: Attribute.Text & Attribute.Required;
     uid: Attribute.UID<'api::project.project', 'Name'>;
+    expertise: Attribute.Relation<
+      'api::project.project',
+      'manyToOne',
+      'api::expertise.expertise'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1434,6 +1491,7 @@ declare module '@strapi/types' {
       'plugin::graphs-builder.graph': PluginGraphsBuilderGraph;
       'api::approach.approach': ApiApproachApproach;
       'api::client.client': ApiClientClient;
+      'api::expertise.expertise': ApiExpertiseExpertise;
       'api::global.global': ApiGlobalGlobal;
       'api::home.home': ApiHomeHome;
       'api::lead-form-submission.lead-form-submission': ApiLeadFormSubmissionLeadFormSubmission;

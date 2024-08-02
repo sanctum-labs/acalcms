@@ -3,9 +3,11 @@
 import { LabelAndText } from '../../../../components/elements/interfaces/LabelAndText';
 import { Media } from '../../../../common/schemas-to-ts/Media';
 import { Overview } from '../../../../components/sections/interfaces/Overview';
+import { Expertise } from '../../../expertise/content-types/expertise/expertise';
 import { LabelAndText_Plain } from '../../../../components/elements/interfaces/LabelAndText';
 import { Media_Plain } from '../../../../common/schemas-to-ts/Media';
 import { Overview_Plain } from '../../../../components/sections/interfaces/Overview';
+import { Expertise_Plain } from '../../../expertise/content-types/expertise/expertise';
 import { LabelAndText_NoRelations } from '../../../../components/elements/interfaces/LabelAndText';
 import { Overview_NoRelations } from '../../../../components/sections/interfaces/Overview';
 import { AdminPanelRelationPropertyModification } from '../../../../common/schemas-to-ts/AdminPanelRelationPropertyModification';
@@ -26,6 +28,7 @@ export interface Project {
     ProjectType: string;
     Description: string;
     uid?: string;
+    expertise?: { data: Expertise };
   };
 }
 export interface Project_Plain {
@@ -43,6 +46,7 @@ export interface Project_Plain {
   ProjectType: string;
   Description: string;
   uid?: string;
+  expertise?: Expertise_Plain;
 }
 
 export interface Project_NoRelations {
@@ -60,6 +64,7 @@ export interface Project_NoRelations {
   ProjectType: string;
   Description: string;
   uid?: string;
+  expertise?: number;
 }
 
 export interface Project_AdminPanelLifeCycle {
@@ -77,4 +82,5 @@ export interface Project_AdminPanelLifeCycle {
   ProjectType: string;
   Description: string;
   uid?: string;
+  expertise?: AdminPanelRelationPropertyModification<Expertise_Plain>;
 }

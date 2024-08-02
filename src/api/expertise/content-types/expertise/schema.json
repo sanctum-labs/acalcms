@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "projects",
+  "collectionName": "expertisen",
   "info": {
-    "singularName": "project",
-    "pluralName": "projects",
-    "displayName": "Project",
+    "singularName": "expertise",
+    "pluralName": "expertisen",
+    "displayName": "Expertise",
     "description": ""
   },
   "options": {
@@ -32,26 +32,41 @@
       "visible": false,
       "private": true
     },
-    "Name": {
+    "name": {
       "type": "string",
       "required": true,
       "unique": true
     },
-    "ProjectDetails": {
-      "type": "component",
-      "repeatable": true,
-      "component": "elements.label-and-text",
-      "required": true
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
     },
-    "Background": {
+    "description": {
       "type": "richtext",
       "required": true
     },
-    "Assignment": {
-      "type": "richtext",
+    "mediaBanner": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project.project",
+      "mappedBy": "expertise"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
       "required": true
     },
-    "Image": {
+    "banner": {
       "type": "media",
       "multiple": false,
       "required": true,
@@ -59,33 +74,13 @@
         "images"
       ]
     },
-    "Approach": {
-      "type": "component",
-      "repeatable": false,
-      "component": "sections.overview"
-    },
-    "Abbreviation": {
-      "type": "string",
-      "required": true,
-      "unique": true
-    },
-    "ProjectType": {
-      "type": "string",
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Industries",
+        "Services"
+      ],
       "required": true
-    },
-    "Description": {
-      "type": "text",
-      "required": true
-    },
-    "uid": {
-      "type": "uid",
-      "targetField": "Name"
-    },
-    "expertise": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::expertise.expertise",
-      "inversedBy": "projects"
     }
   }
 }

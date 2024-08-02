@@ -77,6 +77,11 @@
         "country": "ke"
       },
       "customField": "plugin::strapi-phone-validator.phone"
+    },
+    "expertise": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::expertise.expertise"
     }
   }
 }
