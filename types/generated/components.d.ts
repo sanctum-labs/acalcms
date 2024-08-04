@@ -55,25 +55,6 @@ export interface SharedMetaSocial extends Schema.Component {
   };
 }
 
-export interface MetaMetadata extends Schema.Component {
-  collectionName: 'components_meta_metadata';
-  info: {
-    name: 'Metadata';
-    displayName: 'Metadata';
-    icon: 'robot';
-  };
-  attributes: {
-    metaTitle: Attribute.String & Attribute.Required;
-    metaDescription: Attribute.Text & Attribute.Required;
-    shareImage: Attribute.Media<'images'>;
-    twitterCardType: Attribute.Enumeration<
-      ['summary', 'summary_large_image', 'app', 'player']
-    > &
-      Attribute.DefaultTo<'summary'>;
-    twitterUsername: Attribute.String;
-  };
-}
-
 export interface SectionsTestimonialsGroup extends Schema.Component {
   collectionName: 'components_slices_testimonials_groups';
   info: {
@@ -234,6 +215,25 @@ export interface SectionsBanner extends Schema.Component {
   attributes: {
     banner: Attribute.Media<'images' | 'videos'> & Attribute.Required;
     description: Attribute.RichText & Attribute.Required;
+  };
+}
+
+export interface MetaMetadata extends Schema.Component {
+  collectionName: 'components_meta_metadata';
+  info: {
+    name: 'Metadata';
+    displayName: 'Metadata';
+    icon: 'robot';
+  };
+  attributes: {
+    metaTitle: Attribute.String & Attribute.Required;
+    metaDescription: Attribute.Text & Attribute.Required;
+    shareImage: Attribute.Media<'images'>;
+    twitterCardType: Attribute.Enumeration<
+      ['summary', 'summary_large_image', 'app', 'player']
+    > &
+      Attribute.DefaultTo<'summary'>;
+    twitterUsername: Attribute.String;
   };
 }
 
@@ -474,7 +474,6 @@ declare module '@strapi/types' {
     export interface Components {
       'shared.seo': SharedSeo;
       'shared.meta-social': SharedMetaSocial;
-      'meta.metadata': MetaMetadata;
       'sections.testimonials-group': SectionsTestimonialsGroup;
       'sections.rich-text': SectionsRichText;
       'sections.pricing': SectionsPricing;
@@ -487,6 +486,7 @@ declare module '@strapi/types' {
       'sections.card-grid': SectionsCardGrid;
       'sections.bottom-actions': SectionsBottomActions;
       'sections.banner': SectionsBanner;
+      'meta.metadata': MetaMetadata;
       'links.link': LinksLink;
       'links.button': LinksButton;
       'links.button-link': LinksButtonLink;

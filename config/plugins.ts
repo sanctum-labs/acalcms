@@ -11,6 +11,10 @@ export default ({ env }) => ({
         person: {
           field: 'slug',
           references: 'slug'
+        },
+        expertise: {
+          field: 'slug',
+          references: 'slug'
         }
       }
     }
