@@ -77,9 +77,10 @@
       "type": "text",
       "required": true
     },
-    "uid": {
+    "slug": {
       "type": "uid",
-      "targetField": "Name"
+      "targetField": "Name",
+      "required": true
     },
     "expertise": {
       "type": "relation",

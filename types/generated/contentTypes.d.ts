@@ -1372,7 +1372,7 @@ export interface ApiProjectProject extends Schema.CollectionType {
     Abbreviation: Attribute.String & Attribute.Required & Attribute.Unique;
     ProjectType: Attribute.String & Attribute.Required;
     Description: Attribute.Text & Attribute.Required;
-    uid: Attribute.UID<'api::project.project', 'Name'>;
+    slug: Attribute.UID<'api::project.project', 'Name'> & Attribute.Required;
     expertise: Attribute.Relation<
       'api::project.project',
       'manyToOne',

@@ -27,7 +27,7 @@ export interface Project {
     Abbreviation: string;
     ProjectType: string;
     Description: string;
-    uid?: string;
+    slug: string;
     expertise?: { data: Expertise };
   };
 }
@@ -45,7 +45,7 @@ export interface Project_Plain {
   Abbreviation: string;
   ProjectType: string;
   Description: string;
-  uid?: string;
+  slug: string;
   expertise?: Expertise_Plain;
 }
 
@@ -63,7 +63,7 @@ export interface Project_NoRelations {
   Abbreviation: string;
   ProjectType: string;
   Description: string;
-  uid?: string;
+  slug: string;
   expertise?: number;
 }
 
@@ -81,6 +81,6 @@ export interface Project_AdminPanelLifeCycle {
   Abbreviation: string;
   ProjectType: string;
   Description: string;
-  uid?: string;
+  slug: string;
   expertise?: AdminPanelRelationPropertyModification<Expertise_Plain>;
 }

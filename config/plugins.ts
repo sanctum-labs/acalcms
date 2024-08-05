@@ -6,7 +6,7 @@ export default ({ env }) => ({
       contentTypes: {
         project: {
           field: 'slug',
-          references: 'name'
+          references: 'slug'
         },
         person: {
           field: 'slug',

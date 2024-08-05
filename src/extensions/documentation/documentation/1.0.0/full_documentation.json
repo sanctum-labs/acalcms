@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-08-04T16:16:07.783Z"
+    "x-generation-date": "2024-08-05T16:41:12.375Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -3518,7 +3518,7 @@
                         "Description": {
                           "type": "string"
                         },
-                        "uid": {
+                        "slug": {
                           "type": "string"
                         },
                         "expertise": {
@@ -4671,7 +4671,7 @@
                         "Description": {
                           "type": "string"
                         },
-                        "uid": {
+                        "slug": {
                           "type": "string"
                         },
                         "expertise": {
@@ -7585,7 +7585,7 @@
                                       "Description": {
                                         "type": "string"
                                       },
-                                      "uid": {
+                                      "slug": {
                                         "type": "string"
                                       },
                                       "expertise": {
@@ -8111,7 +8111,8 @@
               "Image",
               "Abbreviation",
               "ProjectType",
-              "Description"
+              "Description",
+              "slug"
             ],
             "type": "object",
             "properties": {
@@ -8163,7 +8164,7 @@
               "Description": {
                 "type": "string"
               },
-              "uid": {
+              "slug": {
                 "type": "string"
               },
               "expertise": {
@@ -8237,7 +8238,8 @@
           "Image",
           "Abbreviation",
           "ProjectType",
-          "Description"
+          "Description",
+          "slug"
         ],
         "properties": {
           "_softDeletedAt": {
@@ -8899,7 +8901,7 @@
           "Description": {
             "type": "string"
           },
-          "uid": {
+          "slug": {
             "type": "string"
           },
           "expertise": {
@@ -9423,7 +9425,7 @@
                                     "Description": {
                                       "type": "string"
                                     },
-                                    "uid": {
+                                    "slug": {
                                       "type": "string"
                                     },
                                     "expertise": {
