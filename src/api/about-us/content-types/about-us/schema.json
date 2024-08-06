@@ -1,0 +1,23 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_uses",
+  "info": {
+    "singularName": "about-us",
+    "pluralName": "about-uses",
+    "displayName": "About Us"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": false,
+      "default": "About Us"
+    },
+    "description": {
+      "type": "text",
+      "default": "Being a game changer is in our DNA: get to know our values , our management , our network . Getting in touch with our experts is easy – wherever you are."
+    }
+  }
+}
