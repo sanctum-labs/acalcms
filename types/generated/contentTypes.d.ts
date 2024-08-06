@@ -1378,6 +1378,9 @@ export interface ApiProjectProject extends Schema.CollectionType {
       'manyToOne',
       'api::expertise.expertise'
     >;
+    Impact: Attribute.RichText;
+    Scope: Attribute.RichText;
+    Goal: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

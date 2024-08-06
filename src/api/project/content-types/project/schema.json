@@ -87,6 +87,15 @@
       "relation": "manyToOne",
       "target": "api::expertise.expertise",
       "inversedBy": "projects"
+    },
+    "Impact": {
+      "type": "richtext"
+    },
+    "Scope": {
+      "type": "richtext"
+    },
+    "Goal": {
+      "type": "richtext"
     }
   }
 }

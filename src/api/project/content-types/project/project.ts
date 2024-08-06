@@ -29,6 +29,9 @@ export interface Project {
     Description: string;
     slug: string;
     expertise?: { data: Expertise };
+    Impact?: string;
+    Scope?: string;
+    Goal?: string;
   };
 }
 export interface Project_Plain {
@@ -47,6 +50,9 @@ export interface Project_Plain {
   Description: string;
   slug: string;
   expertise?: Expertise_Plain;
+  Impact?: string;
+  Scope?: string;
+  Goal?: string;
 }
 
 export interface Project_NoRelations {
@@ -65,6 +71,9 @@ export interface Project_NoRelations {
   Description: string;
   slug: string;
   expertise?: number;
+  Impact?: string;
+  Scope?: string;
+  Goal?: string;
 }
 
 export interface Project_AdminPanelLifeCycle {
@@ -83,4 +92,7 @@ export interface Project_AdminPanelLifeCycle {
   Description: string;
   slug: string;
   expertise?: AdminPanelRelationPropertyModification<Expertise_Plain>;
+  Impact?: string;
+  Scope?: string;
+  Goal?: string;
 }
