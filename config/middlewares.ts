@@ -15,11 +15,20 @@ export default [
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          "frame-src": [ "http://localhost:*", "self", "sandbox.embed.apollographql.com" ],
           "connect-src": ["'self'", "https:"],
+          'img-src': ["'self'", 'data:', 'blob:', 'market-assets.strapi.io', 'res.cloudinary.com'],
+          "frame-src": [ "http://localhost:*", "self", "sandbox.embed.apollographql.com" ],
           "script-src": ["https://cdnjs.cloudflare.com"],
-          "media-src": ["https://cdnjs.cloudflare.com"],
-          "img-src": ["https://cdnjs.cloudflare.com"],          
+          'media-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            'market-assets.strapi.io',
+            'res.cloudinary.com',
+          ],
+          upgradeInsecureRequests: null,
+          // "media-src": ["https://cdnjs.cloudflare.com"],
+          // "img-src": ["https://cdnjs.cloudflare.com"],     
         },
       },
     },

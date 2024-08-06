@@ -941,6 +941,43 @@ export interface ApiAboutUsAboutUs extends Schema.SingleType {
   };
 }
 
+export interface ApiAboutUsWhoWeAreAboutUsWhoWeAre extends Schema.SingleType {
+  collectionName: 'about_us_who_we_ares';
+  info: {
+    singularName: 'about-us-who-we-are';
+    pluralName: 'about-us-who-we-ares';
+    displayName: 'About Us / Who We Are';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+    Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
+    Overview: Attribute.Component<'sections.overview'> & Attribute.Required;
+    MediaBanner: Attribute.Media<'images' | 'videos'>;
+    Body: Attribute.RichText & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::about-us-who-we-are.about-us-who-we-are',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::about-us-who-we-are.about-us-who-we-are',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiApproachApproach extends Schema.SingleType {
   collectionName: 'approaches';
   info: {
@@ -1528,6 +1565,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::graphs-builder.graph': PluginGraphsBuilderGraph;
       'api::about-us.about-us': ApiAboutUsAboutUs;
+      'api::about-us-who-we-are.about-us-who-we-are': ApiAboutUsWhoWeAreAboutUsWhoWeAre;
       'api::approach.approach': ApiApproachApproach;
       'api::client.client': ApiClientClient;
       'api::expertise.expertise': ApiExpertiseExpertise;
