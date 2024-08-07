@@ -4,12 +4,34 @@
   "info": {
     "singularName": "the-need",
     "pluralName": "the-needs",
-    "displayName": "The Need"
+    "displayName": "About Us / The Need",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
+    "_softDeletedAt": {
+      "type": "datetime",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedById": {
+      "type": "integer",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedByType": {
+      "type": "string",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
     "Hero": {
       "type": "component",
       "repeatable": false,

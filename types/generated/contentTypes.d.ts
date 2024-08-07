@@ -983,7 +983,7 @@ export interface ApiApproachApproach extends Schema.SingleType {
   info: {
     singularName: 'approach';
     pluralName: 'approaches';
-    displayName: 'Approach';
+    displayName: 'About Us / Approach';
     description: '';
   };
   options: {
@@ -1182,7 +1182,7 @@ export interface ApiHomeHome extends Schema.SingleType {
   info: {
     singularName: 'home';
     pluralName: 'homes';
-    displayName: 'Home';
+    displayName: 'Home Page';
     description: '';
   };
   options: {
@@ -1513,12 +1513,16 @@ export interface ApiTheNeedTheNeed extends Schema.SingleType {
   info: {
     singularName: 'the-need';
     pluralName: 'the-needs';
-    displayName: 'The Need';
+    displayName: 'About Us / The Need';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
     Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
     Overview: Attribute.Component<'sections.overview'>;
     body: Attribute.RichText & Attribute.Required;
@@ -1537,9 +1541,6 @@ export interface ApiTheNeedTheNeed extends Schema.SingleType {
       'admin::user'
     > &
       Attribute.Private;
-    _softDeletedAt: Attribute.DateTime & Attribute.Private;
-    _softDeletedById: Attribute.Integer & Attribute.Private;
-    _softDeletedByType: Attribute.String & Attribute.Private;
   };
 }
 

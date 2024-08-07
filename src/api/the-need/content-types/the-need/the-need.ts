@@ -10,28 +10,40 @@ import { Overview_NoRelations } from '../../../../components/sections/interfaces
 export interface TheNeed {
   id: number;
   attributes: {
-    createdAt: Date;    updatedAt: Date;    publishedAt?: Date;    Hero: Hero;
+    createdAt: Date;    updatedAt: Date;    publishedAt?: Date;    _softDeletedAt?: Date;
+    _softDeletedById?: number;
+    _softDeletedByType?: string;
+    Hero: Hero;
     Overview?: Overview;
     body: string;
   };
 }
 export interface TheNeed_Plain {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Hero: Hero_Plain;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
+  Hero: Hero_Plain;
   Overview?: Overview_Plain;
   body: string;
 }
 
 export interface TheNeed_NoRelations {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Hero: Hero_NoRelations;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
+  Hero: Hero_NoRelations;
   Overview?: Overview_NoRelations;
   body: string;
 }
 
 export interface TheNeed_AdminPanelLifeCycle {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Hero: Hero_Plain;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
+  Hero: Hero_Plain;
   Overview?: Overview_Plain;
   body: string;
 }
