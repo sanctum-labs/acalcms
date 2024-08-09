@@ -1253,6 +1253,93 @@ export interface ApiHomeHome extends Schema.SingleType {
   };
 }
 
+export interface ApiInsightInsight extends Schema.CollectionType {
+  collectionName: 'insights';
+  info: {
+    singularName: 'insight';
+    pluralName: 'insights';
+    displayName: 'Insight';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+    Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
+    Overview: Attribute.Component<'sections.overview'> & Attribute.Required;
+    Name: Attribute.String & Attribute.Required;
+    slug: Attribute.UID<'api::insight.insight', 'Name'> & Attribute.Required;
+    people: Attribute.Relation<
+      'api::insight.insight',
+      'oneToMany',
+      'api::person.person'
+    >;
+    Body: Attribute.RichText & Attribute.Required;
+    Type: Attribute.Enumeration<['Article', 'Publication', 'Study', 'Topic']> &
+      Attribute.Required;
+    AuthorQuote: Attribute.Component<'elements.person-quote', true>;
+    Image: Attribute.Media<'images'> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::insight.insight',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::insight.insight',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiInsightsPageInsightsPage extends Schema.SingleType {
+  collectionName: 'insights_pages';
+  info: {
+    singularName: 'insights-page';
+    pluralName: 'insights-pages';
+    displayName: 'Insights Landing Page';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+    Hero: Attribute.Component<'sections.hero'>;
+    Overview: Attribute.Component<'sections.overview'> & Attribute.Required;
+    insights: Attribute.Relation<
+      'api::insights-page.insights-page',
+      'oneToMany',
+      'api::insight.insight'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::insights-page.insights-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::insights-page.insights-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiLeadFormSubmissionLeadFormSubmission
   extends Schema.CollectionType {
   collectionName: 'lead_form_submissions';
@@ -1610,6 +1697,8 @@ declare module '@strapi/types' {
       'api::expertise.expertise': ApiExpertiseExpertise;
       'api::global.global': ApiGlobalGlobal;
       'api::home.home': ApiHomeHome;
+      'api::insight.insight': ApiInsightInsight;
+      'api::insights-page.insights-page': ApiInsightsPageInsightsPage;
       'api::lead-form-submission.lead-form-submission': ApiLeadFormSubmissionLeadFormSubmission;
       'api::location.location': ApiLocationLocation;
       'api::page.page': ApiPagePage;

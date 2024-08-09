@@ -357,6 +357,22 @@ export interface ElementsPlan extends Schema.Component {
   };
 }
 
+export interface ElementsPersonQuote extends Schema.Component {
+  collectionName: 'components_elements_person_quotes';
+  info: {
+    displayName: 'Person Quote';
+    icon: 'quote';
+  };
+  attributes: {
+    Person: Attribute.Relation<
+      'elements.person-quote',
+      'oneToOne',
+      'api::person.person'
+    >;
+    Quote: Attribute.Text & Attribute.Required;
+  };
+}
+
 export interface ElementsNotificationBanner extends Schema.Component {
   collectionName: 'components_elements_notification_banners';
   info: {
@@ -495,6 +511,7 @@ declare module '@strapi/types' {
       'elements.url': ElementsUrl;
       'elements.testimonial': ElementsTestimonial;
       'elements.plan': ElementsPlan;
+      'elements.person-quote': ElementsPersonQuote;
       'elements.notification-banner': ElementsNotificationBanner;
       'elements.logos': ElementsLogos;
       'elements.label-and-text': ElementsLabelAndText;

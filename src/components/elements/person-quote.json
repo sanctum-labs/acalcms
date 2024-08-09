@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_elements_person_quotes",
+  "info": {
+    "displayName": "Person Quote",
+    "icon": "quote"
+  },
+  "options": {},
+  "attributes": {
+    "Person": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::person.person"
+    },
+    "Quote": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
