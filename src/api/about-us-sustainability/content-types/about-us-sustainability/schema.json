@@ -1,0 +1,35 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_us_sustainabilities",
+  "info": {
+    "singularName": "about-us-sustainability",
+    "pluralName": "about-us-sustainabilities",
+    "displayName": "About Us / Sustainability"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero",
+      "required": true
+    },
+    "Overview": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.overview",
+      "required": true
+    },
+    "MediaBanner": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.banner"
+    },
+    "Body": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

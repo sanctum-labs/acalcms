@@ -941,6 +941,43 @@ export interface ApiAboutUsAboutUs extends Schema.SingleType {
   };
 }
 
+export interface ApiAboutUsSustainabilityAboutUsSustainability
+  extends Schema.SingleType {
+  collectionName: 'about_us_sustainabilities';
+  info: {
+    singularName: 'about-us-sustainability';
+    pluralName: 'about-us-sustainabilities';
+    displayName: 'About Us / Sustainability';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
+    Overview: Attribute.Component<'sections.overview'> & Attribute.Required;
+    MediaBanner: Attribute.Component<'sections.banner'>;
+    Body: Attribute.RichText & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::about-us-sustainability.about-us-sustainability',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::about-us-sustainability.about-us-sustainability',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+  };
+}
+
 export interface ApiAboutUsWhoWeAreAboutUsWhoWeAre extends Schema.SingleType {
   collectionName: 'about_us_who_we_ares';
   info: {
@@ -1566,6 +1603,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::graphs-builder.graph': PluginGraphsBuilderGraph;
       'api::about-us.about-us': ApiAboutUsAboutUs;
+      'api::about-us-sustainability.about-us-sustainability': ApiAboutUsSustainabilityAboutUsSustainability;
       'api::about-us-who-we-are.about-us-who-we-are': ApiAboutUsWhoWeAreAboutUsWhoWeAre;
       'api::approach.approach': ApiApproachApproach;
       'api::client.client': ApiClientClient;
