@@ -1282,6 +1282,11 @@ export interface ApiInsightInsight extends Schema.CollectionType {
       Attribute.Required;
     AuthorQuote: Attribute.Component<'elements.person-quote', true>;
     Image: Attribute.Media<'images'> & Attribute.Required;
+    RelatedInsights: Attribute.Relation<
+      'api::insight.insight',
+      'oneToMany',
+      'api::insight.insight'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -78,12 +78,17 @@
       "component": "elements.person-quote"
     },
     "Image": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "RelatedInsights": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::insight.insight"
     }
   }
 }

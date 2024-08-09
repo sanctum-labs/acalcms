@@ -153,6 +153,7 @@ export interface SectionsHero extends Schema.Component {
     picture: Attribute.Media<'images'> & Attribute.Required;
     callToAction: Attribute.Component<'links.button-link'>;
     logo: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    title: Attribute.String;
   };
 }
 

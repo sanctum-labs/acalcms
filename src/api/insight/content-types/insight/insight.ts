@@ -36,6 +36,7 @@ export interface Insight {
     Type: Type;
     AuthorQuote: PersonQuote[];
     Image: { data: Media };
+    RelatedInsights: { data: Insight[] };
   };
 }
 export interface Insight_Plain {
@@ -52,6 +53,7 @@ export interface Insight_Plain {
   Type: Type;
   AuthorQuote: PersonQuote_Plain[];
   Image: Media_Plain;
+  RelatedInsights: Insight_Plain[];
 }
 
 export interface Insight_NoRelations {
@@ -68,6 +70,7 @@ export interface Insight_NoRelations {
   Type: Type;
   AuthorQuote: PersonQuote_NoRelations[];
   Image: number;
+  RelatedInsights: number[];
 }
 
 export interface Insight_AdminPanelLifeCycle {
@@ -84,4 +87,5 @@ export interface Insight_AdminPanelLifeCycle {
   Type: Type;
   AuthorQuote: PersonQuote_Plain[];
   Image: AdminPanelRelationPropertyModification<Media_Plain>;
+  RelatedInsights: AdminPanelRelationPropertyModification<Insight_Plain>;
 }

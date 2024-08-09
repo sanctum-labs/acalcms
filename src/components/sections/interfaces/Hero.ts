@@ -10,16 +10,19 @@ export interface Hero {
   picture: { data: Media };
   callToAction?: ButtonLink;
   logo?: { data: Media };
+  title?: string;
 }
 export interface Hero_Plain {
   picture: Media_Plain;
   callToAction?: ButtonLink_Plain;
   logo?: Media_Plain;
+  title?: string;
 }
 
 export interface Hero_NoRelations {
   picture: number;
   callToAction?: ButtonLink_NoRelations;
   logo?: number;
+  title?: string;
 }
 
