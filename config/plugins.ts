@@ -15,7 +15,11 @@ export default ({ env }) => ({
         expertise: {
           field: 'slug',
           references: 'slug'
-        }
+        },
+        insight: {
+          field: 'slug',
+          references: 'slug'
+        },
       }
     }
   },

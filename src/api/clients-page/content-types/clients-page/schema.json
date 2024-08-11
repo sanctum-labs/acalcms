@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "clients_pages",
+  "info": {
+    "singularName": "clients-page",
+    "pluralName": "clients-pages",
+    "displayName": "Clients Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero",
+      "required": true
+    },
+    "Overview": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.overview",
+      "required": true
+    }
+  }
+}

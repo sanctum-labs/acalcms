@@ -68,7 +68,8 @@
         "Article",
         "Publication",
         "Study",
-        "Topic"
+        "Topic",
+        "Report"
       ],
       "required": true
     },

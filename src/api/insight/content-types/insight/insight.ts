@@ -19,7 +19,8 @@ export enum Type {
   Article = 'Article',
   Publication = 'Publication',
   Study = 'Study',
-  Topic = 'Topic',}
+  Topic = 'Topic',
+  Report = 'Report',}
 
 export interface Insight {
   id: number;

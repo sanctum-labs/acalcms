@@ -1091,6 +1091,40 @@ export interface ApiClientClient extends Schema.CollectionType {
   };
 }
 
+export interface ApiClientsPageClientsPage extends Schema.SingleType {
+  collectionName: 'clients_pages';
+  info: {
+    singularName: 'clients-page';
+    pluralName: 'clients-pages';
+    displayName: 'Clients Page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
+    Overview: Attribute.Component<'sections.overview'> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::clients-page.clients-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::clients-page.clients-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+  };
+}
+
 export interface ApiExpertiseExpertise extends Schema.CollectionType {
   collectionName: 'expertisen';
   info: {
@@ -1278,7 +1312,9 @@ export interface ApiInsightInsight extends Schema.CollectionType {
       'api::person.person'
     >;
     Body: Attribute.RichText & Attribute.Required;
-    Type: Attribute.Enumeration<['Article', 'Publication', 'Study', 'Topic']> &
+    Type: Attribute.Enumeration<
+      ['Article', 'Publication', 'Study', 'Topic', 'Report']
+    > &
       Attribute.Required;
     AuthorQuote: Attribute.Component<'elements.person-quote', true>;
     Image: Attribute.Media<'images'> & Attribute.Required;
@@ -1699,6 +1735,7 @@ declare module '@strapi/types' {
       'api::about-us-who-we-are.about-us-who-we-are': ApiAboutUsWhoWeAreAboutUsWhoWeAre;
       'api::approach.approach': ApiApproachApproach;
       'api::client.client': ApiClientClient;
+      'api::clients-page.clients-page': ApiClientsPageClientsPage;
       'api::expertise.expertise': ApiExpertiseExpertise;
       'api::global.global': ApiGlobalGlobal;
       'api::home.home': ApiHomeHome;
