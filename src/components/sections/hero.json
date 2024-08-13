@@ -8,30 +8,6 @@
   },
   "options": {},
   "attributes": {
-    "picture": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "callToAction": {
-      "type": "component",
-      "repeatable": false,
-      "component": "links.button-link"
-    },
-    "logo": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
     "title": {
       "type": "string"
     }
