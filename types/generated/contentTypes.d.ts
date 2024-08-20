@@ -1381,6 +1381,46 @@ export interface ApiInsightsPageInsightsPage extends Schema.SingleType {
   };
 }
 
+export interface ApiLandValueCaptureLandValueCapture extends Schema.SingleType {
+  collectionName: 'land_value_captures';
+  info: {
+    singularName: 'land-value-capture';
+    pluralName: 'land-value-captures';
+    displayName: 'Land Value Capture Page';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+    Hero: Attribute.Component<'sections.hero'>;
+    Background: Attribute.Component<'sections.overview'> & Attribute.Required;
+    Description: Attribute.Component<'sections.overview'> & Attribute.Required;
+    Benefits: Attribute.Component<'sections.overview'>;
+    Overview: Attribute.Component<'sections.title-and-description'>;
+    Case: Attribute.Component<'sections.overview'>;
+    Report: Attribute.Media<'images' | 'files'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::land-value-capture.land-value-capture',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::land-value-capture.land-value-capture',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiLeadFormSubmissionLeadFormSubmission
   extends Schema.CollectionType {
   collectionName: 'lead_form_submissions';
@@ -1741,6 +1781,7 @@ declare module '@strapi/types' {
       'api::home.home': ApiHomeHome;
       'api::insight.insight': ApiInsightInsight;
       'api::insights-page.insights-page': ApiInsightsPageInsightsPage;
+      'api::land-value-capture.land-value-capture': ApiLandValueCaptureLandValueCapture;
       'api::lead-form-submission.lead-form-submission': ApiLeadFormSubmissionLeadFormSubmission;
       'api::location.location': ApiLocationLocation;
       'api::page.page': ApiPagePage;

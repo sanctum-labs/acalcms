@@ -55,6 +55,17 @@ export interface SharedMetaSocial extends Schema.Component {
   };
 }
 
+export interface SectionsTitleAndDescription extends Schema.Component {
+  collectionName: 'components_sections_title_and_descriptions';
+  info: {
+    displayName: 'TitleAndDescription';
+  };
+  attributes: {
+    Title: Attribute.String & Attribute.Required;
+    Description: Attribute.RichText & Attribute.Required;
+  };
+}
+
 export interface SectionsTestimonialsGroup extends Schema.Component {
   collectionName: 'components_slices_testimonials_groups';
   info: {
@@ -488,6 +499,7 @@ declare module '@strapi/types' {
     export interface Components {
       'shared.seo': SharedSeo;
       'shared.meta-social': SharedMetaSocial;
+      'sections.title-and-description': SectionsTitleAndDescription;
       'sections.testimonials-group': SectionsTestimonialsGroup;
       'sections.rich-text': SectionsRichText;
       'sections.pricing': SectionsPricing;

@@ -1,0 +1,76 @@
+{
+  "kind": "singleType",
+  "collectionName": "land_value_captures",
+  "info": {
+    "singularName": "land-value-capture",
+    "pluralName": "land-value-captures",
+    "displayName": "Land Value Capture Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "_softDeletedAt": {
+      "type": "datetime",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedById": {
+      "type": "integer",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedByType": {
+      "type": "string",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "Hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero"
+    },
+    "Background": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.overview",
+      "required": true
+    },
+    "Description": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.overview",
+      "required": true
+    },
+    "Benefits": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.overview"
+    },
+    "Overview": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.title-and-description"
+    },
+    "Case": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.overview"
+    },
+    "Report": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
