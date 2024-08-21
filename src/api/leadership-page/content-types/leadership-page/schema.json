@@ -1,0 +1,87 @@
+{
+  "kind": "singleType",
+  "collectionName": "leadership_pages",
+  "info": {
+    "singularName": "leadership-page",
+    "pluralName": "leadership-pages",
+    "displayName": "Leadership Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "_softDeletedAt": {
+      "type": "datetime",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedById": {
+      "type": "integer",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedByType": {
+      "type": "string",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "Hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero"
+    },
+    "Description": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.title-and-description",
+      "required": true
+    },
+    "Overview": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.title-and-description",
+      "required": true
+    },
+    "BusinessAndContinuity": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.title-and-description",
+      "required": true
+    },
+    "HowWeWork": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.overview"
+    },
+    "Quote": {
+      "type": "text"
+    },
+    "WhatWeDo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.overview",
+      "required": true
+    },
+    "team": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::person.person"
+    },
+    "Framework": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    }
+  }
+}

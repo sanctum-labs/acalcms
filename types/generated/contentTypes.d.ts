@@ -1459,6 +1459,55 @@ export interface ApiLeadFormSubmissionLeadFormSubmission
   };
 }
 
+export interface ApiLeadershipPageLeadershipPage extends Schema.SingleType {
+  collectionName: 'leadership_pages';
+  info: {
+    singularName: 'leadership-page';
+    pluralName: 'leadership-pages';
+    displayName: 'Leadership Page';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+    Hero: Attribute.Component<'sections.hero'>;
+    Description: Attribute.Component<'sections.title-and-description'> &
+      Attribute.Required;
+    Overview: Attribute.Component<'sections.title-and-description'> &
+      Attribute.Required;
+    BusinessAndContinuity: Attribute.Component<'sections.title-and-description'> &
+      Attribute.Required;
+    HowWeWork: Attribute.Component<'sections.overview'>;
+    Quote: Attribute.Text;
+    WhatWeDo: Attribute.Component<'sections.overview'> & Attribute.Required;
+    team: Attribute.Relation<
+      'api::leadership-page.leadership-page',
+      'oneToMany',
+      'api::person.person'
+    >;
+    Framework: Attribute.Media<'images' | 'files'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::leadership-page.leadership-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::leadership-page.leadership-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiLocationLocation extends Schema.CollectionType {
   collectionName: 'locations';
   info: {
@@ -1783,6 +1832,7 @@ declare module '@strapi/types' {
       'api::insights-page.insights-page': ApiInsightsPageInsightsPage;
       'api::land-value-capture.land-value-capture': ApiLandValueCaptureLandValueCapture;
       'api::lead-form-submission.lead-form-submission': ApiLeadFormSubmissionLeadFormSubmission;
+      'api::leadership-page.leadership-page': ApiLeadershipPageLeadershipPage;
       'api::location.location': ApiLocationLocation;
       'api::page.page': ApiPagePage;
       'api::person.person': ApiPersonPerson;
