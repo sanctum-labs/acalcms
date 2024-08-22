@@ -1132,6 +1132,81 @@ export interface ApiBusinessAgilityAndContinuityPageBusinessAgilityAndContinuity
   };
 }
 
+export interface ApiCareersOpenRolesPageCareersOpenRolesPage
+  extends Schema.SingleType {
+  collectionName: 'careers_open_roles_pages';
+  info: {
+    singularName: 'careers-open-roles-page';
+    pluralName: 'careers-open-roles-pages';
+    displayName: 'Careers / Open Roles Page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Overview: Attribute.Component<'sections.title-and-description'>;
+    Description: Attribute.Component<'sections.title-and-description'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::careers-open-roles-page.careers-open-roles-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::careers-open-roles-page.careers-open-roles-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+  };
+}
+
+export interface ApiCareersPageCareersPage extends Schema.SingleType {
+  collectionName: 'careers_pages';
+  info: {
+    singularName: 'careers-page';
+    pluralName: 'careers-pages';
+    displayName: 'Careers';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+    Overview: Attribute.Component<'sections.title-and-description'>;
+    Roles: Attribute.Component<'sections.title-and-description'>;
+    BuildConnectGrow: Attribute.Component<'sections.title-and-description'>;
+    ConnectingAspirations: Attribute.Component<'sections.title-and-description'>;
+    Quote: Attribute.Text;
+    GrowingLeaders: Attribute.Component<'sections.title-and-description'>;
+    FindYourIdealJob: Attribute.Component<'sections.title-and-description'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::careers-page.careers-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::careers-page.careers-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiClientClient extends Schema.CollectionType {
   collectionName: 'clients';
   info: {
@@ -1751,6 +1826,40 @@ export interface ApiPersonPerson extends Schema.CollectionType {
   };
 }
 
+export interface ApiPrivacyNoticePagePrivacyNoticePage
+  extends Schema.SingleType {
+  collectionName: 'privacy_notice_pages';
+  info: {
+    singularName: 'privacy-notice-page';
+    pluralName: 'privacy-notice-pages';
+    displayName: 'Information / Privacy Notice Page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Description: Attribute.Component<'sections.title-and-description'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::privacy-notice-page.privacy-notice-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::privacy-notice-page.privacy-notice-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+  };
+}
+
 export interface ApiProjectProject extends Schema.CollectionType {
   collectionName: 'projects';
   info: {
@@ -1903,6 +2012,8 @@ declare module '@strapi/types' {
       'api::about-us-who-we-are.about-us-who-we-are': ApiAboutUsWhoWeAreAboutUsWhoWeAre;
       'api::approach.approach': ApiApproachApproach;
       'api::business-agility-and-continuity-page.business-agility-and-continuity-page': ApiBusinessAgilityAndContinuityPageBusinessAgilityAndContinuityPage;
+      'api::careers-open-roles-page.careers-open-roles-page': ApiCareersOpenRolesPageCareersOpenRolesPage;
+      'api::careers-page.careers-page': ApiCareersPageCareersPage;
       'api::client.client': ApiClientClient;
       'api::clients-page.clients-page': ApiClientsPageClientsPage;
       'api::expertise.expertise': ApiExpertiseExpertise;
@@ -1916,6 +2027,7 @@ declare module '@strapi/types' {
       'api::location.location': ApiLocationLocation;
       'api::page.page': ApiPagePage;
       'api::person.person': ApiPersonPerson;
+      'api::privacy-notice-page.privacy-notice-page': ApiPrivacyNoticePagePrivacyNoticePage;
       'api::project.project': ApiProjectProject;
       'api::social-media-link.social-media-link': ApiSocialMediaLinkSocialMediaLink;
       'api::the-need.the-need': ApiTheNeedTheNeed;

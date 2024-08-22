@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "careers_open_roles_pages",
+  "info": {
+    "singularName": "careers-open-roles-page",
+    "pluralName": "careers-open-roles-pages",
+    "displayName": "Careers / Open Roles Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Overview": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.title-and-description"
+    },
+    "Description": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.title-and-description"
+    }
+  }
+}

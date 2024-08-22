@@ -1,0 +1,19 @@
+{
+  "kind": "singleType",
+  "collectionName": "privacy_notice_pages",
+  "info": {
+    "singularName": "privacy-notice-page",
+    "pluralName": "privacy-notice-pages",
+    "displayName": "Information / Privacy Notice Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Description": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.title-and-description"
+    }
+  }
+}
