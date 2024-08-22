@@ -1054,6 +1054,47 @@ export interface ApiApproachApproach extends Schema.SingleType {
   };
 }
 
+export interface ApiBusinessAgilityAndContinuityPageBusinessAgilityAndContinuityPage
+  extends Schema.SingleType {
+  collectionName: 'business_agility_and_continuity_pages';
+  info: {
+    singularName: 'business-agility-and-continuity-page';
+    pluralName: 'business-agility-and-continuity-pages';
+    displayName: 'Business Agility and Continuity Page';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+    Description: Attribute.Component<'sections.title-and-description'>;
+    Overview: Attribute.Component<'sections.title-and-description'>;
+    ValueProposition: Attribute.Component<'sections.overview'>;
+    Guidelines: Attribute.Component<'sections.title-and-description'>;
+    Quote: Attribute.Text;
+    BuildResilience: Attribute.Component<'sections.title-and-description'>;
+    DigitalDiscipline: Attribute.Component<'sections.overview'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::business-agility-and-continuity-page.business-agility-and-continuity-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::business-agility-and-continuity-page.business-agility-and-continuity-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiClientClient extends Schema.CollectionType {
   collectionName: 'clients';
   info: {
@@ -1823,6 +1864,7 @@ declare module '@strapi/types' {
       'api::about-us-sustainability.about-us-sustainability': ApiAboutUsSustainabilityAboutUsSustainability;
       'api::about-us-who-we-are.about-us-who-we-are': ApiAboutUsWhoWeAreAboutUsWhoWeAre;
       'api::approach.approach': ApiApproachApproach;
+      'api::business-agility-and-continuity-page.business-agility-and-continuity-page': ApiBusinessAgilityAndContinuityPageBusinessAgilityAndContinuityPage;
       'api::client.client': ApiClientClient;
       'api::clients-page.clients-page': ApiClientsPageClientsPage;
       'api::expertise.expertise': ApiExpertiseExpertise;

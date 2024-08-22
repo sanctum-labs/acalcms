@@ -1,0 +1,69 @@
+{
+  "kind": "singleType",
+  "collectionName": "business_agility_and_continuity_pages",
+  "info": {
+    "singularName": "business-agility-and-continuity-page",
+    "pluralName": "business-agility-and-continuity-pages",
+    "displayName": "Business Agility and Continuity Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "_softDeletedAt": {
+      "type": "datetime",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedById": {
+      "type": "integer",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedByType": {
+      "type": "string",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "Description": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.title-and-description"
+    },
+    "Overview": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.title-and-description"
+    },
+    "ValueProposition": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.overview"
+    },
+    "Guidelines": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.title-and-description"
+    },
+    "Quote": {
+      "type": "text"
+    },
+    "BuildResilience": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.title-and-description"
+    },
+    "DigitalDiscipline": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.overview"
+    }
+  }
+}
