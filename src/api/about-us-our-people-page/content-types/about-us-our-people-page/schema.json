@@ -1,0 +1,47 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_us_our_people_pages",
+  "info": {
+    "singularName": "about-us-our-people-page",
+    "pluralName": "about-us-our-people-pages",
+    "displayName": "About Us / Our People Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "_softDeletedAt": {
+      "type": "datetime",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedById": {
+      "type": "integer",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedByType": {
+      "type": "string",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "Overview": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.title-and-description"
+    },
+    "People": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.people-group-row",
+      "required": true
+    }
+  }
+}

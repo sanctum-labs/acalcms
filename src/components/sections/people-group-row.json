@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_sections_people_group_rows",
+  "info": {
+    "displayName": "People Group Row"
+  },
+  "options": {},
+  "attributes": {
+    "GroupTitle": {
+      "type": "string",
+      "required": true
+    },
+    "people": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::person.person"
+    }
+  }
+}

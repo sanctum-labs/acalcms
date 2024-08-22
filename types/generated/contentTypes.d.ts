@@ -941,6 +941,43 @@ export interface ApiAboutUsAboutUs extends Schema.SingleType {
   };
 }
 
+export interface ApiAboutUsOurPeoplePageAboutUsOurPeoplePage
+  extends Schema.SingleType {
+  collectionName: 'about_us_our_people_pages';
+  info: {
+    singularName: 'about-us-our-people-page';
+    pluralName: 'about-us-our-people-pages';
+    displayName: 'About Us / Our People Page';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+    Overview: Attribute.Component<'sections.title-and-description'>;
+    People: Attribute.Component<'sections.people-group-row', true> &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::about-us-our-people-page.about-us-our-people-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::about-us-our-people-page.about-us-our-people-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiAboutUsSustainabilityAboutUsSustainability
   extends Schema.SingleType {
   collectionName: 'about_us_sustainabilities';
@@ -1861,6 +1898,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::graphs-builder.graph': PluginGraphsBuilderGraph;
       'api::about-us.about-us': ApiAboutUsAboutUs;
+      'api::about-us-our-people-page.about-us-our-people-page': ApiAboutUsOurPeoplePageAboutUsOurPeoplePage;
       'api::about-us-sustainability.about-us-sustainability': ApiAboutUsSustainabilityAboutUsSustainability;
       'api::about-us-who-we-are.about-us-who-we-are': ApiAboutUsWhoWeAreAboutUsWhoWeAre;
       'api::approach.approach': ApiApproachApproach;

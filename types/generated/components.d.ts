@@ -107,6 +107,21 @@ export interface SectionsPricing extends Schema.Component {
   };
 }
 
+export interface SectionsPeopleGroupRow extends Schema.Component {
+  collectionName: 'components_sections_people_group_rows';
+  info: {
+    displayName: 'People Group Row';
+  };
+  attributes: {
+    GroupTitle: Attribute.String & Attribute.Required;
+    people: Attribute.Relation<
+      'sections.people-group-row',
+      'oneToMany',
+      'api::person.person'
+    >;
+  };
+}
+
 export interface SectionsOverview extends Schema.Component {
   collectionName: 'components_sections_overviews';
   info: {
@@ -246,6 +261,35 @@ export interface MetaMetadata extends Schema.Component {
   };
 }
 
+export interface LayoutNavbar extends Schema.Component {
+  collectionName: 'components_layout_navbars';
+  info: {
+    name: 'Navbar';
+    displayName: 'Navbar';
+    icon: 'map-signs';
+    description: '';
+  };
+  attributes: {
+    links: Attribute.Component<'links.link', true>;
+    button: Attribute.Component<'links.button-link'>;
+    logo: Attribute.Media<'images'> & Attribute.Required;
+  };
+}
+
+export interface LayoutFooter extends Schema.Component {
+  collectionName: 'components_layout_footers';
+  info: {
+    name: 'Footer';
+    displayName: 'Footer';
+    icon: 'caret-square-down';
+  };
+  attributes: {
+    logo: Attribute.Media<'images'>;
+    columns: Attribute.Component<'elements.footer-section', true>;
+    smallText: Attribute.String;
+  };
+}
+
 export interface LinksLink extends Schema.Component {
   collectionName: 'components_links_links';
   info: {
@@ -288,35 +332,6 @@ export interface LinksButtonLink extends Schema.Component {
     newTab: Attribute.Boolean & Attribute.DefaultTo<false>;
     text: Attribute.String;
     type: Attribute.Enumeration<['primary', 'secondary']>;
-  };
-}
-
-export interface LayoutNavbar extends Schema.Component {
-  collectionName: 'components_layout_navbars';
-  info: {
-    name: 'Navbar';
-    displayName: 'Navbar';
-    icon: 'map-signs';
-    description: '';
-  };
-  attributes: {
-    links: Attribute.Component<'links.link', true>;
-    button: Attribute.Component<'links.button-link'>;
-    logo: Attribute.Media<'images'> & Attribute.Required;
-  };
-}
-
-export interface LayoutFooter extends Schema.Component {
-  collectionName: 'components_layout_footers';
-  info: {
-    name: 'Footer';
-    displayName: 'Footer';
-    icon: 'caret-square-down';
-  };
-  attributes: {
-    logo: Attribute.Media<'images'>;
-    columns: Attribute.Component<'elements.footer-section', true>;
-    smallText: Attribute.String;
   };
 }
 
@@ -503,6 +518,7 @@ declare module '@strapi/types' {
       'sections.testimonials-group': SectionsTestimonialsGroup;
       'sections.rich-text': SectionsRichText;
       'sections.pricing': SectionsPricing;
+      'sections.people-group-row': SectionsPeopleGroupRow;
       'sections.overview': SectionsOverview;
       'sections.lead-form': SectionsLeadForm;
       'sections.large-video': SectionsLargeVideo;
@@ -513,11 +529,11 @@ declare module '@strapi/types' {
       'sections.bottom-actions': SectionsBottomActions;
       'sections.banner': SectionsBanner;
       'meta.metadata': MetaMetadata;
+      'layout.navbar': LayoutNavbar;
+      'layout.footer': LayoutFooter;
       'links.link': LinksLink;
       'links.button': LinksButton;
       'links.button-link': LinksButtonLink;
-      'layout.navbar': LayoutNavbar;
-      'layout.footer': LayoutFooter;
       'elements.url': ElementsUrl;
       'elements.testimonial': ElementsTestimonial;
       'elements.plan': ElementsPlan;
