@@ -1946,6 +1946,40 @@ export interface ApiProjectProject extends Schema.CollectionType {
   };
 }
 
+export interface ApiServicesLandingPageServicesLandingPage
+  extends Schema.SingleType {
+  collectionName: 'services_landing_pages';
+  info: {
+    singularName: 'services-landing-page';
+    pluralName: 'services-landing-pages';
+    displayName: 'Services Landing Page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Description: Attribute.RichText & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::services-landing-page.services-landing-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::services-landing-page.services-landing-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+  };
+}
+
 export interface ApiSocialMediaLinkSocialMediaLink
   extends Schema.CollectionType {
   collectionName: 'social_media_links';
@@ -2064,6 +2098,7 @@ declare module '@strapi/types' {
       'api::person.person': ApiPersonPerson;
       'api::privacy-notice-page.privacy-notice-page': ApiPrivacyNoticePagePrivacyNoticePage;
       'api::project.project': ApiProjectProject;
+      'api::services-landing-page.services-landing-page': ApiServicesLandingPageServicesLandingPage;
       'api::social-media-link.social-media-link': ApiSocialMediaLinkSocialMediaLink;
       'api::the-need.the-need': ApiTheNeedTheNeed;
     }

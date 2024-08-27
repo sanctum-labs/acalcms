@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "services_landing_pages",
+  "info": {
+    "singularName": "services-landing-page",
+    "pluralName": "services-landing-pages",
+    "displayName": "Services Landing Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Description": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}
