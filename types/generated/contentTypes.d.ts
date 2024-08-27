@@ -941,6 +941,46 @@ export interface ApiAboutUsAboutUs extends Schema.SingleType {
   };
 }
 
+export interface ApiAboutUsMissionPageAboutUsMissionPage
+  extends Schema.SingleType {
+  collectionName: 'about_us_mission_pages';
+  info: {
+    singularName: 'about-us-mission-page';
+    pluralName: 'about-us-mission-pages';
+    displayName: 'About Us / Mission Page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Overview: Attribute.Component<'sections.title-and-description'> &
+      Attribute.Required;
+    Vision: Attribute.Component<'sections.title-and-description'>;
+    Transformation: Attribute.Component<'sections.overview'> &
+      Attribute.Required;
+    Quote: Attribute.Text;
+    Values: Attribute.Component<'sections.title-and-description'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::about-us-mission-page.about-us-mission-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::about-us-mission-page.about-us-mission-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+  };
+}
+
 export interface ApiAboutUsOurPeoplePageAboutUsOurPeoplePage
   extends Schema.SingleType {
   collectionName: 'about_us_our_people_pages';
@@ -2075,6 +2115,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::graphs-builder.graph': PluginGraphsBuilderGraph;
       'api::about-us.about-us': ApiAboutUsAboutUs;
+      'api::about-us-mission-page.about-us-mission-page': ApiAboutUsMissionPageAboutUsMissionPage;
       'api::about-us-our-people-page.about-us-our-people-page': ApiAboutUsOurPeoplePageAboutUsOurPeoplePage;
       'api::about-us-sustainability.about-us-sustainability': ApiAboutUsSustainabilityAboutUsSustainability;
       'api::about-us-who-we-are.about-us-who-we-are': ApiAboutUsWhoWeAreAboutUsWhoWeAre;

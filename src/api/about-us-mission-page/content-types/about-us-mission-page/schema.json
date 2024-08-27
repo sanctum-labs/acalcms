@@ -1,0 +1,39 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_us_mission_pages",
+  "info": {
+    "singularName": "about-us-mission-page",
+    "pluralName": "about-us-mission-pages",
+    "displayName": "About Us / Mission Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Overview": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.title-and-description",
+      "required": true
+    },
+    "Vision": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.title-and-description"
+    },
+    "Transformation": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.overview",
+      "required": true
+    },
+    "Quote": {
+      "type": "text"
+    },
+    "Values": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.title-and-description"
+    }
+  }
+}
