@@ -1325,6 +1325,40 @@ export interface ApiExpertiseExpertise extends Schema.CollectionType {
   };
 }
 
+export interface ApiExpertiseLandingPageExpertiseLandingPage
+  extends Schema.SingleType {
+  collectionName: 'expertise_landing_pages';
+  info: {
+    singularName: 'expertise-landing-page';
+    pluralName: 'expertise-landing-pages';
+    displayName: 'Expertise Landing Page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Description: Attribute.RichText & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::expertise-landing-page.expertise-landing-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::expertise-landing-page.expertise-landing-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+  };
+}
+
 export interface ApiGlobalGlobal extends Schema.SingleType {
   collectionName: 'globals';
   info: {
@@ -2017,6 +2051,7 @@ declare module '@strapi/types' {
       'api::client.client': ApiClientClient;
       'api::clients-page.clients-page': ApiClientsPageClientsPage;
       'api::expertise.expertise': ApiExpertiseExpertise;
+      'api::expertise-landing-page.expertise-landing-page': ApiExpertiseLandingPageExpertiseLandingPage;
       'api::global.global': ApiGlobalGlobal;
       'api::home.home': ApiHomeHome;
       'api::insight.insight': ApiInsightInsight;

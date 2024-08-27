@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "expertise_landing_pages",
+  "info": {
+    "singularName": "expertise-landing-page",
+    "pluralName": "expertise-landing-pages",
+    "displayName": "Expertise Landing Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Description": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}
