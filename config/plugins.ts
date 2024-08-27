@@ -20,6 +20,10 @@ export default ({ env }) => ({
           field: 'slug',
           references: 'slug'
         },
+        job: {
+          field: 'slug',
+          references: 'slug'
+        }
       }
     }
   },
@@ -91,5 +95,12 @@ export default ({ env }) => ({
         delete: {},
       },
     },
-  },  
+  },
+  // Ref: https://github.com/Baboo7/strapi-plugin-import-export-entries
+  'import-export-entries': {
+    enabled: true,
+    config: {
+      // See `Config` section.
+    },
+  },
 });

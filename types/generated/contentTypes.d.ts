@@ -1608,6 +1608,101 @@ export interface ApiInsightsPageInsightsPage extends Schema.SingleType {
   };
 }
 
+export interface ApiJobJob extends Schema.CollectionType {
+  collectionName: 'jobs';
+  info: {
+    singularName: 'job';
+    pluralName: 'jobs';
+    displayName: 'Job';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    available: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<true>;
+    type: Attribute.Enumeration<
+      [
+        'Permanent Full Time',
+        'Permanent Part Time',
+        'Temporary Full Time',
+        'Temporary Part Time'
+      ]
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'Permanent Full Time'>;
+    department: Attribute.String & Attribute.Required;
+    responsibilities: Attribute.RichText & Attribute.Required;
+    requirements: Attribute.RichText & Attribute.Required;
+    location: Attribute.String & Attribute.Required;
+    closingDate: Attribute.Date & Attribute.Required;
+    slug: Attribute.UID<'api::job.job', 'name'> & Attribute.Required;
+    salary: Attribute.BigInteger;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+    job_applications: Attribute.Relation<
+      'api::job.job',
+      'oneToMany',
+      'api::job-application.job-application'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::job.job', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::job.job', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiJobApplicationJobApplication extends Schema.CollectionType {
+  collectionName: 'job_applications';
+  info: {
+    singularName: 'job-application';
+    pluralName: 'job-applications';
+    displayName: 'Job Application';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    status: Attribute.String;
+    job: Attribute.Relation<
+      'api::job-application.job-application',
+      'manyToOne',
+      'api::job.job'
+    >;
+    applicant: Attribute.Relation<
+      'api::job-application.job-application',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    resume: Attribute.Media<'files'> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::job-application.job-application',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::job-application.job-application',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+  };
+}
+
 export interface ApiLandValueCaptureLandValueCapture extends Schema.SingleType {
   collectionName: 'land_value_captures';
   info: {
@@ -2131,6 +2226,8 @@ declare module '@strapi/types' {
       'api::home.home': ApiHomeHome;
       'api::insight.insight': ApiInsightInsight;
       'api::insights-page.insights-page': ApiInsightsPageInsightsPage;
+      'api::job.job': ApiJobJob;
+      'api::job-application.job-application': ApiJobApplicationJobApplication;
       'api::land-value-capture.land-value-capture': ApiLandValueCaptureLandValueCapture;
       'api::lead-form-submission.lead-form-submission': ApiLeadFormSubmissionLeadFormSubmission;
       'api::leadership-page.leadership-page': ApiLeadershipPageLeadershipPage;
