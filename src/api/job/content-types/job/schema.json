@@ -4,12 +4,34 @@
   "info": {
     "singularName": "job",
     "pluralName": "jobs",
-    "displayName": "Job"
+    "displayName": "Job",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
+    "_softDeletedAt": {
+      "type": "datetime",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedById": {
+      "type": "integer",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedByType": {
+      "type": "string",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
     "name": {
       "type": "string",
       "required": true
@@ -62,32 +84,15 @@
     "salary": {
       "type": "biginteger"
     },
-    "_softDeletedAt": {
-      "type": "datetime",
-      "configurable": false,
-      "writable": false,
-      "visible": false,
-      "private": true
-    },
-    "_softDeletedById": {
-      "type": "integer",
-      "configurable": false,
-      "writable": false,
-      "visible": false,
-      "private": true
-    },
-    "_softDeletedByType": {
-      "type": "string",
-      "configurable": false,
-      "writable": false,
-      "visible": false,
-      "private": true
-    },
     "job_applications": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::job-application.job-application",
       "mappedBy": "job"
+    },
+    "level": {
+      "type": "string",
+      "required": true
     }
   }
 }

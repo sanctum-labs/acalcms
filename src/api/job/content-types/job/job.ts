@@ -13,7 +13,10 @@ export enum Type {
 export interface Job {
   id: number;
   attributes: {
-    createdAt: Date;    updatedAt: Date;    publishedAt?: Date;    name: string;
+    createdAt: Date;    updatedAt: Date;    publishedAt?: Date;    _softDeletedAt?: Date;
+    _softDeletedById?: number;
+    _softDeletedByType?: string;
+    name: string;
     description: string;
     available: boolean;
     type: Type;
@@ -24,15 +27,16 @@ export interface Job {
     closingDate: Date;
     slug: string;
     salary?: number;
-    _softDeletedAt?: Date;
-    _softDeletedById?: number;
-    _softDeletedByType?: string;
     job_applications: { data: JobApplication[] };
+    level: string;
   };
 }
 export interface Job_Plain {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  name: string;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
+  name: string;
   description: string;
   available: boolean;
   type: Type;
@@ -43,15 +47,16 @@ export interface Job_Plain {
   closingDate: Date;
   slug: string;
   salary?: number;
-  _softDeletedAt?: Date;
-  _softDeletedById?: number;
-  _softDeletedByType?: string;
   job_applications: JobApplication_Plain[];
+  level: string;
 }
 
 export interface Job_NoRelations {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  name: string;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
+  name: string;
   description: string;
   available: boolean;
   type: Type;
@@ -62,15 +67,16 @@ export interface Job_NoRelations {
   closingDate: Date;
   slug: string;
   salary?: number;
-  _softDeletedAt?: Date;
-  _softDeletedById?: number;
-  _softDeletedByType?: string;
   job_applications: number[];
+  level: string;
 }
 
 export interface Job_AdminPanelLifeCycle {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  name: string;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
+  name: string;
   description: string;
   available: boolean;
   type: Type;
@@ -81,8 +87,6 @@ export interface Job_AdminPanelLifeCycle {
   closingDate: Date;
   slug: string;
   salary?: number;
-  _softDeletedAt?: Date;
-  _softDeletedById?: number;
-  _softDeletedByType?: string;
   job_applications: AdminPanelRelationPropertyModification<JobApplication_Plain>;
+  level: string;
 }

@@ -1614,11 +1614,15 @@ export interface ApiJobJob extends Schema.CollectionType {
     singularName: 'job';
     pluralName: 'jobs';
     displayName: 'Job';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
     name: Attribute.String & Attribute.Required;
     description: Attribute.Text & Attribute.Required;
     available: Attribute.Boolean &
@@ -1641,14 +1645,12 @@ export interface ApiJobJob extends Schema.CollectionType {
     closingDate: Attribute.Date & Attribute.Required;
     slug: Attribute.UID<'api::job.job', 'name'> & Attribute.Required;
     salary: Attribute.BigInteger;
-    _softDeletedAt: Attribute.DateTime & Attribute.Private;
-    _softDeletedById: Attribute.Integer & Attribute.Private;
-    _softDeletedByType: Attribute.String & Attribute.Private;
     job_applications: Attribute.Relation<
       'api::job.job',
       'oneToMany',
       'api::job-application.job-application'
     >;
+    level: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1682,6 +1684,9 @@ export interface ApiJobApplicationJobApplication extends Schema.CollectionType {
       'plugin::users-permissions.user'
     >;
     resume: Attribute.Media<'files'> & Attribute.Required;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1697,9 +1702,6 @@ export interface ApiJobApplicationJobApplication extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    _softDeletedAt: Attribute.DateTime & Attribute.Private;
-    _softDeletedById: Attribute.Integer & Attribute.Private;
-    _softDeletedByType: Attribute.String & Attribute.Private;
   };
 }
 

@@ -15,6 +15,9 @@ export interface JobApplication {
     job?: { data: Job };
     applicant?: { data: User };
     resume: { data: Media };
+    _softDeletedAt?: Date;
+    _softDeletedById?: number;
+    _softDeletedByType?: string;
   };
 }
 export interface JobApplication_Plain {
@@ -23,6 +26,9 @@ export interface JobApplication_Plain {
   job?: Job_Plain;
   applicant?: User_Plain;
   resume: Media_Plain;
+  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
 }
 
 export interface JobApplication_NoRelations {
@@ -31,6 +37,9 @@ export interface JobApplication_NoRelations {
   job?: number;
   applicant?: number;
   resume: number;
+  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
 }
 
 export interface JobApplication_AdminPanelLifeCycle {
@@ -39,4 +48,7 @@ export interface JobApplication_AdminPanelLifeCycle {
   job?: AdminPanelRelationPropertyModification<Job_Plain>;
   applicant?: AdminPanelRelationPropertyModification<User_Plain>;
   resume: AdminPanelRelationPropertyModification<Media_Plain>;
+  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
 }

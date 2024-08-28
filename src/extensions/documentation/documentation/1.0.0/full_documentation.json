@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-08-27T18:19:29.937Z"
+    "x-generation-date": "2024-08-28T06:05:24.253Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -14154,10 +14154,21 @@
               "requirements",
               "location",
               "closingDate",
-              "slug"
+              "slug",
+              "level"
             ],
             "type": "object",
             "properties": {
+              "_softDeletedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "_softDeletedById": {
+                "type": "integer"
+              },
+              "_softDeletedByType": {
+                "type": "string"
+              },
               "name": {
                 "type": "string"
               },
@@ -14200,16 +14211,6 @@
                 "pattern": "^\\d*$",
                 "example": "123456789"
               },
-              "_softDeletedAt": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "_softDeletedById": {
-                "type": "integer"
-              },
-              "_softDeletedByType": {
-                "type": "string"
-              },
               "job_applications": {
                 "type": "array",
                 "items": {
@@ -14223,6 +14224,9 @@
                   ],
                   "example": "string or id"
                 }
+              },
+              "level": {
+                "type": "string"
               }
             }
           }
@@ -14286,9 +14290,20 @@
           "requirements",
           "location",
           "closingDate",
-          "slug"
+          "slug",
+          "level"
         ],
         "properties": {
+          "_softDeletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "_softDeletedById": {
+            "type": "integer"
+          },
+          "_softDeletedByType": {
+            "type": "string"
+          },
           "name": {
             "type": "string"
           },
@@ -14331,16 +14346,6 @@
             "pattern": "^\\d*$",
             "example": "123456789"
           },
-          "_softDeletedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "_softDeletedById": {
-            "type": "integer"
-          },
-          "_softDeletedByType": {
-            "type": "string"
-          },
           "job_applications": {
             "type": "object",
             "properties": {
@@ -14370,6 +14375,16 @@
                                 "attributes": {
                                   "type": "object",
                                   "properties": {
+                                    "_softDeletedAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "_softDeletedById": {
+                                      "type": "integer"
+                                    },
+                                    "_softDeletedByType": {
+                                      "type": "string"
+                                    },
                                     "name": {
                                       "type": "string"
                                     },
@@ -14412,16 +14427,6 @@
                                       "pattern": "^\\d*$",
                                       "example": "123456789"
                                     },
-                                    "_softDeletedAt": {
-                                      "type": "string",
-                                      "format": "date-time"
-                                    },
-                                    "_softDeletedById": {
-                                      "type": "integer"
-                                    },
-                                    "_softDeletedByType": {
-                                      "type": "string"
-                                    },
                                     "job_applications": {
                                       "type": "object",
                                       "properties": {
@@ -14441,6 +14446,9 @@
                                           }
                                         }
                                       }
+                                    },
+                                    "level": {
+                                      "type": "string"
                                     },
                                     "createdAt": {
                                       "type": "string",
@@ -15370,6 +15378,16 @@
                             }
                           }
                         },
+                        "_softDeletedAt": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "_softDeletedById": {
+                          "type": "integer"
+                        },
+                        "_softDeletedByType": {
+                          "type": "string"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -15415,16 +15433,6 @@
                               }
                             }
                           }
-                        },
-                        "_softDeletedAt": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "_softDeletedById": {
-                          "type": "integer"
-                        },
-                        "_softDeletedByType": {
-                          "type": "string"
                         }
                       }
                     }
@@ -15432,6 +15440,9 @@
                 }
               }
             }
+          },
+          "level": {
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -15632,6 +15643,16 @@
                   "attributes": {
                     "type": "object",
                     "properties": {
+                      "_softDeletedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "_softDeletedById": {
+                        "type": "integer"
+                      },
+                      "_softDeletedByType": {
+                        "type": "string"
+                      },
                       "name": {
                         "type": "string"
                       },
@@ -15673,16 +15694,6 @@
                         "type": "string",
                         "pattern": "^\\d*$",
                         "example": "123456789"
-                      },
-                      "_softDeletedAt": {
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "_softDeletedById": {
-                        "type": "integer"
-                      },
-                      "_softDeletedByType": {
-                        "type": "string"
                       },
                       "job_applications": {
                         "type": "object",
@@ -16594,6 +16605,16 @@
                                         }
                                       }
                                     },
+                                    "_softDeletedAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "_softDeletedById": {
+                                      "type": "integer"
+                                    },
+                                    "_softDeletedByType": {
+                                      "type": "string"
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -16639,16 +16660,6 @@
                                           }
                                         }
                                       }
-                                    },
-                                    "_softDeletedAt": {
-                                      "type": "string",
-                                      "format": "date-time"
-                                    },
-                                    "_softDeletedById": {
-                                      "type": "integer"
-                                    },
-                                    "_softDeletedByType": {
-                                      "type": "string"
                                     }
                                   }
                                 }
@@ -16656,6 +16667,9 @@
                             }
                           }
                         }
+                      },
+                      "level": {
+                        "type": "string"
                       },
                       "createdAt": {
                         "type": "string",
@@ -16865,6 +16879,16 @@
               }
             }
           },
+          "_softDeletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "_softDeletedById": {
+            "type": "integer"
+          },
+          "_softDeletedByType": {
+            "type": "string"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -16910,16 +16934,6 @@
                 }
               }
             }
-          },
-          "_softDeletedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "_softDeletedById": {
-            "type": "integer"
-          },
-          "_softDeletedByType": {
-            "type": "string"
           }
         }
       },
