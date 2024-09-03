@@ -17,6 +17,7 @@ export interface Client {
     url?: Url;
     name: string;
     slug?: string;
+    countOfServicesProvided?: number;
   };
 }
 export interface Client_Plain {
@@ -28,6 +29,7 @@ export interface Client_Plain {
   url?: Url_Plain;
   name: string;
   slug?: string;
+  countOfServicesProvided?: number;
 }
 
 export interface Client_NoRelations {
@@ -39,6 +41,7 @@ export interface Client_NoRelations {
   url?: Url_NoRelations;
   name: string;
   slug?: string;
+  countOfServicesProvided?: number;
 }
 
 export interface Client_AdminPanelLifeCycle {
@@ -50,4 +53,5 @@ export interface Client_AdminPanelLifeCycle {
   url?: Url_Plain;
   name: string;
   slug?: string;
+  countOfServicesProvided?: number;
 }

@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-08-30T12:10:13.651Z"
+    "x-generation-date": "2024-09-03T06:19:48.106Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -3235,22 +3235,10 @@
             "required": [
               "Hero",
               "Overview",
-              "Body"
+              "Content"
             ],
             "type": "object",
             "properties": {
-              "Hero": {
-                "$ref": "#/components/schemas/SectionsHeroComponent"
-              },
-              "Overview": {
-                "$ref": "#/components/schemas/SectionsOverviewComponent"
-              },
-              "MediaBanner": {
-                "$ref": "#/components/schemas/SectionsBannerComponent"
-              },
-              "Body": {
-                "type": "string"
-              },
               "_softDeletedAt": {
                 "type": "string",
                 "format": "date-time"
@@ -3260,6 +3248,18 @@
               },
               "_softDeletedByType": {
                 "type": "string"
+              },
+              "Hero": {
+                "$ref": "#/components/schemas/SectionsHeroComponent"
+              },
+              "Overview": {
+                "$ref": "#/components/schemas/SectionsOverviewComponent"
+              },
+              "Content": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SectionsBannerComponent"
+                }
               }
             }
           }
@@ -3316,20 +3316,30 @@
         "required": [
           "Hero",
           "Overview",
-          "Body"
+          "Content"
         ],
         "properties": {
+          "_softDeletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "_softDeletedById": {
+            "type": "integer"
+          },
+          "_softDeletedByType": {
+            "type": "string"
+          },
           "Hero": {
             "$ref": "#/components/schemas/SectionsHeroComponent"
           },
           "Overview": {
             "$ref": "#/components/schemas/SectionsOverviewComponent"
           },
-          "MediaBanner": {
-            "$ref": "#/components/schemas/SectionsBannerComponent"
-          },
-          "Body": {
-            "type": "string"
+          "Content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SectionsBannerComponent"
+            }
           },
           "createdAt": {
             "type": "string",
@@ -3376,16 +3386,6 @@
                 }
               }
             }
-          },
-          "_softDeletedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "_softDeletedById": {
-            "type": "integer"
-          },
-          "_softDeletedByType": {
-            "type": "string"
           }
         }
       },
@@ -5379,6 +5379,9 @@
               },
               "slug": {
                 "type": "string"
+              },
+              "countOfServicesProvided": {
+                "type": "integer"
               }
             }
           }
@@ -6077,6 +6080,9 @@
           },
           "slug": {
             "type": "string"
+          },
+          "countOfServicesProvided": {
+            "type": "integer"
           },
           "createdAt": {
             "type": "string",

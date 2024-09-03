@@ -4,12 +4,34 @@
   "info": {
     "singularName": "about-us-sustainability",
     "pluralName": "about-us-sustainabilities",
-    "displayName": "About Us / Sustainability"
+    "displayName": "About Us / Sustainability",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
+    "_softDeletedAt": {
+      "type": "datetime",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedById": {
+      "type": "integer",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedByType": {
+      "type": "string",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
     "Hero": {
       "type": "component",
       "repeatable": false,
@@ -22,13 +44,10 @@
       "component": "sections.overview",
       "required": true
     },
-    "MediaBanner": {
+    "Content": {
       "type": "component",
-      "repeatable": false,
-      "component": "sections.banner"
-    },
-    "Body": {
-      "type": "richtext",
+      "repeatable": true,
+      "component": "sections.banner",
       "required": true
     }
   }

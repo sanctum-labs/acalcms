@@ -13,32 +13,40 @@ import { Banner_NoRelations } from '../../../../components/sections/interfaces/B
 export interface AboutUsSustainability {
   id: number;
   attributes: {
-    createdAt: Date;    updatedAt: Date;    publishedAt?: Date;    Hero: Hero;
+    createdAt: Date;    updatedAt: Date;    publishedAt?: Date;    _softDeletedAt?: Date;
+    _softDeletedById?: number;
+    _softDeletedByType?: string;
+    Hero: Hero;
     Overview: Overview;
-    MediaBanner?: Banner;
-    Body: string;
+    Content: Banner[];
   };
 }
 export interface AboutUsSustainability_Plain {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Hero: Hero_Plain;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
+  Hero: Hero_Plain;
   Overview: Overview_Plain;
-  MediaBanner?: Banner_Plain;
-  Body: string;
+  Content: Banner_Plain[];
 }
 
 export interface AboutUsSustainability_NoRelations {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Hero: Hero_NoRelations;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
+  Hero: Hero_NoRelations;
   Overview: Overview_NoRelations;
-  MediaBanner?: Banner_NoRelations;
-  Body: string;
+  Content: Banner_NoRelations[];
 }
 
 export interface AboutUsSustainability_AdminPanelLifeCycle {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Hero: Hero_Plain;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
+  Hero: Hero_Plain;
   Overview: Overview_Plain;
-  MediaBanner?: Banner_Plain;
-  Body: string;
+  Content: Banner_Plain[];
 }

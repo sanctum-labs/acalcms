@@ -53,6 +53,9 @@
     "slug": {
       "type": "uid",
       "targetField": "name"
+    },
+    "countOfServicesProvided": {
+      "type": "integer"
     }
   }
 }

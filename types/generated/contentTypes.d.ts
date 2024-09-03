@@ -1025,15 +1025,18 @@ export interface ApiAboutUsSustainabilityAboutUsSustainability
     singularName: 'about-us-sustainability';
     pluralName: 'about-us-sustainabilities';
     displayName: 'About Us / Sustainability';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
     Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
     Overview: Attribute.Component<'sections.overview'> & Attribute.Required;
-    MediaBanner: Attribute.Component<'sections.banner'>;
-    Body: Attribute.RichText & Attribute.Required;
+    Content: Attribute.Component<'sections.banner', true> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1049,9 +1052,6 @@ export interface ApiAboutUsSustainabilityAboutUsSustainability
       'admin::user'
     > &
       Attribute.Private;
-    _softDeletedAt: Attribute.DateTime & Attribute.Private;
-    _softDeletedById: Attribute.Integer & Attribute.Private;
-    _softDeletedByType: Attribute.String & Attribute.Private;
   };
 }
 
@@ -1266,6 +1266,7 @@ export interface ApiClientClient extends Schema.CollectionType {
     url: Attribute.Component<'elements.url'>;
     name: Attribute.String & Attribute.Required & Attribute.Unique;
     slug: Attribute.UID<'api::client.client', 'name'>;
+    countOfServicesProvided: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
