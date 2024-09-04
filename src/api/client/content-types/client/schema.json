@@ -56,6 +56,15 @@
     },
     "countOfServicesProvided": {
       "type": "integer"
+    },
+    "Type": {
+      "type": "enumeration",
+      "enum": [
+        "Kenyan",
+        "International",
+        "Other"
+      ],
+      "required": true
     }
   }
 }

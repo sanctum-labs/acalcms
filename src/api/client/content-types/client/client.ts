@@ -7,6 +7,11 @@ import { Url_Plain } from '../../../../components/elements/interfaces/Url';
 import { Url_NoRelations } from '../../../../components/elements/interfaces/Url';
 import { AdminPanelRelationPropertyModification } from '../../../../common/schemas-to-ts/AdminPanelRelationPropertyModification';
 
+export enum Type {
+  Kenyan = 'Kenyan',
+  International = 'International',
+  Other = 'Other',}
+
 export interface Client {
   id: number;
   attributes: {
@@ -18,6 +23,7 @@ export interface Client {
     name: string;
     slug?: string;
     countOfServicesProvided?: number;
+    Type: Type;
   };
 }
 export interface Client_Plain {
@@ -30,6 +36,7 @@ export interface Client_Plain {
   name: string;
   slug?: string;
   countOfServicesProvided?: number;
+  Type: Type;
 }
 
 export interface Client_NoRelations {
@@ -42,6 +49,7 @@ export interface Client_NoRelations {
   name: string;
   slug?: string;
   countOfServicesProvided?: number;
+  Type: Type;
 }
 
 export interface Client_AdminPanelLifeCycle {
@@ -54,4 +62,5 @@ export interface Client_AdminPanelLifeCycle {
   name: string;
   slug?: string;
   countOfServicesProvided?: number;
+  Type: Type;
 }

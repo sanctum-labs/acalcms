@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-09-03T06:19:48.106Z"
+    "x-generation-date": "2024-09-04T13:08:14.604Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -5346,7 +5346,8 @@
           "data": {
             "required": [
               "logo",
-              "name"
+              "name",
+              "Type"
             ],
             "type": "object",
             "properties": {
@@ -5382,6 +5383,14 @@
               },
               "countOfServicesProvided": {
                 "type": "integer"
+              },
+              "Type": {
+                "type": "string",
+                "enum": [
+                  "Kenyan",
+                  "International",
+                  "Other"
+                ]
               }
             }
           }
@@ -5437,7 +5446,8 @@
         "type": "object",
         "required": [
           "logo",
-          "name"
+          "name",
+          "Type"
         ],
         "properties": {
           "_softDeletedAt": {
@@ -6083,6 +6093,14 @@
           },
           "countOfServicesProvided": {
             "type": "integer"
+          },
+          "Type": {
+            "type": "string",
+            "enum": [
+              "Kenyan",
+              "International",
+              "Other"
+            ]
           },
           "createdAt": {
             "type": "string",

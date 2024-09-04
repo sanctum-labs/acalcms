@@ -1267,6 +1267,8 @@ export interface ApiClientClient extends Schema.CollectionType {
     name: Attribute.String & Attribute.Required & Attribute.Unique;
     slug: Attribute.UID<'api::client.client', 'name'>;
     countOfServicesProvided: Attribute.Integer;
+    Type: Attribute.Enumeration<['Kenyan', 'International', 'Other']> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
