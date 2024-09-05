@@ -1670,26 +1670,29 @@ export interface ApiJobApplicationJobApplication extends Schema.CollectionType {
     singularName: 'job-application';
     pluralName: 'job-applications';
     displayName: 'Job Application';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
     status: Attribute.String;
     job: Attribute.Relation<
       'api::job-application.job-application',
       'manyToOne',
       'api::job.job'
     >;
-    applicant: Attribute.Relation<
-      'api::job-application.job-application',
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
     resume: Attribute.Media<'files'> & Attribute.Required;
-    _softDeletedAt: Attribute.DateTime & Attribute.Private;
-    _softDeletedById: Attribute.Integer & Attribute.Private;
-    _softDeletedByType: Attribute.String & Attribute.Private;
+    email: Attribute.Email & Attribute.Required;
+    firstName: Attribute.String & Attribute.Required;
+    lastName: Attribute.String & Attribute.Required;
+    phoneNumber: Attribute.String &
+      Attribute.Required &
+      Attribute.CustomField<'plugin::strapi-phone-validator.phone'>;
+    message: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

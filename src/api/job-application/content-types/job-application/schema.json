@@ -4,34 +4,13 @@
   "info": {
     "singularName": "job-application",
     "pluralName": "job-applications",
-    "displayName": "Job Application"
+    "displayName": "Job Application",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
-    "status": {
-      "type": "string"
-    },
-    "job": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::job.job",
-      "inversedBy": "job_applications"
-    },
-    "applicant": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
-    },
-    "resume": {
-      "allowedTypes": [
-        "files"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
-    },
     "_softDeletedAt": {
       "type": "datetime",
       "configurable": false,
@@ -52,6 +31,43 @@
       "writable": false,
       "visible": false,
       "private": true
+    },
+    "status": {
+      "type": "string"
+    },
+    "job": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::job.job",
+      "inversedBy": "job_applications"
+    },
+    "resume": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "firstName": {
+      "type": "string",
+      "required": true
+    },
+    "lastName": {
+      "type": "string",
+      "required": true
+    },
+    "phoneNumber": {
+      "type": "customField",
+      "required": true,
+      "customField": "plugin::strapi-phone-validator.phone"
+    },
+    "message": {
+      "type": "text"
     }
   }
 }
