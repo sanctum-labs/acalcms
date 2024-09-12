@@ -177,6 +177,7 @@ export interface SectionsHero extends Schema.Component {
   };
   attributes: {
     title: Attribute.String;
+    media: Attribute.Media<'images' | 'videos'>;
   };
 }
 
