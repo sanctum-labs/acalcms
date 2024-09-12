@@ -2,44 +2,63 @@
 
 import { TitleAndDescription } from '../../../../components/sections/interfaces/TitleAndDescription';
 import { Overview } from '../../../../components/sections/interfaces/Overview';
+import { Hero } from '../../../../components/sections/interfaces/Hero';
 import { TitleAndDescription_Plain } from '../../../../components/sections/interfaces/TitleAndDescription';
 import { Overview_Plain } from '../../../../components/sections/interfaces/Overview';
+import { Hero_Plain } from '../../../../components/sections/interfaces/Hero';
 import { TitleAndDescription_NoRelations } from '../../../../components/sections/interfaces/TitleAndDescription';
 import { Overview_NoRelations } from '../../../../components/sections/interfaces/Overview';
+import { Hero_NoRelations } from '../../../../components/sections/interfaces/Hero';
 
 export interface AboutUsMissionPage {
   id: number;
   attributes: {
-    createdAt: Date;    updatedAt: Date;    publishedAt?: Date;    Overview: TitleAndDescription;
+    createdAt: Date;    updatedAt: Date;    publishedAt?: Date;    _softDeletedAt?: Date;
+    _softDeletedById?: number;
+    _softDeletedByType?: string;
+    Overview: TitleAndDescription;
     Vision?: TitleAndDescription;
     Transformation: Overview;
     Quote?: string;
     Values?: TitleAndDescription;
+    Hero?: Hero;
   };
 }
 export interface AboutUsMissionPage_Plain {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Overview: TitleAndDescription_Plain;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
+  Overview: TitleAndDescription_Plain;
   Vision?: TitleAndDescription_Plain;
   Transformation: Overview_Plain;
   Quote?: string;
   Values?: TitleAndDescription_Plain;
+  Hero?: Hero_Plain;
 }
 
 export interface AboutUsMissionPage_NoRelations {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Overview: TitleAndDescription_NoRelations;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
+  Overview: TitleAndDescription_NoRelations;
   Vision?: TitleAndDescription_NoRelations;
   Transformation: Overview_NoRelations;
   Quote?: string;
   Values?: TitleAndDescription_NoRelations;
+  Hero?: Hero_NoRelations;
 }
 
 export interface AboutUsMissionPage_AdminPanelLifeCycle {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Overview: TitleAndDescription_Plain;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
+  Overview: TitleAndDescription_Plain;
   Vision?: TitleAndDescription_Plain;
   Transformation: Overview_Plain;
   Quote?: string;
   Values?: TitleAndDescription_Plain;
+  Hero?: Hero_Plain;
 }

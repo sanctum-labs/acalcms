@@ -948,11 +948,15 @@ export interface ApiAboutUsMissionPageAboutUsMissionPage
     singularName: 'about-us-mission-page';
     pluralName: 'about-us-mission-pages';
     displayName: 'About Us / Mission Page';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
     Overview: Attribute.Component<'sections.title-and-description'> &
       Attribute.Required;
     Vision: Attribute.Component<'sections.title-and-description'>;
@@ -960,6 +964,7 @@ export interface ApiAboutUsMissionPageAboutUsMissionPage
       Attribute.Required;
     Quote: Attribute.Text;
     Values: Attribute.Component<'sections.title-and-description'>;
+    Hero: Attribute.Component<'sections.hero'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -975,9 +980,6 @@ export interface ApiAboutUsMissionPageAboutUsMissionPage
       'admin::user'
     > &
       Attribute.Private;
-    _softDeletedAt: Attribute.DateTime & Attribute.Private;
-    _softDeletedById: Attribute.Integer & Attribute.Private;
-    _softDeletedByType: Attribute.String & Attribute.Private;
   };
 }
 
