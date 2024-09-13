@@ -1002,6 +1002,7 @@ export interface ApiAboutUsOurPeoplePageAboutUsOurPeoplePage
     Overview: Attribute.Component<'sections.title-and-description'>;
     People: Attribute.Component<'sections.people-group-row', true> &
       Attribute.Required;
+    Hero: Attribute.Component<'sections.hero'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1156,6 +1157,7 @@ export interface ApiBusinessAgilityAndContinuityPageBusinessAgilityAndContinuity
     Quote: Attribute.Text;
     BuildResilience: Attribute.Component<'sections.title-and-description'>;
     DigitalDiscipline: Attribute.Component<'sections.overview'>;
+    Hero: Attribute.Component<'sections.hero'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1181,13 +1183,18 @@ export interface ApiCareersOpenRolesPageCareersOpenRolesPage
     singularName: 'careers-open-roles-page';
     pluralName: 'careers-open-roles-pages';
     displayName: 'Careers / Open Roles Page';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
     Overview: Attribute.Component<'sections.title-and-description'>;
     Description: Attribute.Component<'sections.title-and-description'>;
+    Hero: Attribute.Component<'sections.hero'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1203,9 +1210,6 @@ export interface ApiCareersOpenRolesPageCareersOpenRolesPage
       'admin::user'
     > &
       Attribute.Private;
-    _softDeletedAt: Attribute.DateTime & Attribute.Private;
-    _softDeletedById: Attribute.Integer & Attribute.Private;
-    _softDeletedByType: Attribute.String & Attribute.Private;
   };
 }
 
@@ -1231,6 +1235,7 @@ export interface ApiCareersPageCareersPage extends Schema.SingleType {
     Quote: Attribute.Text;
     GrowingLeaders: Attribute.Component<'sections.title-and-description'>;
     FindYourIdealJob: Attribute.Component<'sections.title-and-description'>;
+    Hero: Attribute.Component<'sections.hero'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

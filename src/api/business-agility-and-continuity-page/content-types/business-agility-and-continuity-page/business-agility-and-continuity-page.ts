@@ -2,10 +2,13 @@
 
 import { TitleAndDescription } from '../../../../components/sections/interfaces/TitleAndDescription';
 import { Overview } from '../../../../components/sections/interfaces/Overview';
+import { Hero } from '../../../../components/sections/interfaces/Hero';
 import { TitleAndDescription_Plain } from '../../../../components/sections/interfaces/TitleAndDescription';
 import { Overview_Plain } from '../../../../components/sections/interfaces/Overview';
+import { Hero_Plain } from '../../../../components/sections/interfaces/Hero';
 import { TitleAndDescription_NoRelations } from '../../../../components/sections/interfaces/TitleAndDescription';
 import { Overview_NoRelations } from '../../../../components/sections/interfaces/Overview';
+import { Hero_NoRelations } from '../../../../components/sections/interfaces/Hero';
 
 export interface BusinessAgilityAndContinuityPage {
   id: number;
@@ -20,6 +23,7 @@ export interface BusinessAgilityAndContinuityPage {
     Quote?: string;
     BuildResilience?: TitleAndDescription;
     DigitalDiscipline?: Overview;
+    Hero?: Hero;
   };
 }
 export interface BusinessAgilityAndContinuityPage_Plain {
@@ -34,6 +38,7 @@ export interface BusinessAgilityAndContinuityPage_Plain {
   Quote?: string;
   BuildResilience?: TitleAndDescription_Plain;
   DigitalDiscipline?: Overview_Plain;
+  Hero?: Hero_Plain;
 }
 
 export interface BusinessAgilityAndContinuityPage_NoRelations {
@@ -48,6 +53,7 @@ export interface BusinessAgilityAndContinuityPage_NoRelations {
   Quote?: string;
   BuildResilience?: TitleAndDescription_NoRelations;
   DigitalDiscipline?: Overview_NoRelations;
+  Hero?: Hero_NoRelations;
 }
 
 export interface BusinessAgilityAndContinuityPage_AdminPanelLifeCycle {
@@ -62,4 +68,5 @@ export interface BusinessAgilityAndContinuityPage_AdminPanelLifeCycle {
   Quote?: string;
   BuildResilience?: TitleAndDescription_Plain;
   DigitalDiscipline?: Overview_Plain;
+  Hero?: Hero_Plain;
 }

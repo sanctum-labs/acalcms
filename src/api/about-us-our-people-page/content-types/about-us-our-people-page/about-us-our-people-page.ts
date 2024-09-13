@@ -2,10 +2,13 @@
 
 import { TitleAndDescription } from '../../../../components/sections/interfaces/TitleAndDescription';
 import { PeopleGroupRow } from '../../../../components/sections/interfaces/PeopleGroupRow';
+import { Hero } from '../../../../components/sections/interfaces/Hero';
 import { TitleAndDescription_Plain } from '../../../../components/sections/interfaces/TitleAndDescription';
 import { PeopleGroupRow_Plain } from '../../../../components/sections/interfaces/PeopleGroupRow';
+import { Hero_Plain } from '../../../../components/sections/interfaces/Hero';
 import { TitleAndDescription_NoRelations } from '../../../../components/sections/interfaces/TitleAndDescription';
 import { PeopleGroupRow_NoRelations } from '../../../../components/sections/interfaces/PeopleGroupRow';
+import { Hero_NoRelations } from '../../../../components/sections/interfaces/Hero';
 
 export interface AboutUsOurPeoplePage {
   id: number;
@@ -15,6 +18,7 @@ export interface AboutUsOurPeoplePage {
     _softDeletedByType?: string;
     Overview?: TitleAndDescription;
     People: PeopleGroupRow[];
+    Hero?: Hero;
   };
 }
 export interface AboutUsOurPeoplePage_Plain {
@@ -24,6 +28,7 @@ export interface AboutUsOurPeoplePage_Plain {
   _softDeletedByType?: string;
   Overview?: TitleAndDescription_Plain;
   People: PeopleGroupRow_Plain[];
+  Hero?: Hero_Plain;
 }
 
 export interface AboutUsOurPeoplePage_NoRelations {
@@ -33,6 +38,7 @@ export interface AboutUsOurPeoplePage_NoRelations {
   _softDeletedByType?: string;
   Overview?: TitleAndDescription_NoRelations;
   People: PeopleGroupRow_NoRelations[];
+  Hero?: Hero_NoRelations;
 }
 
 export interface AboutUsOurPeoplePage_AdminPanelLifeCycle {
@@ -42,4 +48,5 @@ export interface AboutUsOurPeoplePage_AdminPanelLifeCycle {
   _softDeletedByType?: string;
   Overview?: TitleAndDescription_Plain;
   People: PeopleGroupRow_Plain[];
+  Hero?: Hero_Plain;
 }

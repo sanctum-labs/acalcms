@@ -64,6 +64,11 @@
       "type": "component",
       "repeatable": false,
       "component": "sections.overview"
+    },
+    "Hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero"
     }
   }
 }

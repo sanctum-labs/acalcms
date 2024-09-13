@@ -4,12 +4,34 @@
   "info": {
     "singularName": "careers-open-roles-page",
     "pluralName": "careers-open-roles-pages",
-    "displayName": "Careers / Open Roles Page"
+    "displayName": "Careers / Open Roles Page",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
+    "_softDeletedAt": {
+      "type": "datetime",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedById": {
+      "type": "integer",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedByType": {
+      "type": "string",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
     "Overview": {
       "type": "component",
       "repeatable": false,
@@ -19,6 +41,11 @@
       "type": "component",
       "repeatable": false,
       "component": "sections.title-and-description"
+    },
+    "Hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero"
     }
   }
 }

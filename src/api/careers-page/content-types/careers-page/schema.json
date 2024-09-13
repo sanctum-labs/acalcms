@@ -64,6 +64,11 @@
       "type": "component",
       "repeatable": false,
       "component": "sections.title-and-description"
+    },
+    "Hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero"
     }
   }
 }

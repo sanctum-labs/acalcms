@@ -42,6 +42,11 @@
       "repeatable": true,
       "component": "sections.people-group-row",
       "required": true
+    },
+    "Hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero"
     }
   }
 }
