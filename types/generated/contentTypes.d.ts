@@ -1502,16 +1502,6 @@ export interface ApiHomeHome extends Schema.SingleType {
     _softDeletedByType: Attribute.String & Attribute.Private;
     Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
     Overview: Attribute.Component<'sections.overview'>;
-    Projects: Attribute.Relation<
-      'api::home.home',
-      'oneToMany',
-      'api::project.project'
-    >;
-    people: Attribute.Relation<
-      'api::home.home',
-      'oneToMany',
-      'api::person.person'
-    >;
     JoinTheTeam: Attribute.Component<'elements.card', true> &
       Attribute.Required;
     createdAt: Attribute.DateTime;

@@ -44,16 +44,6 @@
       "repeatable": false,
       "component": "sections.overview"
     },
-    "Projects": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::project.project"
-    },
-    "people": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::person.person"
-    },
     "JoinTheTeam": {
       "type": "component",
       "repeatable": true,

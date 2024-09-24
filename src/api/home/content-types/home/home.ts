@@ -2,18 +2,13 @@
 
 import { Hero } from '../../../../components/sections/interfaces/Hero';
 import { Overview } from '../../../../components/sections/interfaces/Overview';
-import { Project } from '../../../project/content-types/project/project';
-import { Person } from '../../../person/content-types/person/person';
 import { Card } from '../../../../components/elements/interfaces/Card';
 import { Hero_Plain } from '../../../../components/sections/interfaces/Hero';
 import { Overview_Plain } from '../../../../components/sections/interfaces/Overview';
-import { Project_Plain } from '../../../project/content-types/project/project';
-import { Person_Plain } from '../../../person/content-types/person/person';
 import { Card_Plain } from '../../../../components/elements/interfaces/Card';
 import { Hero_NoRelations } from '../../../../components/sections/interfaces/Hero';
 import { Overview_NoRelations } from '../../../../components/sections/interfaces/Overview';
 import { Card_NoRelations } from '../../../../components/elements/interfaces/Card';
-import { AdminPanelRelationPropertyModification } from '../../../../common/schemas-to-ts/AdminPanelRelationPropertyModification';
 
 export interface Home {
   id: number;
@@ -23,8 +18,6 @@ export interface Home {
     _softDeletedByType?: string;
     Hero: Hero;
     Overview?: Overview;
-    Projects: { data: Project[] };
-    people: { data: Person[] };
     JoinTheTeam: Card[];
   };
 }
@@ -35,8 +28,6 @@ export interface Home_Plain {
   _softDeletedByType?: string;
   Hero: Hero_Plain;
   Overview?: Overview_Plain;
-  Projects: Project_Plain[];
-  people: Person_Plain[];
   JoinTheTeam: Card_Plain[];
 }
 
@@ -47,8 +38,6 @@ export interface Home_NoRelations {
   _softDeletedByType?: string;
   Hero: Hero_NoRelations;
   Overview?: Overview_NoRelations;
-  Projects: number[];
-  people: number[];
   JoinTheTeam: Card_NoRelations[];
 }
 
@@ -59,7 +48,5 @@ export interface Home_AdminPanelLifeCycle {
   _softDeletedByType?: string;
   Hero: Hero_Plain;
   Overview?: Overview_Plain;
-  Projects: AdminPanelRelationPropertyModification<Project_Plain>;
-  people: AdminPanelRelationPropertyModification<Person_Plain>;
   JoinTheTeam: Card_Plain[];
 }
