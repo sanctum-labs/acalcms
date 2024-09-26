@@ -1651,6 +1651,11 @@ export interface ApiJobJob extends Schema.CollectionType {
       'api::job-application.job-application'
     >;
     level: Attribute.String & Attribute.Required;
+    jobSpecifications: Attribute.RichText;
+    personSpecifications: Attribute.RichText;
+    keyCompetenciesAndSkills: Attribute.RichText;
+    termsOfService: Attribute.RichText;
+    howToApply: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-09-24T16:23:33.996Z"
+    "x-generation-date": "2024-09-26T07:18:47.570Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -12933,6 +12933,21 @@
               },
               "level": {
                 "type": "string"
+              },
+              "jobSpecifications": {
+                "type": "string"
+              },
+              "personSpecifications": {
+                "type": "string"
+              },
+              "keyCompetenciesAndSkills": {
+                "type": "string"
+              },
+              "termsOfService": {
+                "type": "string"
+              },
+              "howToApply": {
+                "type": "string"
               }
             }
           }
@@ -13164,6 +13179,21 @@
                                       }
                                     },
                                     "level": {
+                                      "type": "string"
+                                    },
+                                    "jobSpecifications": {
+                                      "type": "string"
+                                    },
+                                    "personSpecifications": {
+                                      "type": "string"
+                                    },
+                                    "keyCompetenciesAndSkills": {
+                                      "type": "string"
+                                    },
+                                    "termsOfService": {
+                                      "type": "string"
+                                    },
+                                    "howToApply": {
                                       "type": "string"
                                     },
                                     "createdAt": {
@@ -13910,6 +13940,21 @@
             }
           },
           "level": {
+            "type": "string"
+          },
+          "jobSpecifications": {
+            "type": "string"
+          },
+          "personSpecifications": {
+            "type": "string"
+          },
+          "keyCompetenciesAndSkills": {
+            "type": "string"
+          },
+          "termsOfService": {
+            "type": "string"
+          },
+          "howToApply": {
             "type": "string"
           },
           "createdAt": {
@@ -14922,6 +14967,21 @@
                         }
                       },
                       "level": {
+                        "type": "string"
+                      },
+                      "jobSpecifications": {
+                        "type": "string"
+                      },
+                      "personSpecifications": {
+                        "type": "string"
+                      },
+                      "keyCompetenciesAndSkills": {
+                        "type": "string"
+                      },
+                      "termsOfService": {
+                        "type": "string"
+                      },
+                      "howToApply": {
                         "type": "string"
                       },
                       "createdAt": {

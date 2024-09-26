@@ -29,6 +29,11 @@ export interface Job {
     salary?: number;
     job_applications: { data: JobApplication[] };
     level: string;
+    jobSpecifications?: string;
+    personSpecifications?: string;
+    keyCompetenciesAndSkills?: string;
+    termsOfService?: string;
+    howToApply?: string;
   };
 }
 export interface Job_Plain {
@@ -49,6 +54,11 @@ export interface Job_Plain {
   salary?: number;
   job_applications: JobApplication_Plain[];
   level: string;
+  jobSpecifications?: string;
+  personSpecifications?: string;
+  keyCompetenciesAndSkills?: string;
+  termsOfService?: string;
+  howToApply?: string;
 }
 
 export interface Job_NoRelations {
@@ -69,6 +79,11 @@ export interface Job_NoRelations {
   salary?: number;
   job_applications: number[];
   level: string;
+  jobSpecifications?: string;
+  personSpecifications?: string;
+  keyCompetenciesAndSkills?: string;
+  termsOfService?: string;
+  howToApply?: string;
 }
 
 export interface Job_AdminPanelLifeCycle {
@@ -89,4 +104,9 @@ export interface Job_AdminPanelLifeCycle {
   salary?: number;
   job_applications: AdminPanelRelationPropertyModification<JobApplication_Plain>;
   level: string;
+  jobSpecifications?: string;
+  personSpecifications?: string;
+  keyCompetenciesAndSkills?: string;
+  termsOfService?: string;
+  howToApply?: string;
 }

@@ -93,6 +93,21 @@
     "level": {
       "type": "string",
       "required": true
+    },
+    "jobSpecifications": {
+      "type": "richtext"
+    },
+    "personSpecifications": {
+      "type": "richtext"
+    },
+    "keyCompetenciesAndSkills": {
+      "type": "richtext"
+    },
+    "termsOfService": {
+      "type": "richtext"
+    },
+    "howToApply": {
+      "type": "richtext"
     }
   }
 }
