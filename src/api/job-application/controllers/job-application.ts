@@ -8,7 +8,7 @@ export default factories.createCoreController('api::job-application.job-applicat
     async create(ctx) {
         // @ts-ignore
         const files = ctx.request.files;
-        let application = await strapi.entityService.create('api::job-application.job-application', {
+        let application = await strapi.documents('api::job-application.job-application').create({
             data: {
                 // @ts-ignore
                 ...ctx.request.body,

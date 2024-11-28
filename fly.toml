@@ -1,0 +1,31 @@
+# fly.toml file generated for acalcms on 2024-10-03T19:16:28+03:00
+
+app = "acalcms"
+kill_signal = "SIGINT"
+kill_timeout = 5
+mounts = []
+processes = []
+
+[build]
+  builder = "heroku/buildpacks:20"
+
+[env]
+  PORT = "1337"
+
+[[services]]
+  internal_port = 1337
+  processes = ["app"]
+  protocol = "tcp"
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
