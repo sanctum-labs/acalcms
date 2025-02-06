@@ -18,7 +18,7 @@ export interface JobApplication {
     email: string;
     firstName: string;
     lastName: string;
-    phoneNumber: any;
+    phoneNumber: string;
     message?: string;
   };
 }
@@ -33,7 +33,7 @@ export interface JobApplication_Plain {
   email: string;
   firstName: string;
   lastName: string;
-  phoneNumber: any;
+  phoneNumber: string;
   message?: string;
 }
 
@@ -48,7 +48,7 @@ export interface JobApplication_NoRelations {
   email: string;
   firstName: string;
   lastName: string;
-  phoneNumber: any;
+  phoneNumber: string;
   message?: string;
 }
 
@@ -63,6 +63,6 @@ export interface JobApplication_AdminPanelLifeCycle {
   email: string;
   firstName: string;
   lastName: string;
-  phoneNumber: any;
+  phoneNumber: string;
   message?: string;
 }

@@ -39,16 +39,16 @@ export default ({ env }) => ({
       },
     },
   },
-  'apollo-sandbox': {
-    enabled: env("APOLLO_SANDBOX_ENABLED", false)
-  },
+  // 'apollo-sandbox': {
+  //   enabled: env("APOLLO_SANDBOX_ENABLED", false)
+  // },
   // Ref: https://github.com/strapi-community/strapi-plugin-notes
-  'entity-notes': {
-    enabled: true,
-  },
-  "soft-delete": {
-    enabled: true,
-  },
+  // 'entity-notes': {
+  //   enabled: true,
+  // },
+  // "soft-delete": {
+  //   enabled: true,
+  // },
   //Ref: https://github.com/mancku/strapi-plugin-schemas-to-ts
   'schemas-to-ts': {
     enabled: true,
@@ -59,27 +59,27 @@ export default ({ env }) => ({
     enabled: true,
   },
   // Ref: https://github.com/lautr/strapi-plugin-duplicate-button
-  'duplicate-button': true,
+  // 'duplicate-button': true,
   //Ref: https://market.strapi.io/plugins/strapi-plugin-publisher
-  publisher: {
-    enabled: true,
-    config: {
-      hooks: {
-        beforePublish: async ({ strapi, uid, entity }) => {
-          console.log('beforePublish');
-        },
-        afterPublish: async ({ strapi, uid, entity }) => {
-          console.log('afterPublish');
-        },
-        beforeUnpublish: async ({ strapi, uid, entity }) => {
-          console.log('beforeUnpublish');
-        },
-        afterUnpublish: async ({ strapi, uid, entity }) => {
-          console.log('afterUnpublish');
-        },
-      },
-    },
-  },
+  // publisher: {
+  //   enabled: true,
+  //   config: {
+  //     hooks: {
+  //       beforePublish: async ({ strapi, uid, entity }) => {
+  //         console.log('beforePublish');
+  //       },
+  //       afterPublish: async ({ strapi, uid, entity }) => {
+  //         console.log('afterPublish');
+  //       },
+  //       beforeUnpublish: async ({ strapi, uid, entity }) => {
+  //         console.log('beforeUnpublish');
+  //       },
+  //       afterUnpublish: async ({ strapi, uid, entity }) => {
+  //         console.log('afterUnpublish');
+  //       },
+  //     },
+  //   },
+  // },
   // Ref: https://github.com/strapi/strapi/tree/main/packages/providers/upload-cloudinary
   upload: {
     config: {
@@ -97,10 +97,10 @@ export default ({ env }) => ({
     },
   },
   // Ref: https://github.com/Baboo7/strapi-plugin-import-export-entries
-  'import-export-entries': {
-    enabled: true,
-    config: {
-      // See `Config` section.
-    },
-  },
+  // 'import-export-entries': {
+  //   enabled: true,
+  //   config: {
+  //     // See `Config` section.
+  //   },
+  // },
 });

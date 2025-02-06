@@ -71,12 +71,8 @@
       "required": true
     },
     "PhoneNumber": {
-      "type": "customField",
-      "required": false,
-      "options": {
-        "country": "ke"
-      },
-      "customField": "plugin::strapi-phone-validator.phone"
+      "type": "string",
+      "required": false
     },
     "expertise": {
       "type": "relation",

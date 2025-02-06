@@ -62,9 +62,8 @@
       "required": true
     },
     "phoneNumber": {
-      "type": "customField",
-      "required": true,
-      "customField": "plugin::strapi-phone-validator.phone"
+      "type": "string",
+      "required": true
     },
     "message": {
       "type": "text"

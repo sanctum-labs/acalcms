@@ -1,30 +1,42 @@
-# 🚀 Getting started with Strapi
+# Acal Consulting Headless CMS
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+This is a headless CMS for Acal Consulting. It is built using Strapi. Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage the project in seconds.
 
-### `develop`
+## 🚀 Getting started
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+First, setup the `.env` file with the following command:
 
+```bash
+cp .env.example .env
 ```
-npm run develop
-# or
+
+Then, install the dependencies:
+
+```bash
+yarn install
+```
+
+Now start the database with the docker compose command:
+
+```bash
+docker compose up
+```
+
+> This downloads the PostgreSQL image and starts the database.
+
+Finally, run the following command to start the development server:
+
+```bash
 yarn develop
 ```
 
-### `start`
+The application can be started with autoReload disabled:
 
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
-
-```
-npm run start
-# or
+```bash
 yarn start
 ```
 
-### `build`
-
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
+The admin panel can be built with:
 
 ```
 npm run build
@@ -49,13 +61,3 @@ yarn strapi deploy
 - [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
 
 Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
-
-## ✨ Community
-
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
-
----
-
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
