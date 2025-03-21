@@ -1,13 +1,120 @@
-import type { Schema, Attribute } from '@strapi/strapi';
+import type { Attribute, Schema } from '@strapi/strapi';
+
+export interface AdminApiToken extends Schema.CollectionType {
+  collectionName: 'strapi_api_tokens';
+  info: {
+    description: '';
+    displayName: 'Api Token';
+    name: 'Api Token';
+    pluralName: 'api-tokens';
+    singularName: 'api-token';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    accessKey: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'admin::api-token',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    description: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }> &
+      Attribute.DefaultTo<''>;
+    expiresAt: Attribute.DateTime;
+    lastUsedAt: Attribute.DateTime;
+    lifespan: Attribute.BigInteger;
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
+    permissions: Attribute.Relation<
+      'admin::api-token',
+      'oneToMany',
+      'admin::api-token-permission'
+    >;
+    type: Attribute.Enumeration<['read-only', 'full-access', 'custom']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'read-only'>;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'admin::api-token',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface AdminApiTokenPermission extends Schema.CollectionType {
+  collectionName: 'strapi_api_token_permissions';
+  info: {
+    description: '';
+    displayName: 'API Token Permission';
+    name: 'API Token Permission';
+    pluralName: 'api-token-permissions';
+    singularName: 'api-token-permission';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    action: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'admin::api-token-permission',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    token: Attribute.Relation<
+      'admin::api-token-permission',
+      'manyToOne',
+      'admin::api-token'
+    >;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'admin::api-token-permission',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
 
 export interface AdminPermission extends Schema.CollectionType {
   collectionName: 'admin_permissions';
   info: {
-    name: 'Permission';
     description: '';
-    singularName: 'permission';
-    pluralName: 'permissions';
     displayName: 'Permission';
+    name: 'Permission';
+    pluralName: 'permissions';
+    singularName: 'permission';
   };
   pluginOptions: {
     'content-manager': {
@@ -24,83 +131,26 @@ export interface AdminPermission extends Schema.CollectionType {
         minLength: 1;
       }>;
     actionParameters: Attribute.JSON & Attribute.DefaultTo<{}>;
-    subject: Attribute.String &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
-    properties: Attribute.JSON & Attribute.DefaultTo<{}>;
     conditions: Attribute.JSON & Attribute.DefaultTo<[]>;
-    role: Attribute.Relation<'admin::permission', 'manyToOne', 'admin::role'>;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'admin::permission',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    properties: Attribute.JSON & Attribute.DefaultTo<{}>;
+    role: Attribute.Relation<'admin::permission', 'manyToOne', 'admin::role'>;
+    subject: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'admin::permission',
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
-  };
-}
-
-export interface AdminUser extends Schema.CollectionType {
-  collectionName: 'admin_users';
-  info: {
-    name: 'User';
-    description: '';
-    singularName: 'user';
-    pluralName: 'users';
-    displayName: 'User';
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    firstname: Attribute.String &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
-    lastname: Attribute.String &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
-    username: Attribute.String;
-    email: Attribute.Email &
-      Attribute.Required &
-      Attribute.Private &
-      Attribute.Unique &
-      Attribute.SetMinMaxLength<{
-        minLength: 6;
-      }>;
-    password: Attribute.Password &
-      Attribute.Private &
-      Attribute.SetMinMaxLength<{
-        minLength: 6;
-      }>;
-    resetPasswordToken: Attribute.String & Attribute.Private;
-    registrationToken: Attribute.String & Attribute.Private;
-    isActive: Attribute.Boolean &
-      Attribute.Private &
-      Attribute.DefaultTo<false>;
-    roles: Attribute.Relation<'admin::user', 'manyToMany', 'admin::role'> &
-      Attribute.Private;
-    blocked: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
-    preferedLanguage: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'admin::user', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'admin::user', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -108,11 +158,11 @@ export interface AdminUser extends Schema.CollectionType {
 export interface AdminRole extends Schema.CollectionType {
   collectionName: 'admin_roles';
   info: {
-    name: 'Role';
     description: '';
-    singularName: 'role';
-    pluralName: 'roles';
     displayName: 'Role';
+    name: 'Role';
+    pluralName: 'roles';
+    singularName: 'role';
   };
   pluginOptions: {
     'content-manager': {
@@ -123,149 +173,42 @@ export interface AdminRole extends Schema.CollectionType {
     };
   };
   attributes: {
-    name: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
     code: Attribute.String &
       Attribute.Required &
       Attribute.Unique &
       Attribute.SetMinMaxLength<{
         minLength: 1;
       }>;
-    description: Attribute.String;
-    users: Attribute.Relation<'admin::role', 'manyToMany', 'admin::user'>;
-    permissions: Attribute.Relation<
-      'admin::role',
-      'oneToMany',
-      'admin::permission'
-    >;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'admin::role', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<'admin::role', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface AdminApiToken extends Schema.CollectionType {
-  collectionName: 'strapi_api_tokens';
-  info: {
-    name: 'Api Token';
-    singularName: 'api-token';
-    pluralName: 'api-tokens';
-    displayName: 'Api Token';
-    description: '';
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
+    description: Attribute.String;
     name: Attribute.String &
       Attribute.Required &
       Attribute.Unique &
       Attribute.SetMinMaxLength<{
         minLength: 1;
       }>;
-    description: Attribute.String &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }> &
-      Attribute.DefaultTo<''>;
-    type: Attribute.Enumeration<['read-only', 'full-access', 'custom']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'read-only'>;
-    accessKey: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
-    lastUsedAt: Attribute.DateTime;
     permissions: Attribute.Relation<
-      'admin::api-token',
+      'admin::role',
       'oneToMany',
-      'admin::api-token-permission'
+      'admin::permission'
     >;
-    expiresAt: Attribute.DateTime;
-    lifespan: Attribute.BigInteger;
-    createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'admin::api-token',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'admin::role', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'admin::api-token',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface AdminApiTokenPermission extends Schema.CollectionType {
-  collectionName: 'strapi_api_token_permissions';
-  info: {
-    name: 'API Token Permission';
-    description: '';
-    singularName: 'api-token-permission';
-    pluralName: 'api-token-permissions';
-    displayName: 'API Token Permission';
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    action: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
-    token: Attribute.Relation<
-      'admin::api-token-permission',
-      'manyToOne',
-      'admin::api-token'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'admin::api-token-permission',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'admin::api-token-permission',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
+    users: Attribute.Relation<'admin::role', 'manyToMany', 'admin::user'>;
   };
 }
 
 export interface AdminTransferToken extends Schema.CollectionType {
   collectionName: 'strapi_transfer_tokens';
   info: {
-    name: 'Transfer Token';
-    singularName: 'transfer-token';
-    pluralName: 'transfer-tokens';
-    displayName: 'Transfer Token';
     description: '';
+    displayName: 'Transfer Token';
+    name: 'Transfer Token';
+    pluralName: 'transfer-tokens';
+    singularName: 'transfer-token';
   };
   pluginOptions: {
     'content-manager': {
@@ -276,38 +219,38 @@ export interface AdminTransferToken extends Schema.CollectionType {
     };
   };
   attributes: {
-    name: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
-    description: Attribute.String &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }> &
-      Attribute.DefaultTo<''>;
     accessKey: Attribute.String &
       Attribute.Required &
       Attribute.SetMinMaxLength<{
         minLength: 1;
       }>;
-    lastUsedAt: Attribute.DateTime;
-    permissions: Attribute.Relation<
-      'admin::transfer-token',
-      'oneToMany',
-      'admin::transfer-token-permission'
-    >;
-    expiresAt: Attribute.DateTime;
-    lifespan: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'admin::transfer-token',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    description: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }> &
+      Attribute.DefaultTo<''>;
+    expiresAt: Attribute.DateTime;
+    lastUsedAt: Attribute.DateTime;
+    lifespan: Attribute.BigInteger;
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
+    permissions: Attribute.Relation<
+      'admin::transfer-token',
+      'oneToMany',
+      'admin::transfer-token-permission'
+    >;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'admin::transfer-token',
       'oneToOne',
@@ -320,11 +263,11 @@ export interface AdminTransferToken extends Schema.CollectionType {
 export interface AdminTransferTokenPermission extends Schema.CollectionType {
   collectionName: 'strapi_transfer_token_permissions';
   info: {
-    name: 'Transfer Token Permission';
     description: '';
-    singularName: 'transfer-token-permission';
-    pluralName: 'transfer-token-permissions';
     displayName: 'Transfer Token Permission';
+    name: 'Transfer Token Permission';
+    pluralName: 'transfer-token-permissions';
+    singularName: 'transfer-token-permission';
   };
   pluginOptions: {
     'content-manager': {
@@ -340,19 +283,19 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         minLength: 1;
       }>;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'admin::transfer-token-permission',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
     token: Attribute.Relation<
       'admin::transfer-token-permission',
       'manyToOne',
       'admin::transfer-token'
     >;
-    createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'admin::transfer-token-permission',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
     updatedBy: Attribute.Relation<
       'admin::transfer-token-permission',
       'oneToOne',
@@ -362,582 +305,60 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface PluginUploadFile extends Schema.CollectionType {
-  collectionName: 'files';
+export interface AdminUser extends Schema.CollectionType {
+  collectionName: 'admin_users';
   info: {
-    singularName: 'file';
-    pluralName: 'files';
-    displayName: 'File';
     description: '';
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    alternativeText: Attribute.String;
-    caption: Attribute.String;
-    width: Attribute.Integer;
-    height: Attribute.Integer;
-    formats: Attribute.JSON;
-    hash: Attribute.String & Attribute.Required;
-    ext: Attribute.String;
-    mime: Attribute.String & Attribute.Required;
-    size: Attribute.Decimal & Attribute.Required;
-    url: Attribute.String & Attribute.Required;
-    previewUrl: Attribute.String;
-    provider: Attribute.String & Attribute.Required;
-    provider_metadata: Attribute.JSON;
-    related: Attribute.Relation<'plugin::upload.file', 'morphToMany'>;
-    folder: Attribute.Relation<
-      'plugin::upload.file',
-      'manyToOne',
-      'plugin::upload.folder'
-    > &
-      Attribute.Private;
-    folderPath: Attribute.String &
-      Attribute.Required &
-      Attribute.Private &
-      Attribute.SetMinMax<
-        {
-          min: 1;
-        },
-        number
-      >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::upload.file',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::upload.file',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginUploadFolder extends Schema.CollectionType {
-  collectionName: 'upload_folders';
-  info: {
-    singularName: 'folder';
-    pluralName: 'folders';
-    displayName: 'Folder';
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    name: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 1;
-        },
-        number
-      >;
-    pathId: Attribute.Integer & Attribute.Required & Attribute.Unique;
-    parent: Attribute.Relation<
-      'plugin::upload.folder',
-      'manyToOne',
-      'plugin::upload.folder'
-    >;
-    children: Attribute.Relation<
-      'plugin::upload.folder',
-      'oneToMany',
-      'plugin::upload.folder'
-    >;
-    files: Attribute.Relation<
-      'plugin::upload.folder',
-      'oneToMany',
-      'plugin::upload.file'
-    >;
-    path: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 1;
-        },
-        number
-      >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::upload.folder',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::upload.folder',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginContentReleasesRelease extends Schema.CollectionType {
-  collectionName: 'strapi_releases';
-  info: {
-    singularName: 'release';
-    pluralName: 'releases';
-    displayName: 'Release';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    releasedAt: Attribute.DateTime;
-    scheduledAt: Attribute.DateTime;
-    timezone: Attribute.String;
-    status: Attribute.Enumeration<
-      ['ready', 'blocked', 'failed', 'done', 'empty']
-    > &
-      Attribute.Required;
-    actions: Attribute.Relation<
-      'plugin::content-releases.release',
-      'oneToMany',
-      'plugin::content-releases.release-action'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::content-releases.release',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::content-releases.release',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginContentReleasesReleaseAction
-  extends Schema.CollectionType {
-  collectionName: 'strapi_release_actions';
-  info: {
-    singularName: 'release-action';
-    pluralName: 'release-actions';
-    displayName: 'Release Action';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    type: Attribute.Enumeration<['publish', 'unpublish']> & Attribute.Required;
-    entry: Attribute.Relation<
-      'plugin::content-releases.release-action',
-      'morphToOne'
-    >;
-    contentType: Attribute.String & Attribute.Required;
-    locale: Attribute.String;
-    release: Attribute.Relation<
-      'plugin::content-releases.release-action',
-      'manyToOne',
-      'plugin::content-releases.release'
-    >;
-    isEntryValid: Attribute.Boolean;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::content-releases.release-action',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::content-releases.release-action',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginSlugifySlug extends Schema.CollectionType {
-  collectionName: 'slugs';
-  info: {
-    singularName: 'slug';
-    pluralName: 'slugs';
-    displayName: 'slug';
-  };
-  options: {
-    draftAndPublish: false;
-    comment: '';
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    slug: Attribute.Text;
-    count: Attribute.Integer;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::slugify.slug',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::slugify.slug',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginEntityNotesNote extends Schema.CollectionType {
-  collectionName: 'notes';
-  info: {
-    singularName: 'note';
-    pluralName: 'notes';
-    displayName: 'notes';
-  };
-  options: {
-    draftAndPublish: false;
-    comment: '';
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    title: Attribute.String;
-    content: Attribute.Text;
-    entityId: Attribute.Integer;
-    entitySlug: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::entity-notes.note',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::entity-notes.note',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginPublisherAction extends Schema.CollectionType {
-  collectionName: 'actions';
-  info: {
-    singularName: 'action';
-    pluralName: 'actions';
-    displayName: 'actions';
-  };
-  options: {
-    draftAndPublish: false;
-    comment: '';
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    executeAt: Attribute.DateTime;
-    mode: Attribute.String;
-    entityId: Attribute.Integer;
-    entitySlug: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::publisher.action',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::publisher.action',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginUsersPermissionsPermission
-  extends Schema.CollectionType {
-  collectionName: 'up_permissions';
-  info: {
-    name: 'permission';
-    description: '';
-    singularName: 'permission';
-    pluralName: 'permissions';
-    displayName: 'Permission';
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    action: Attribute.String & Attribute.Required;
-    role: Attribute.Relation<
-      'plugin::users-permissions.permission',
-      'manyToOne',
-      'plugin::users-permissions.role'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::users-permissions.permission',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::users-permissions.permission',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginUsersPermissionsRole extends Schema.CollectionType {
-  collectionName: 'up_roles';
-  info: {
-    name: 'role';
-    description: '';
-    singularName: 'role';
-    pluralName: 'roles';
-    displayName: 'Role';
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    name: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }>;
-    description: Attribute.String;
-    type: Attribute.String & Attribute.Unique;
-    permissions: Attribute.Relation<
-      'plugin::users-permissions.role',
-      'oneToMany',
-      'plugin::users-permissions.permission'
-    >;
-    users: Attribute.Relation<
-      'plugin::users-permissions.role',
-      'oneToMany',
-      'plugin::users-permissions.user'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::users-permissions.role',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::users-permissions.role',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginUsersPermissionsUser extends Schema.CollectionType {
-  collectionName: 'up_users';
-  info: {
-    name: 'user';
-    description: '';
-    singularName: 'user';
-    pluralName: 'users';
     displayName: 'User';
+    name: 'User';
+    pluralName: 'users';
+    singularName: 'user';
   };
-  options: {
-    draftAndPublish: false;
-    timestamps: true;
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
   };
   attributes: {
-    username: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }>;
+    blocked: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'admin::user', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
     email: Attribute.Email &
       Attribute.Required &
+      Attribute.Private &
+      Attribute.Unique &
       Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
-    provider: Attribute.String;
+    firstname: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
+    isActive: Attribute.Boolean &
+      Attribute.Private &
+      Attribute.DefaultTo<false>;
+    lastname: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
     password: Attribute.Password &
       Attribute.Private &
       Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    preferedLanguage: Attribute.String;
+    registrationToken: Attribute.String & Attribute.Private;
     resetPasswordToken: Attribute.String & Attribute.Private;
-    confirmationToken: Attribute.String & Attribute.Private;
-    confirmed: Attribute.Boolean & Attribute.DefaultTo<false>;
-    blocked: Attribute.Boolean & Attribute.DefaultTo<false>;
-    role: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'manyToOne',
-      'plugin::users-permissions.role'
-    >;
-    createdAt: Attribute.DateTime;
+    roles: Attribute.Relation<'admin::user', 'manyToMany', 'admin::role'> &
+      Attribute.Private;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'admin::user', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginGraphsBuilderGraph extends Schema.CollectionType {
-  collectionName: 'graphs_builder_graph';
-  info: {
-    name: 'graph';
-    description: '';
-    singularName: 'graph';
-    pluralName: 'graphs';
-    displayName: 'Graph';
-  };
-  options: {
-    draftAndPublish: false;
-    timestamps: true;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: true;
-    };
-    'content-type-builder': {
-      visible: true;
-    };
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    type: Attribute.Enumeration<['pie', 'bar', 'line', 'dateLine']> &
-      Attribute.Required;
-    collectionX: Attribute.String & Attribute.Required;
-    collectionXAttribute: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::graphs-builder.graph',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::graphs-builder.graph',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiAboutUsAboutUs extends Schema.SingleType {
-  collectionName: 'about_uses';
-  info: {
-    singularName: 'about-us';
-    pluralName: 'about-uses';
-    displayName: 'About Us';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String & Attribute.DefaultTo<'About Us'>;
-    description: Attribute.Text &
-      Attribute.DefaultTo<'Being a game changer is in our DNA: get to know our values , our management , our network . Getting in touch with our experts is easy \u2013 wherever you are.'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::about-us.about-us',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::about-us.about-us',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    _softDeletedAt: Attribute.DateTime & Attribute.Private;
-    _softDeletedById: Attribute.Integer & Attribute.Private;
-    _softDeletedByType: Attribute.String & Attribute.Private;
+    username: Attribute.String;
   };
 }
 
@@ -945,10 +366,10 @@ export interface ApiAboutUsMissionPageAboutUsMissionPage
   extends Schema.SingleType {
   collectionName: 'about_us_mission_pages';
   info: {
-    singularName: 'about-us-mission-page';
-    pluralName: 'about-us-mission-pages';
-    displayName: 'About Us / Mission Page';
     description: '';
+    displayName: 'About Us / Mission Page';
+    pluralName: 'about-us-mission-pages';
+    singularName: 'about-us-mission-page';
   };
   options: {
     draftAndPublish: true;
@@ -957,29 +378,29 @@ export interface ApiAboutUsMissionPageAboutUsMissionPage
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    Overview: Attribute.Component<'sections.title-and-description'> &
-      Attribute.Required;
-    Vision: Attribute.Component<'sections.title-and-description'>;
-    Transformation: Attribute.Component<'sections.overview'> &
-      Attribute.Required;
-    Quote: Attribute.Text;
-    Values: Attribute.Component<'sections.title-and-description'>;
-    Hero: Attribute.Component<'sections.hero'>;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::about-us-mission-page.about-us-mission-page',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    Hero: Attribute.Component<'sections.hero'>;
+    Overview: Attribute.Component<'sections.title-and-description'> &
+      Attribute.Required;
+    publishedAt: Attribute.DateTime;
+    Quote: Attribute.Text;
+    Transformation: Attribute.Component<'sections.overview'> &
+      Attribute.Required;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::about-us-mission-page.about-us-mission-page',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    Values: Attribute.Component<'sections.title-and-description'>;
+    Vision: Attribute.Component<'sections.title-and-description'>;
   };
 }
 
@@ -987,10 +408,10 @@ export interface ApiAboutUsOurPeoplePageAboutUsOurPeoplePage
   extends Schema.SingleType {
   collectionName: 'about_us_our_people_pages';
   info: {
-    singularName: 'about-us-our-people-page';
-    pluralName: 'about-us-our-people-pages';
-    displayName: 'About Us / Our People Page';
     description: '';
+    displayName: 'About Us / Our People Page';
+    pluralName: 'about-us-our-people-pages';
+    singularName: 'about-us-our-people-page';
   };
   options: {
     draftAndPublish: true;
@@ -999,19 +420,19 @@ export interface ApiAboutUsOurPeoplePageAboutUsOurPeoplePage
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    Overview: Attribute.Component<'sections.title-and-description'>;
-    People: Attribute.Component<'sections.people-group-row', true> &
-      Attribute.Required;
-    Hero: Attribute.Component<'sections.hero'>;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::about-us-our-people-page.about-us-our-people-page',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    Hero: Attribute.Component<'sections.hero'>;
+    Overview: Attribute.Component<'sections.title-and-description'>;
+    People: Attribute.Component<'sections.people-group-row', true> &
+      Attribute.Required;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::about-us-our-people-page.about-us-our-people-page',
       'oneToOne',
@@ -1025,10 +446,10 @@ export interface ApiAboutUsSustainabilityAboutUsSustainability
   extends Schema.SingleType {
   collectionName: 'about_us_sustainabilities';
   info: {
-    singularName: 'about-us-sustainability';
-    pluralName: 'about-us-sustainabilities';
-    displayName: 'About Us / Sustainability';
     description: '';
+    displayName: 'About Us / Sustainability';
+    pluralName: 'about-us-sustainabilities';
+    singularName: 'about-us-sustainability';
   };
   options: {
     draftAndPublish: true;
@@ -1037,18 +458,18 @@ export interface ApiAboutUsSustainabilityAboutUsSustainability
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
-    Overview: Attribute.Component<'sections.overview'> & Attribute.Required;
     Content: Attribute.Component<'sections.banner', true> & Attribute.Required;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::about-us-sustainability.about-us-sustainability',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
+    Overview: Attribute.Component<'sections.overview'> & Attribute.Required;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::about-us-sustainability.about-us-sustainability',
       'oneToOne',
@@ -1061,10 +482,10 @@ export interface ApiAboutUsSustainabilityAboutUsSustainability
 export interface ApiAboutUsWhoWeAreAboutUsWhoWeAre extends Schema.SingleType {
   collectionName: 'about_us_who_we_ares';
   info: {
-    singularName: 'about-us-who-we-are';
-    pluralName: 'about-us-who-we-ares';
-    displayName: 'About Us / Who We Are';
     description: '';
+    displayName: 'About Us / Who We Are';
+    pluralName: 'about-us-who-we-ares';
+    singularName: 'about-us-who-we-are';
   };
   options: {
     draftAndPublish: true;
@@ -1073,21 +494,56 @@ export interface ApiAboutUsWhoWeAreAboutUsWhoWeAre extends Schema.SingleType {
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
-    Overview: Attribute.Component<'sections.overview'> & Attribute.Required;
-    MediaBanner: Attribute.Media<'images' | 'videos'>;
     Body: Attribute.RichText & Attribute.Required;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::about-us-who-we-are.about-us-who-we-are',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
+    MediaBanner: Attribute.Media<'images' | 'videos'>;
+    Overview: Attribute.Component<'sections.overview'> & Attribute.Required;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::about-us-who-we-are.about-us-who-we-are',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiAboutUsAboutUs extends Schema.SingleType {
+  collectionName: 'about_uses';
+  info: {
+    displayName: 'About Us';
+    pluralName: 'about-uses';
+    singularName: 'about-us';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::about-us.about-us',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    description: Attribute.Text &
+      Attribute.DefaultTo<'Being a game changer is in our DNA: get to know our values , our management , our network . Getting in touch with our experts is easy \u2013 wherever you are.'>;
+    publishedAt: Attribute.DateTime;
+    title: Attribute.String & Attribute.DefaultTo<'About Us'>;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::about-us.about-us',
       'oneToOne',
       'admin::user'
     > &
@@ -1098,10 +554,10 @@ export interface ApiAboutUsWhoWeAreAboutUsWhoWeAre extends Schema.SingleType {
 export interface ApiApproachApproach extends Schema.SingleType {
   collectionName: 'approaches';
   info: {
-    singularName: 'approach';
-    pluralName: 'approaches';
-    displayName: 'About Us / Approach';
     description: '';
+    displayName: 'About Us / Approach';
+    pluralName: 'approaches';
+    singularName: 'approach';
   };
   options: {
     draftAndPublish: true;
@@ -1110,21 +566,21 @@ export interface ApiApproachApproach extends Schema.SingleType {
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    Hero: Attribute.Component<'sections.hero'>;
-    Overview: Attribute.Component<'sections.overview'>;
-    body: Attribute.RichText & Attribute.Required;
     banner: Attribute.Component<'sections.banner'>;
-    quote: Attribute.Text & Attribute.Required;
+    body: Attribute.RichText & Attribute.Required;
     clientFocus: Attribute.Component<'sections.card-grid'> & Attribute.Required;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::approach.approach',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    Hero: Attribute.Component<'sections.hero'>;
+    Overview: Attribute.Component<'sections.overview'>;
+    publishedAt: Attribute.DateTime;
+    quote: Attribute.Text & Attribute.Required;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::approach.approach',
       'oneToOne',
@@ -1138,10 +594,10 @@ export interface ApiBusinessAgilityAndContinuityPageBusinessAgilityAndContinuity
   extends Schema.SingleType {
   collectionName: 'business_agility_and_continuity_pages';
   info: {
-    singularName: 'business-agility-and-continuity-page';
-    pluralName: 'business-agility-and-continuity-pages';
-    displayName: 'Business Agility and Continuity Page';
     description: '';
+    displayName: 'Business Agility and Continuity Page';
+    pluralName: 'business-agility-and-continuity-pages';
+    singularName: 'business-agility-and-continuity-page';
   };
   options: {
     draftAndPublish: true;
@@ -1150,29 +606,29 @@ export interface ApiBusinessAgilityAndContinuityPageBusinessAgilityAndContinuity
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    Description: Attribute.Component<'sections.title-and-description'>;
-    Overview: Attribute.Component<'sections.title-and-description'>;
-    ValueProposition: Attribute.Component<'sections.overview'>;
-    Guidelines: Attribute.Component<'sections.title-and-description'>;
-    Quote: Attribute.Text;
     BuildResilience: Attribute.Component<'sections.title-and-description'>;
-    DigitalDiscipline: Attribute.Component<'sections.overview'>;
-    Hero: Attribute.Component<'sections.hero'>;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::business-agility-and-continuity-page.business-agility-and-continuity-page',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    Description: Attribute.Component<'sections.title-and-description'>;
+    DigitalDiscipline: Attribute.Component<'sections.overview'>;
+    Guidelines: Attribute.Component<'sections.title-and-description'>;
+    Hero: Attribute.Component<'sections.hero'>;
+    Overview: Attribute.Component<'sections.title-and-description'>;
+    publishedAt: Attribute.DateTime;
+    Quote: Attribute.Text;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::business-agility-and-continuity-page.business-agility-and-continuity-page',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    ValueProposition: Attribute.Component<'sections.overview'>;
   };
 }
 
@@ -1180,10 +636,10 @@ export interface ApiCareersOpenRolesPageCareersOpenRolesPage
   extends Schema.SingleType {
   collectionName: 'careers_open_roles_pages';
   info: {
-    singularName: 'careers-open-roles-page';
-    pluralName: 'careers-open-roles-pages';
-    displayName: 'Careers / Open Roles Page';
     description: '';
+    displayName: 'Careers / Open Roles Page';
+    pluralName: 'careers-open-roles-pages';
+    singularName: 'careers-open-roles-page';
   };
   options: {
     draftAndPublish: true;
@@ -1192,18 +648,18 @@ export interface ApiCareersOpenRolesPageCareersOpenRolesPage
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    Overview: Attribute.Component<'sections.title-and-description'>;
-    Description: Attribute.Component<'sections.title-and-description'>;
-    Hero: Attribute.Component<'sections.hero'>;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::careers-open-roles-page.careers-open-roles-page',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    Description: Attribute.Component<'sections.title-and-description'>;
+    Hero: Attribute.Component<'sections.hero'>;
+    Overview: Attribute.Component<'sections.title-and-description'>;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::careers-open-roles-page.careers-open-roles-page',
       'oneToOne',
@@ -1216,10 +672,10 @@ export interface ApiCareersOpenRolesPageCareersOpenRolesPage
 export interface ApiCareersPageCareersPage extends Schema.SingleType {
   collectionName: 'careers_pages';
   info: {
-    singularName: 'careers-page';
-    pluralName: 'careers-pages';
-    displayName: 'Careers';
     description: '';
+    displayName: 'Careers';
+    pluralName: 'careers-pages';
+    singularName: 'careers-page';
   };
   options: {
     draftAndPublish: true;
@@ -1228,23 +684,23 @@ export interface ApiCareersPageCareersPage extends Schema.SingleType {
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    Overview: Attribute.Component<'sections.title-and-description'>;
-    Roles: Attribute.Component<'sections.title-and-description'>;
     BuildConnectGrow: Attribute.Component<'sections.title-and-description'>;
     ConnectingAspirations: Attribute.Component<'sections.title-and-description'>;
-    Quote: Attribute.Text;
-    GrowingLeaders: Attribute.Component<'sections.title-and-description'>;
-    FindYourIdealJob: Attribute.Component<'sections.title-and-description'>;
-    Hero: Attribute.Component<'sections.hero'>;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::careers-page.careers-page',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    FindYourIdealJob: Attribute.Component<'sections.title-and-description'>;
+    GrowingLeaders: Attribute.Component<'sections.title-and-description'>;
+    Hero: Attribute.Component<'sections.hero'>;
+    Overview: Attribute.Component<'sections.title-and-description'>;
+    publishedAt: Attribute.DateTime;
+    Quote: Attribute.Text;
+    Roles: Attribute.Component<'sections.title-and-description'>;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::careers-page.careers-page',
       'oneToOne',
@@ -1257,10 +713,10 @@ export interface ApiCareersPageCareersPage extends Schema.SingleType {
 export interface ApiClientClient extends Schema.CollectionType {
   collectionName: 'clients';
   info: {
-    singularName: 'client';
-    pluralName: 'clients';
-    displayName: 'Client';
     description: '';
+    displayName: 'Client';
+    pluralName: 'clients';
+    singularName: 'client';
   };
   options: {
     draftAndPublish: true;
@@ -1269,105 +725,58 @@ export interface ApiClientClient extends Schema.CollectionType {
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    logo: Attribute.Media<'images'> & Attribute.Required;
-    url: Attribute.Component<'elements.url'>;
-    name: Attribute.String & Attribute.Required & Attribute.Unique;
-    slug: Attribute.UID<'api::client.client', 'name'>;
     countOfServicesProvided: Attribute.Integer;
-    Type: Attribute.Enumeration<['Kenyan', 'International', 'Other']> &
-      Attribute.Required;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::client.client',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    logo: Attribute.Media<'images'> & Attribute.Required;
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    publishedAt: Attribute.DateTime;
+    slug: Attribute.UID<'api::client.client', 'name'>;
+    Type: Attribute.Enumeration<['Kenyan', 'International', 'Other']> &
+      Attribute.Required;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::client.client',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    url: Attribute.Component<'elements.url'>;
   };
 }
 
 export interface ApiClientsPageClientsPage extends Schema.SingleType {
   collectionName: 'clients_pages';
   info: {
-    singularName: 'clients-page';
-    pluralName: 'clients-pages';
     displayName: 'Clients Page';
+    pluralName: 'clients-pages';
+    singularName: 'clients-page';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::clients-page.clients-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
     Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
     Overview: Attribute.Component<'sections.overview'> & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::clients-page.clients-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::clients-page.clients-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    _softDeletedAt: Attribute.DateTime & Attribute.Private;
-    _softDeletedById: Attribute.Integer & Attribute.Private;
-    _softDeletedByType: Attribute.String & Attribute.Private;
-  };
-}
-
-export interface ApiExpertiseExpertise extends Schema.CollectionType {
-  collectionName: 'expertisen';
-  info: {
-    singularName: 'expertise';
-    pluralName: 'expertisen';
-    displayName: 'Expertise';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    _softDeletedAt: Attribute.DateTime & Attribute.Private;
-    _softDeletedById: Attribute.Integer & Attribute.Private;
-    _softDeletedByType: Attribute.String & Attribute.Private;
-    name: Attribute.String & Attribute.Required & Attribute.Unique;
-    title: Attribute.String & Attribute.Required & Attribute.Unique;
-    description: Attribute.RichText & Attribute.Required;
-    mediaBanner: Attribute.Media<'images' | 'videos'>;
-    projects: Attribute.Relation<
-      'api::expertise.expertise',
-      'oneToMany',
-      'api::project.project'
-    >;
-    slug: Attribute.UID<'api::expertise.expertise', 'name'> &
-      Attribute.Required;
-    banner: Attribute.Media<'images'> & Attribute.Required;
-    category: Attribute.Enumeration<['Industries', 'Services']> &
-      Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::expertise.expertise',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::expertise.expertise',
       'oneToOne',
       'admin::user'
     > &
@@ -1379,48 +788,95 @@ export interface ApiExpertiseLandingPageExpertiseLandingPage
   extends Schema.SingleType {
   collectionName: 'expertise_landing_pages';
   info: {
-    singularName: 'expertise-landing-page';
-    pluralName: 'expertise-landing-pages';
     displayName: 'Expertise Landing Page';
+    pluralName: 'expertise-landing-pages';
+    singularName: 'expertise-landing-page';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Description: Attribute.RichText & Attribute.Required;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::expertise-landing-page.expertise-landing-page',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    Description: Attribute.RichText & Attribute.Required;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::expertise-landing-page.expertise-landing-page',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+  };
+}
+
+export interface ApiExpertiseExpertise extends Schema.CollectionType {
+  collectionName: 'expertisen';
+  info: {
+    description: '';
+    displayName: 'Expertise';
+    pluralName: 'expertisen';
+    singularName: 'expertise';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
+    banner: Attribute.Media<'images'> & Attribute.Required;
+    category: Attribute.Enumeration<['Industries', 'Services']> &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::expertise.expertise',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    description: Attribute.RichText & Attribute.Required;
+    mediaBanner: Attribute.Media<'images' | 'videos'>;
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    projects: Attribute.Relation<
+      'api::expertise.expertise',
+      'oneToMany',
+      'api::project.project'
+    >;
+    publishedAt: Attribute.DateTime;
+    slug: Attribute.UID<'api::expertise.expertise', 'name'> &
+      Attribute.Required;
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::expertise.expertise',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
   };
 }
 
 export interface ApiGlobalGlobal extends Schema.SingleType {
   collectionName: 'globals';
   info: {
-    singularName: 'global';
-    pluralName: 'globals';
     displayName: 'Global';
     name: 'global';
+    pluralName: 'globals';
+    singularName: 'global';
   };
   options: {
+    draftAndPublish: false;
     increments: true;
     timestamps: true;
-    draftAndPublish: false;
   };
   pluginOptions: {
     i18n: {
@@ -1428,6 +884,28 @@ export interface ApiGlobalGlobal extends Schema.SingleType {
     };
   };
   attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::global.global',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    favicon: Attribute.Media<'images'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    footer: Attribute.Component<'layout.footer'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     metadata: Attribute.Component<'meta.metadata'> &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1441,7 +919,7 @@ export interface ApiGlobalGlobal extends Schema.SingleType {
           localized: true;
         };
       }>;
-    favicon: Attribute.Media<'images'> &
+    navbar: Attribute.Component<'layout.navbar'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1453,45 +931,23 @@ export interface ApiGlobalGlobal extends Schema.SingleType {
           localized: true;
         };
       }>;
-    navbar: Attribute.Component<'layout.navbar'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    footer: Attribute.Component<'layout.footer'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::global.global',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::global.global',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
-    _softDeletedAt: Attribute.DateTime & Attribute.Private;
-    _softDeletedById: Attribute.Integer & Attribute.Private;
-    _softDeletedByType: Attribute.String & Attribute.Private;
   };
 }
 
 export interface ApiHomeHome extends Schema.SingleType {
   collectionName: 'homes';
   info: {
-    singularName: 'home';
-    pluralName: 'homes';
-    displayName: 'Home Page';
     description: '';
+    displayName: 'Home Page';
+    pluralName: 'homes';
+    singularName: 'home';
   };
   options: {
     draftAndPublish: true;
@@ -1500,15 +956,15 @@ export interface ApiHomeHome extends Schema.SingleType {
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
-    Overview: Attribute.Component<'sections.overview'>;
-    JoinTheTeam: Attribute.Component<'elements.card', true> &
-      Attribute.Required;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
       Attribute.Private;
+    Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
+    JoinTheTeam: Attribute.Component<'elements.card', true> &
+      Attribute.Required;
+    Overview: Attribute.Component<'sections.overview'>;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
@@ -1517,10 +973,10 @@ export interface ApiHomeHome extends Schema.SingleType {
 export interface ApiInsightInsight extends Schema.CollectionType {
   collectionName: 'insights';
   info: {
-    singularName: 'insight';
-    pluralName: 'insights';
-    displayName: 'Insight';
     description: '';
+    displayName: 'Insight';
+    pluralName: 'insights';
+    singularName: 'insight';
   };
   options: {
     draftAndPublish: true;
@@ -1529,36 +985,36 @@ export interface ApiInsightInsight extends Schema.CollectionType {
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
-    Overview: Attribute.Component<'sections.overview'> & Attribute.Required;
-    Name: Attribute.String & Attribute.Required;
-    slug: Attribute.UID<'api::insight.insight', 'Name'> & Attribute.Required;
-    people: Attribute.Relation<
-      'api::insight.insight',
-      'oneToMany',
-      'api::person.person'
-    >;
-    Body: Attribute.RichText & Attribute.Required;
-    Type: Attribute.Enumeration<
-      ['Article', 'Publication', 'Study', 'Topic', 'Report']
-    > &
-      Attribute.Required;
     AuthorQuote: Attribute.Component<'elements.person-quote', true>;
-    Image: Attribute.Media<'images'> & Attribute.Required;
-    RelatedInsights: Attribute.Relation<
-      'api::insight.insight',
-      'oneToMany',
-      'api::insight.insight'
-    >;
+    Body: Attribute.RichText & Attribute.Required;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::insight.insight',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
+    Image: Attribute.Media<'images'> & Attribute.Required;
+    Name: Attribute.String & Attribute.Required;
+    Overview: Attribute.Component<'sections.overview'> & Attribute.Required;
+    people: Attribute.Relation<
+      'api::insight.insight',
+      'oneToMany',
+      'api::person.person'
+    >;
+    publishedAt: Attribute.DateTime;
+    RelatedInsights: Attribute.Relation<
+      'api::insight.insight',
+      'oneToMany',
+      'api::insight.insight'
+    >;
+    slug: Attribute.UID<'api::insight.insight', 'Name'> & Attribute.Required;
+    Type: Attribute.Enumeration<
+      ['Article', 'Publication', 'Study', 'Topic', 'Report']
+    > &
+      Attribute.Required;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::insight.insight',
       'oneToOne',
@@ -1571,10 +1027,10 @@ export interface ApiInsightInsight extends Schema.CollectionType {
 export interface ApiInsightsPageInsightsPage extends Schema.SingleType {
   collectionName: 'insights_pages';
   info: {
-    singularName: 'insights-page';
-    pluralName: 'insights-pages';
-    displayName: 'Insights Landing Page';
     description: '';
+    displayName: 'Insights Landing Page';
+    pluralName: 'insights-pages';
+    singularName: 'insights-page';
   };
   options: {
     draftAndPublish: true;
@@ -1583,24 +1039,71 @@ export interface ApiInsightsPageInsightsPage extends Schema.SingleType {
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    Hero: Attribute.Component<'sections.hero'>;
-    Overview: Attribute.Component<'sections.overview'> & Attribute.Required;
-    insights: Attribute.Relation<
-      'api::insights-page.insights-page',
-      'oneToMany',
-      'api::insight.insight'
-    >;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::insights-page.insights-page',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    Hero: Attribute.Component<'sections.hero'>;
+    insights: Attribute.Relation<
+      'api::insights-page.insights-page',
+      'oneToMany',
+      'api::insight.insight'
+    >;
+    Overview: Attribute.Component<'sections.overview'> & Attribute.Required;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::insights-page.insights-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiJobApplicationJobApplication extends Schema.CollectionType {
+  collectionName: 'job_applications';
+  info: {
+    description: '';
+    displayName: 'Job Application';
+    pluralName: 'job-applications';
+    singularName: 'job-application';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::job-application.job-application',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    email: Attribute.Email & Attribute.Required;
+    firstName: Attribute.String & Attribute.Required;
+    job: Attribute.Relation<
+      'api::job-application.job-application',
+      'manyToOne',
+      'api::job.job'
+    >;
+    lastName: Attribute.String & Attribute.Required;
+    message: Attribute.Text;
+    phoneNumber: Attribute.String &
+      Attribute.Required &
+      Attribute.CustomField<'plugin::strapi-phone-validator.phone'>;
+    publishedAt: Attribute.DateTime;
+    resume: Attribute.Media<'files'> & Attribute.Required;
+    status: Attribute.String;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::job-application.job-application',
       'oneToOne',
       'admin::user'
     > &
@@ -1611,10 +1114,10 @@ export interface ApiInsightsPageInsightsPage extends Schema.SingleType {
 export interface ApiJobJob extends Schema.CollectionType {
   collectionName: 'jobs';
   info: {
-    singularName: 'job';
-    pluralName: 'jobs';
-    displayName: 'Job';
     description: '';
+    displayName: 'Job';
+    pluralName: 'jobs';
+    singularName: 'job';
   };
   options: {
     draftAndPublish: true;
@@ -1623,11 +1126,33 @@ export interface ApiJobJob extends Schema.CollectionType {
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    name: Attribute.String & Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     available: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<true>;
+    closingDate: Attribute.Date & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::job.job', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    department: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    howToApply: Attribute.RichText;
+    job_applications: Attribute.Relation<
+      'api::job.job',
+      'oneToMany',
+      'api::job-application.job-application'
+    >;
+    jobSpecifications: Attribute.RichText;
+    keyCompetenciesAndSkills: Attribute.RichText;
+    level: Attribute.String & Attribute.Required;
+    location: Attribute.String & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
+    personSpecifications: Attribute.RichText;
+    publishedAt: Attribute.DateTime;
+    requirements: Attribute.RichText & Attribute.Required;
+    responsibilities: Attribute.RichText & Attribute.Required;
+    salary: Attribute.BigInteger;
+    slug: Attribute.UID<'api::job.job', 'name'> & Attribute.Required;
+    termsOfService: Attribute.RichText;
     type: Attribute.Enumeration<
       [
         'Permanent Full Time',
@@ -1638,41 +1163,18 @@ export interface ApiJobJob extends Schema.CollectionType {
     > &
       Attribute.Required &
       Attribute.DefaultTo<'Permanent Full Time'>;
-    department: Attribute.String & Attribute.Required;
-    responsibilities: Attribute.RichText & Attribute.Required;
-    requirements: Attribute.RichText & Attribute.Required;
-    location: Attribute.String & Attribute.Required;
-    closingDate: Attribute.Date & Attribute.Required;
-    slug: Attribute.UID<'api::job.job', 'name'> & Attribute.Required;
-    salary: Attribute.BigInteger;
-    job_applications: Attribute.Relation<
-      'api::job.job',
-      'oneToMany',
-      'api::job-application.job-application'
-    >;
-    level: Attribute.String & Attribute.Required;
-    jobSpecifications: Attribute.RichText;
-    personSpecifications: Attribute.RichText;
-    keyCompetenciesAndSkills: Attribute.RichText;
-    termsOfService: Attribute.RichText;
-    howToApply: Attribute.RichText;
-    createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::job.job', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
     updatedBy: Attribute.Relation<'api::job.job', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
 
-export interface ApiJobApplicationJobApplication extends Schema.CollectionType {
-  collectionName: 'job_applications';
+export interface ApiJobadvertJobadvert extends Schema.CollectionType {
+  collectionName: 'jobadverts';
   info: {
-    singularName: 'job-application';
-    pluralName: 'job-applications';
-    displayName: 'Job Application';
-    description: '';
+    displayName: 'Job Adverts';
+    pluralName: 'jobadverts';
+    singularName: 'jobadvert';
   };
   options: {
     draftAndPublish: true;
@@ -1681,31 +1183,21 @@ export interface ApiJobApplicationJobApplication extends Schema.CollectionType {
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    status: Attribute.String;
-    job: Attribute.Relation<
-      'api::job-application.job-application',
-      'manyToOne',
-      'api::job.job'
-    >;
-    resume: Attribute.Media<'files'> & Attribute.Required;
-    email: Attribute.Email & Attribute.Required;
-    firstName: Attribute.String & Attribute.Required;
-    lastName: Attribute.String & Attribute.Required;
-    phoneNumber: Attribute.String &
-      Attribute.Required &
-      Attribute.CustomField<'plugin::strapi-phone-validator.phone'>;
-    message: Attribute.Text;
+    Advert: Attribute.Media<'files'> & Attribute.Required;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::job-application.job-application',
+      'api::jobadvert.jobadvert',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    publishedAt: Attribute.DateTime;
+    slug: Attribute.UID<'api::jobadvert.jobadvert', 'Title'> &
+      Attribute.Required;
+    Title: Attribute.String & Attribute.Required & Attribute.Unique;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
-      'api::job-application.job-application',
+      'api::jobadvert.jobadvert',
       'oneToOne',
       'admin::user'
     > &
@@ -1716,10 +1208,10 @@ export interface ApiJobApplicationJobApplication extends Schema.CollectionType {
 export interface ApiLandValueCaptureLandValueCapture extends Schema.SingleType {
   collectionName: 'land_value_captures';
   info: {
-    singularName: 'land-value-capture';
-    pluralName: 'land-value-captures';
-    displayName: 'Land Value Capture Page';
     description: '';
+    displayName: 'Land Value Capture Page';
+    pluralName: 'land-value-captures';
+    singularName: 'land-value-capture';
   };
   options: {
     draftAndPublish: true;
@@ -1728,22 +1220,22 @@ export interface ApiLandValueCaptureLandValueCapture extends Schema.SingleType {
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    Hero: Attribute.Component<'sections.hero'>;
     Background: Attribute.Component<'sections.overview'> & Attribute.Required;
-    Description: Attribute.Component<'sections.overview'> & Attribute.Required;
     Benefits: Attribute.Component<'sections.overview'>;
-    Overview: Attribute.Component<'sections.title-and-description'>;
     Case: Attribute.Component<'sections.overview'>;
-    Report: Attribute.Media<'images' | 'files'>;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::land-value-capture.land-value-capture',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    Description: Attribute.Component<'sections.overview'> & Attribute.Required;
+    Hero: Attribute.Component<'sections.hero'>;
+    Overview: Attribute.Component<'sections.title-and-description'>;
+    publishedAt: Attribute.DateTime;
+    Report: Attribute.Media<'images' | 'files'>;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::land-value-capture.land-value-capture',
       'oneToOne',
@@ -1757,47 +1249,47 @@ export interface ApiLeadFormSubmissionLeadFormSubmission
   extends Schema.CollectionType {
   collectionName: 'lead_form_submissions';
   info: {
-    singularName: 'lead-form-submission';
-    pluralName: 'lead-form-submissions';
     displayName: 'Lead form submission';
     name: 'lead-form-submission';
+    pluralName: 'lead-form-submissions';
+    singularName: 'lead-form-submission';
   };
   options: {
+    draftAndPublish: false;
     increments: true;
     timestamps: true;
-    draftAndPublish: false;
   };
   attributes: {
-    email: Attribute.String;
-    status: Attribute.Enumeration<['seen', 'contacted', 'ignored']>;
-    location: Attribute.String;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::lead-form-submission.lead-form-submission',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    email: Attribute.String;
+    location: Attribute.String;
+    status: Attribute.Enumeration<['seen', 'contacted', 'ignored']>;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::lead-form-submission.lead-form-submission',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
-    _softDeletedAt: Attribute.DateTime & Attribute.Private;
-    _softDeletedById: Attribute.Integer & Attribute.Private;
-    _softDeletedByType: Attribute.String & Attribute.Private;
   };
 }
 
 export interface ApiLeadershipPageLeadershipPage extends Schema.SingleType {
   collectionName: 'leadership_pages';
   info: {
-    singularName: 'leadership-page';
-    pluralName: 'leadership-pages';
-    displayName: 'Leadership Page';
     description: '';
+    displayName: 'Leadership Page';
+    pluralName: 'leadership-pages';
+    singularName: 'leadership-page';
   };
   options: {
     draftAndPublish: true;
@@ -1806,47 +1298,47 @@ export interface ApiLeadershipPageLeadershipPage extends Schema.SingleType {
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    Hero: Attribute.Component<'sections.hero'>;
-    Description: Attribute.Component<'sections.title-and-description'> &
-      Attribute.Required;
-    Overview: Attribute.Component<'sections.title-and-description'> &
-      Attribute.Required;
     BusinessAndContinuity: Attribute.Component<'sections.title-and-description'> &
       Attribute.Required;
-    HowWeWork: Attribute.Component<'sections.overview'>;
-    Quote: Attribute.Text;
-    WhatWeDo: Attribute.Component<'sections.overview'> & Attribute.Required;
-    team: Attribute.Relation<
-      'api::leadership-page.leadership-page',
-      'oneToMany',
-      'api::person.person'
-    >;
-    Framework: Attribute.Media<'images' | 'files'>;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::leadership-page.leadership-page',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    Description: Attribute.Component<'sections.title-and-description'> &
+      Attribute.Required;
+    Framework: Attribute.Media<'images' | 'files'>;
+    Hero: Attribute.Component<'sections.hero'>;
+    HowWeWork: Attribute.Component<'sections.overview'>;
+    Overview: Attribute.Component<'sections.title-and-description'> &
+      Attribute.Required;
+    publishedAt: Attribute.DateTime;
+    Quote: Attribute.Text;
+    team: Attribute.Relation<
+      'api::leadership-page.leadership-page',
+      'oneToMany',
+      'api::person.person'
+    >;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::leadership-page.leadership-page',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    WhatWeDo: Attribute.Component<'sections.overview'> & Attribute.Required;
   };
 }
 
 export interface ApiLocationLocation extends Schema.CollectionType {
   collectionName: 'locations';
   info: {
-    singularName: 'location';
-    pluralName: 'locations';
-    displayName: 'Location';
     description: '';
+    displayName: 'Location';
+    pluralName: 'locations';
+    singularName: 'location';
   };
   options: {
     draftAndPublish: true;
@@ -1855,24 +1347,24 @@ export interface ApiLocationLocation extends Schema.CollectionType {
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    street: Attribute.String & Attribute.Required;
     building: Attribute.String;
-    postOfficeBox: Attribute.String;
+    city: Attribute.String & Attribute.Required;
     communication: Attribute.Component<'elements.label-and-text', true>;
     country: Attribute.String &
       Attribute.Required &
       Attribute.CustomField<'plugin::country-select.country'>;
-    city: Attribute.String & Attribute.Required;
-    slug: Attribute.UID<'api::location.location', 'city'>;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::location.location',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    postOfficeBox: Attribute.String;
+    publishedAt: Attribute.DateTime;
+    slug: Attribute.UID<'api::location.location', 'city'>;
+    street: Attribute.String & Attribute.Required;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::location.location',
       'oneToOne',
@@ -1885,15 +1377,15 @@ export interface ApiLocationLocation extends Schema.CollectionType {
 export interface ApiPagePage extends Schema.CollectionType {
   collectionName: 'pages';
   info: {
-    singularName: 'page';
-    pluralName: 'pages';
     displayName: 'Page';
     name: 'page';
+    pluralName: 'pages';
+    singularName: 'page';
   };
   options: {
+    draftAndPublish: true;
     increments: true;
     timestamps: true;
-    draftAndPublish: true;
   };
   pluginOptions: {
     i18n: {
@@ -1901,19 +1393,9 @@ export interface ApiPagePage extends Schema.CollectionType {
     };
   };
   attributes: {
-    shortName: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    metadata: Attribute.Component<'meta.metadata'> &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
     contentSections: Attribute.DynamicZone<
       [
         'sections.hero',
@@ -1932,32 +1414,42 @@ export interface ApiPagePage extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    metadata: Attribute.Component<'meta.metadata'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Attribute.DateTime;
+    shortName: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     slug: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
         };
       }>;
-    createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
     updatedBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    _softDeletedAt: Attribute.DateTime & Attribute.Private;
-    _softDeletedById: Attribute.Integer & Attribute.Private;
-    _softDeletedByType: Attribute.String & Attribute.Private;
   };
 }
 
 export interface ApiPersonPerson extends Schema.CollectionType {
   collectionName: 'people';
   info: {
-    singularName: 'person';
-    pluralName: 'people';
-    displayName: 'People';
     description: '';
+    displayName: 'People';
+    pluralName: 'people';
+    singularName: 'person';
   };
   options: {
     draftAndPublish: true;
@@ -1967,14 +1459,22 @@ export interface ApiPersonPerson extends Schema.CollectionType {
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
     Avatar: Attribute.Media<'images'> & Attribute.Required;
-    Name: Attribute.String & Attribute.Required & Attribute.Unique;
+    Bio: Attribute.Text & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::person.person',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    expertise: Attribute.Relation<
+      'api::person.person',
+      'oneToMany',
+      'api::expertise.expertise'
+    >;
     JobTitle: Attribute.String & Attribute.Required;
     Location: Attribute.String;
-    Bio: Attribute.Text & Attribute.Required;
-    Quote: Attribute.Text;
-    Social: Attribute.Component<'shared.meta-social', true> &
-      Attribute.Required;
-    slug: Attribute.UID<'api::person.person', 'Name'> & Attribute.Required;
+    Name: Attribute.String & Attribute.Required & Attribute.Unique;
     PhoneNumber: Attribute.String &
       Attribute.CustomField<
         'plugin::strapi-phone-validator.phone',
@@ -1982,20 +1482,12 @@ export interface ApiPersonPerson extends Schema.CollectionType {
           country: 'ke';
         }
       >;
-    expertise: Attribute.Relation<
-      'api::person.person',
-      'oneToMany',
-      'api::expertise.expertise'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::person.person',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
+    Quote: Attribute.Text;
+    slug: Attribute.UID<'api::person.person', 'Name'> & Attribute.Required;
+    Social: Attribute.Component<'shared.meta-social', true> &
+      Attribute.Required;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::person.person',
       'oneToOne',
@@ -2009,43 +1501,43 @@ export interface ApiPrivacyNoticePagePrivacyNoticePage
   extends Schema.SingleType {
   collectionName: 'privacy_notice_pages';
   info: {
-    singularName: 'privacy-notice-page';
-    pluralName: 'privacy-notice-pages';
     displayName: 'Information / Privacy Notice Page';
+    pluralName: 'privacy-notice-pages';
+    singularName: 'privacy-notice-page';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Description: Attribute.Component<'sections.title-and-description'>;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::privacy-notice-page.privacy-notice-page',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    Description: Attribute.Component<'sections.title-and-description'>;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::privacy-notice-page.privacy-notice-page',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
-    _softDeletedAt: Attribute.DateTime & Attribute.Private;
-    _softDeletedById: Attribute.Integer & Attribute.Private;
-    _softDeletedByType: Attribute.String & Attribute.Private;
   };
 }
 
 export interface ApiProjectProject extends Schema.CollectionType {
   collectionName: 'projects';
   info: {
-    singularName: 'project';
-    pluralName: 'projects';
-    displayName: 'Project';
     description: '';
+    displayName: 'Project';
+    pluralName: 'projects';
+    singularName: 'project';
   };
   options: {
     draftAndPublish: true;
@@ -2054,34 +1546,34 @@ export interface ApiProjectProject extends Schema.CollectionType {
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    Name: Attribute.String & Attribute.Required & Attribute.Unique;
-    ProjectDetails: Attribute.Component<'elements.label-and-text', true> &
-      Attribute.Required;
-    Background: Attribute.RichText & Attribute.Required;
-    Assignment: Attribute.RichText & Attribute.Required;
-    Image: Attribute.Media<'images'> & Attribute.Required;
-    Approach: Attribute.Component<'sections.overview'>;
     Abbreviation: Attribute.String & Attribute.Required & Attribute.Unique;
-    ProjectType: Attribute.String & Attribute.Required;
-    Description: Attribute.Text & Attribute.Required;
-    slug: Attribute.UID<'api::project.project', 'Name'> & Attribute.Required;
-    expertise: Attribute.Relation<
-      'api::project.project',
-      'manyToOne',
-      'api::expertise.expertise'
-    >;
-    Impact: Attribute.RichText;
-    Scope: Attribute.RichText;
-    Goal: Attribute.RichText;
+    Approach: Attribute.Component<'sections.overview'>;
+    Assignment: Attribute.RichText & Attribute.Required;
+    Background: Attribute.RichText & Attribute.Required;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::project.project',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    Description: Attribute.Text & Attribute.Required;
+    expertise: Attribute.Relation<
+      'api::project.project',
+      'manyToOne',
+      'api::expertise.expertise'
+    >;
+    Goal: Attribute.RichText;
+    Image: Attribute.Media<'images'> & Attribute.Required;
+    Impact: Attribute.RichText;
+    Name: Attribute.String & Attribute.Required & Attribute.Unique;
+    ProjectDetails: Attribute.Component<'elements.label-and-text', true> &
+      Attribute.Required;
+    ProjectType: Attribute.String & Attribute.Required;
+    publishedAt: Attribute.DateTime;
+    Scope: Attribute.RichText;
+    slug: Attribute.UID<'api::project.project', 'Name'> & Attribute.Required;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::project.project',
       'oneToOne',
@@ -2095,33 +1587,33 @@ export interface ApiServicesLandingPageServicesLandingPage
   extends Schema.SingleType {
   collectionName: 'services_landing_pages';
   info: {
-    singularName: 'services-landing-page';
-    pluralName: 'services-landing-pages';
     displayName: 'Services Landing Page';
+    pluralName: 'services-landing-pages';
+    singularName: 'services-landing-page';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Description: Attribute.RichText & Attribute.Required;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::services-landing-page.services-landing-page',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    Description: Attribute.RichText & Attribute.Required;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::services-landing-page.services-landing-page',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
-    _softDeletedAt: Attribute.DateTime & Attribute.Private;
-    _softDeletedById: Attribute.Integer & Attribute.Private;
-    _softDeletedByType: Attribute.String & Attribute.Private;
   };
 }
 
@@ -2129,46 +1621,46 @@ export interface ApiSocialMediaLinkSocialMediaLink
   extends Schema.CollectionType {
   collectionName: 'social_media_links';
   info: {
-    singularName: 'social-media-link';
-    pluralName: 'social-media-links';
     displayName: 'Social Media Link';
+    pluralName: 'social-media-links';
+    singularName: 'social-media-link';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String & Attribute.Required & Attribute.Unique;
-    url: Attribute.String & Attribute.Required & Attribute.Unique;
-    slug: Attribute.UID<'api::social-media-link.social-media-link', 'title'> &
-      Attribute.Required;
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::social-media-link.social-media-link',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    publishedAt: Attribute.DateTime;
+    slug: Attribute.UID<'api::social-media-link.social-media-link', 'title'> &
+      Attribute.Required;
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::social-media-link.social-media-link',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
-    _softDeletedAt: Attribute.DateTime & Attribute.Private;
-    _softDeletedById: Attribute.Integer & Attribute.Private;
-    _softDeletedByType: Attribute.String & Attribute.Private;
+    url: Attribute.String & Attribute.Required & Attribute.Unique;
   };
 }
 
 export interface ApiTheNeedTheNeed extends Schema.SingleType {
   collectionName: 'the_needs';
   info: {
-    singularName: 'the-need';
-    pluralName: 'the-needs';
-    displayName: 'About Us / The Need';
     description: '';
+    displayName: 'About Us / The Need';
+    pluralName: 'the-needs';
+    singularName: 'the-need';
   };
   options: {
     draftAndPublish: true;
@@ -2177,18 +1669,18 @@ export interface ApiTheNeedTheNeed extends Schema.SingleType {
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
-    Overview: Attribute.Component<'sections.overview'>;
     body: Attribute.RichText & Attribute.Required;
     createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::the-need.the-need',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    Hero: Attribute.Component<'sections.hero'> & Attribute.Required;
+    Overview: Attribute.Component<'sections.overview'>;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::the-need.the-need',
       'oneToOne',
@@ -2198,46 +1690,580 @@ export interface ApiTheNeedTheNeed extends Schema.SingleType {
   };
 }
 
+export interface PluginContentReleasesRelease extends Schema.CollectionType {
+  collectionName: 'strapi_releases';
+  info: {
+    displayName: 'Release';
+    pluralName: 'releases';
+    singularName: 'release';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    actions: Attribute.Relation<
+      'plugin::content-releases.release',
+      'oneToMany',
+      'plugin::content-releases.release-action'
+    >;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::content-releases.release',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    name: Attribute.String & Attribute.Required;
+    releasedAt: Attribute.DateTime;
+    scheduledAt: Attribute.DateTime;
+    status: Attribute.Enumeration<
+      ['ready', 'blocked', 'failed', 'done', 'empty']
+    > &
+      Attribute.Required;
+    timezone: Attribute.String;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'plugin::content-releases.release',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginContentReleasesReleaseAction
+  extends Schema.CollectionType {
+  collectionName: 'strapi_release_actions';
+  info: {
+    displayName: 'Release Action';
+    pluralName: 'release-actions';
+    singularName: 'release-action';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    contentType: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::content-releases.release-action',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    entry: Attribute.Relation<
+      'plugin::content-releases.release-action',
+      'morphToOne'
+    >;
+    isEntryValid: Attribute.Boolean;
+    locale: Attribute.String;
+    release: Attribute.Relation<
+      'plugin::content-releases.release-action',
+      'manyToOne',
+      'plugin::content-releases.release'
+    >;
+    type: Attribute.Enumeration<['publish', 'unpublish']> & Attribute.Required;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'plugin::content-releases.release-action',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginEntityNotesNote extends Schema.CollectionType {
+  collectionName: 'notes';
+  info: {
+    displayName: 'notes';
+    pluralName: 'notes';
+    singularName: 'note';
+  };
+  options: {
+    comment: '';
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    content: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::entity-notes.note',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    entityId: Attribute.Integer;
+    entitySlug: Attribute.String;
+    title: Attribute.String;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'plugin::entity-notes.note',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginGraphsBuilderGraph extends Schema.CollectionType {
+  collectionName: 'graphs_builder_graph';
+  info: {
+    description: '';
+    displayName: 'Graph';
+    name: 'graph';
+    pluralName: 'graphs';
+    singularName: 'graph';
+  };
+  options: {
+    draftAndPublish: false;
+    timestamps: true;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: true;
+    };
+    'content-type-builder': {
+      visible: true;
+    };
+  };
+  attributes: {
+    collectionX: Attribute.String & Attribute.Required;
+    collectionXAttribute: Attribute.String;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::graphs-builder.graph',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    title: Attribute.String & Attribute.Required;
+    type: Attribute.Enumeration<['pie', 'bar', 'line', 'dateLine']> &
+      Attribute.Required;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'plugin::graphs-builder.graph',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginPublisherAction extends Schema.CollectionType {
+  collectionName: 'actions';
+  info: {
+    displayName: 'actions';
+    pluralName: 'actions';
+    singularName: 'action';
+  };
+  options: {
+    comment: '';
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::publisher.action',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    entityId: Attribute.Integer;
+    entitySlug: Attribute.String;
+    executeAt: Attribute.DateTime;
+    mode: Attribute.String;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'plugin::publisher.action',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginSlugifySlug extends Schema.CollectionType {
+  collectionName: 'slugs';
+  info: {
+    displayName: 'slug';
+    pluralName: 'slugs';
+    singularName: 'slug';
+  };
+  options: {
+    comment: '';
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    count: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::slugify.slug',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    slug: Attribute.Text;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'plugin::slugify.slug',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginUploadFile extends Schema.CollectionType {
+  collectionName: 'files';
+  info: {
+    description: '';
+    displayName: 'File';
+    pluralName: 'files';
+    singularName: 'file';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    alternativeText: Attribute.String;
+    caption: Attribute.String;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::upload.file',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    ext: Attribute.String;
+    folder: Attribute.Relation<
+      'plugin::upload.file',
+      'manyToOne',
+      'plugin::upload.folder'
+    > &
+      Attribute.Private;
+    folderPath: Attribute.String &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
+    formats: Attribute.JSON;
+    hash: Attribute.String & Attribute.Required;
+    height: Attribute.Integer;
+    mime: Attribute.String & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
+    previewUrl: Attribute.String;
+    provider: Attribute.String & Attribute.Required;
+    provider_metadata: Attribute.JSON;
+    related: Attribute.Relation<'plugin::upload.file', 'morphToMany'>;
+    size: Attribute.Decimal & Attribute.Required;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'plugin::upload.file',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    url: Attribute.String & Attribute.Required;
+    width: Attribute.Integer;
+  };
+}
+
+export interface PluginUploadFolder extends Schema.CollectionType {
+  collectionName: 'upload_folders';
+  info: {
+    displayName: 'Folder';
+    pluralName: 'folders';
+    singularName: 'folder';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    children: Attribute.Relation<
+      'plugin::upload.folder',
+      'oneToMany',
+      'plugin::upload.folder'
+    >;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::upload.folder',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    files: Attribute.Relation<
+      'plugin::upload.folder',
+      'oneToMany',
+      'plugin::upload.file'
+    >;
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
+    parent: Attribute.Relation<
+      'plugin::upload.folder',
+      'manyToOne',
+      'plugin::upload.folder'
+    >;
+    path: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
+    pathId: Attribute.Integer & Attribute.Required & Attribute.Unique;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'plugin::upload.folder',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginUsersPermissionsPermission
+  extends Schema.CollectionType {
+  collectionName: 'up_permissions';
+  info: {
+    description: '';
+    displayName: 'Permission';
+    name: 'permission';
+    pluralName: 'permissions';
+    singularName: 'permission';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    action: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::users-permissions.permission',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    role: Attribute.Relation<
+      'plugin::users-permissions.permission',
+      'manyToOne',
+      'plugin::users-permissions.role'
+    >;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'plugin::users-permissions.permission',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginUsersPermissionsRole extends Schema.CollectionType {
+  collectionName: 'up_roles';
+  info: {
+    description: '';
+    displayName: 'Role';
+    name: 'role';
+    pluralName: 'roles';
+    singularName: 'role';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::users-permissions.role',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    description: Attribute.String;
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }>;
+    permissions: Attribute.Relation<
+      'plugin::users-permissions.role',
+      'oneToMany',
+      'plugin::users-permissions.permission'
+    >;
+    type: Attribute.String & Attribute.Unique;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'plugin::users-permissions.role',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    users: Attribute.Relation<
+      'plugin::users-permissions.role',
+      'oneToMany',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
+export interface PluginUsersPermissionsUser extends Schema.CollectionType {
+  collectionName: 'up_users';
+  info: {
+    description: '';
+    displayName: 'User';
+    name: 'user';
+    pluralName: 'users';
+    singularName: 'user';
+  };
+  options: {
+    draftAndPublish: false;
+    timestamps: true;
+  };
+  attributes: {
+    blocked: Attribute.Boolean & Attribute.DefaultTo<false>;
+    confirmationToken: Attribute.String & Attribute.Private;
+    confirmed: Attribute.Boolean & Attribute.DefaultTo<false>;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    email: Attribute.Email &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 6;
+      }>;
+    password: Attribute.Password &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        minLength: 6;
+      }>;
+    provider: Attribute.String;
+    resetPasswordToken: Attribute.String & Attribute.Private;
+    role: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToOne',
+      'plugin::users-permissions.role'
+    >;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    username: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }>;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
-      'admin::permission': AdminPermission;
-      'admin::user': AdminUser;
-      'admin::role': AdminRole;
       'admin::api-token': AdminApiToken;
       'admin::api-token-permission': AdminApiTokenPermission;
+      'admin::permission': AdminPermission;
+      'admin::role': AdminRole;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'plugin::upload.file': PluginUploadFile;
-      'plugin::upload.folder': PluginUploadFolder;
-      'plugin::content-releases.release': PluginContentReleasesRelease;
-      'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
-      'plugin::slugify.slug': PluginSlugifySlug;
-      'plugin::entity-notes.note': PluginEntityNotesNote;
-      'plugin::publisher.action': PluginPublisherAction;
-      'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
-      'plugin::users-permissions.role': PluginUsersPermissionsRole;
-      'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'plugin::graphs-builder.graph': PluginGraphsBuilderGraph;
-      'api::about-us.about-us': ApiAboutUsAboutUs;
+      'admin::user': AdminUser;
       'api::about-us-mission-page.about-us-mission-page': ApiAboutUsMissionPageAboutUsMissionPage;
       'api::about-us-our-people-page.about-us-our-people-page': ApiAboutUsOurPeoplePageAboutUsOurPeoplePage;
       'api::about-us-sustainability.about-us-sustainability': ApiAboutUsSustainabilityAboutUsSustainability;
       'api::about-us-who-we-are.about-us-who-we-are': ApiAboutUsWhoWeAreAboutUsWhoWeAre;
+      'api::about-us.about-us': ApiAboutUsAboutUs;
       'api::approach.approach': ApiApproachApproach;
       'api::business-agility-and-continuity-page.business-agility-and-continuity-page': ApiBusinessAgilityAndContinuityPageBusinessAgilityAndContinuityPage;
       'api::careers-open-roles-page.careers-open-roles-page': ApiCareersOpenRolesPageCareersOpenRolesPage;
       'api::careers-page.careers-page': ApiCareersPageCareersPage;
       'api::client.client': ApiClientClient;
       'api::clients-page.clients-page': ApiClientsPageClientsPage;
-      'api::expertise.expertise': ApiExpertiseExpertise;
       'api::expertise-landing-page.expertise-landing-page': ApiExpertiseLandingPageExpertiseLandingPage;
+      'api::expertise.expertise': ApiExpertiseExpertise;
       'api::global.global': ApiGlobalGlobal;
       'api::home.home': ApiHomeHome;
       'api::insight.insight': ApiInsightInsight;
       'api::insights-page.insights-page': ApiInsightsPageInsightsPage;
-      'api::job.job': ApiJobJob;
       'api::job-application.job-application': ApiJobApplicationJobApplication;
+      'api::job.job': ApiJobJob;
+      'api::jobadvert.jobadvert': ApiJobadvertJobadvert;
       'api::land-value-capture.land-value-capture': ApiLandValueCaptureLandValueCapture;
       'api::lead-form-submission.lead-form-submission': ApiLeadFormSubmissionLeadFormSubmission;
       'api::leadership-page.leadership-page': ApiLeadershipPageLeadershipPage;
@@ -2249,6 +2275,17 @@ declare module '@strapi/types' {
       'api::services-landing-page.services-landing-page': ApiServicesLandingPageServicesLandingPage;
       'api::social-media-link.social-media-link': ApiSocialMediaLinkSocialMediaLink;
       'api::the-need.the-need': ApiTheNeedTheNeed;
+      'plugin::content-releases.release': PluginContentReleasesRelease;
+      'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::entity-notes.note': PluginEntityNotesNote;
+      'plugin::graphs-builder.graph': PluginGraphsBuilderGraph;
+      'plugin::publisher.action': PluginPublisherAction;
+      'plugin::slugify.slug': PluginSlugifySlug;
+      'plugin::upload.file': PluginUploadFile;
+      'plugin::upload.folder': PluginUploadFolder;
+      'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
+      'plugin::users-permissions.role': PluginUsersPermissionsRole;
+      'plugin::users-permissions.user': PluginUsersPermissionsUser;
     }
   }
 }
