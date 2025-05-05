@@ -1,0 +1,30 @@
+name: Danger CI
+
+on:
+  pull_request:
+    branches:
+      - 'develop'
+      - 'main'
+
+jobs:
+  test:
+    name: Danger CI
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v2
+
+    - name: Install dependencies
+      run: bun install
+    
+    - name: Danger CI Check
+      uses: danger/danger-js@9.1.8
+      env:
+        CI: true
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        DANGER_GITHUB_API_TOKEN: ${{ secrets.GH_TOKEN }}
