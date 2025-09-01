@@ -941,6 +941,146 @@ export interface ApiGlobalGlobal extends Schema.SingleType {
   };
 }
 
+export interface ApiHomePageMalawiHomePageMalawi extends Schema.SingleType {
+  collectionName: 'home_page_malawis';
+  info: {
+    displayName: 'Home Page Malawi';
+    pluralName: 'home-page-malawis';
+    singularName: 'home-page-malawi';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::home-page-malawi.home-page-malawi',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    Hero: Attribute.Component<'sections.hero'>;
+    JoinTheTeam: Attribute.Component<'elements.card', true>;
+    Overview: Attribute.Component<'sections.overview'>;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::home-page-malawi.home-page-malawi',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHomePageRwandaHomePageRwanda extends Schema.SingleType {
+  collectionName: 'home_page_rwandas';
+  info: {
+    displayName: 'Home Page Rwanda';
+    pluralName: 'home-page-rwandas';
+    singularName: 'home-page-rwanda';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::home-page-rwanda.home-page-rwanda',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    Hero: Attribute.Component<'sections.hero'>;
+    JoinTheTeam: Attribute.Component<'elements.card', true>;
+    Overview: Attribute.Component<'sections.overview'>;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::home-page-rwanda.home-page-rwanda',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHomePageTanzaniaHomePageTanzania extends Schema.SingleType {
+  collectionName: 'home_page_tanzanias';
+  info: {
+    displayName: 'Home Page Tanzania';
+    pluralName: 'home-page-tanzanias';
+    singularName: 'home-page-tanzania';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::home-page-tanzania.home-page-tanzania',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    Hero: Attribute.Component<'sections.hero'>;
+    JoinTheTeam: Attribute.Component<'elements.card', true>;
+    Overview: Attribute.Component<'sections.overview'>;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::home-page-tanzania.home-page-tanzania',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHomePageUgandaHomePageUganda extends Schema.SingleType {
+  collectionName: 'home_page_ugandas';
+  info: {
+    displayName: 'Home Page Uganda';
+    pluralName: 'home-page-ugandas';
+    singularName: 'home-page-uganda';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    _softDeletedAt: Attribute.DateTime & Attribute.Private;
+    _softDeletedById: Attribute.Integer & Attribute.Private;
+    _softDeletedByType: Attribute.String & Attribute.Private;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::home-page-uganda.home-page-uganda',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    Hero: Attribute.Component<'sections.hero'>;
+    JoinTheTeam: Attribute.Component<'elements.card', true>;
+    Overview: Attribute.Component<'sections.overview'>;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::home-page-uganda.home-page-uganda',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiHomeHome extends Schema.SingleType {
   collectionName: 'homes';
   info: {
@@ -2258,6 +2398,10 @@ declare module '@strapi/types' {
       'api::expertise-landing-page.expertise-landing-page': ApiExpertiseLandingPageExpertiseLandingPage;
       'api::expertise.expertise': ApiExpertiseExpertise;
       'api::global.global': ApiGlobalGlobal;
+      'api::home-page-malawi.home-page-malawi': ApiHomePageMalawiHomePageMalawi;
+      'api::home-page-rwanda.home-page-rwanda': ApiHomePageRwandaHomePageRwanda;
+      'api::home-page-tanzania.home-page-tanzania': ApiHomePageTanzaniaHomePageTanzania;
+      'api::home-page-uganda.home-page-uganda': ApiHomePageUgandaHomePageUganda;
       'api::home.home': ApiHomeHome;
       'api::insight.insight': ApiInsightInsight;
       'api::insights-page.insights-page': ApiInsightsPageInsightsPage;

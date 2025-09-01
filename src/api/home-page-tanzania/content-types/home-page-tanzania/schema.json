@@ -1,0 +1,29 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_page_tanzanias",
+  "info": {
+    "singularName": "home-page-tanzania",
+    "pluralName": "home-page-tanzanias",
+    "displayName": "Home Page Tanzania"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero"
+    },
+    "Overview": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.overview"
+    },
+    "JoinTheTeam": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.card"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_page_rwandas",
+  "info": {
+    "singularName": "home-page-rwanda",
+    "pluralName": "home-page-rwandas",
+    "displayName": "Home Page Rwanda"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero"
+    },
+    "Overview": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.overview"
+    },
+    "JoinTheTeam": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.card"
+    }
+  }
+}
