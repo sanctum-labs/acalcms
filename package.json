@@ -1,14 +1,14 @@
 {
   "dependencies": {
     "@creazy231/strapi-plugin-apollo-sandbox": "^0.0.15",
-    "@strapi/plugin-cloud": "4.25.4",
+    "@strapi/plugin-cloud": "4.25.20",
     "@strapi/plugin-documentation": "^4.25.4",
-    "@strapi/plugin-graphql": "4.25.4",
+    "@strapi/plugin-graphql": "4.25.20",
     "@strapi/plugin-sentry": "^4.25.4",
     "@strapi/plugin-seo": "^1.9.9",
-    "@strapi/plugin-users-permissions": "4.25.4",
+    "@strapi/plugin-users-permissions": "4.25.20",
     "@strapi/provider-upload-cloudinary": "^4.25.6",
-    "@strapi/strapi": "4.25.4",
+    "@strapi/strapi": "4.25.20",
     "lodash.set": "^4.3.2",
     "pg": "^8.12.0",
     "react": "^18.0.0",
@@ -52,5 +52,6 @@
     "node": ">=18.0.0 <=20.x.x",
     "npm": ">=6.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
