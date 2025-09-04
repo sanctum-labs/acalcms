@@ -47,11 +47,6 @@
       "repeatable": true,
       "component": "elements.label-and-text"
     },
-    "country": {
-      "type": "customField",
-      "required": true,
-      "customField": "plugin::country-select.country"
-    },
     "city": {
       "type": "string",
       "required": true

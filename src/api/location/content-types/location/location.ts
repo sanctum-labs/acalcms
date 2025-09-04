@@ -14,7 +14,6 @@ export interface Location {
     building?: string;
     postOfficeBox?: string;
     communication: LabelAndText[];
-    country: any;
     city: string;
     slug?: string;
   };
@@ -28,7 +27,6 @@ export interface Location_Plain {
   building?: string;
   postOfficeBox?: string;
   communication: LabelAndText_Plain[];
-  country: any;
   city: string;
   slug?: string;
 }
@@ -42,7 +40,6 @@ export interface Location_NoRelations {
   building?: string;
   postOfficeBox?: string;
   communication: LabelAndText_NoRelations[];
-  country: any;
   city: string;
   slug?: string;
 }
@@ -56,7 +53,6 @@ export interface Location_AdminPanelLifeCycle {
   building?: string;
   postOfficeBox?: string;
   communication: LabelAndText_Plain[];
-  country: any;
   city: string;
   slug?: string;
 }
