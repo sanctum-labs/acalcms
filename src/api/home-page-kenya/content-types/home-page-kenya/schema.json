@@ -1,0 +1,51 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_page_kenyas",
+  "info": {
+    "singularName": "home-page-kenya",
+    "pluralName": "home-page-kenyas",
+    "displayName": "Home Page Kenya",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "_softDeletedAt": {
+      "type": "datetime",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedById": {
+      "type": "integer",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedByType": {
+      "type": "string",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "Hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero"
+    },
+    "Overview": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.overview"
+    },
+    "JoinTheTeam": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.card"
+    }
+  }
+}

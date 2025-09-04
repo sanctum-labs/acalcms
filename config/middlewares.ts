@@ -16,13 +16,14 @@ export default [
         useDefaults: true,
         directives: {
           "connect-src": ["'self'", "https:"],
-          'img-src': ["'self'", 'data:', 'blob:', 'market-assets.strapi.io', 'res.cloudinary.com'],
+          'img-src': ["'self'", 'data:', 'blob:', 'market-assets.strapi.io', 'media.strapiapp.com', 'res.cloudinary.com'],
           "frame-src": [ "http://localhost:*", "self", "sandbox.embed.apollographql.com" ],
           "script-src": ["https://cdnjs.cloudflare.com"],
           'media-src': [
             "'self'",
             'data:',
             'blob:',
+            'media.strapiapp.com',
             'market-assets.strapi.io',
             'res.cloudinary.com',
           ],
