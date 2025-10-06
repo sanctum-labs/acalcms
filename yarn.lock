@@ -3022,11 +3022,11 @@
     sendmail "^1.6.1"
 
 "@strapi/provider-upload-cloudinary@^4.25.6":
-  version "4.25.6"
-  resolved "https://registry.yarnpkg.com/@strapi/provider-upload-cloudinary/-/provider-upload-cloudinary-4.25.6.tgz#b1bda48f23390ae54ee16221d143ce882bf9e2c0"
-  integrity sha512-g2m5efxxT5DrmKkbCtMZwHhfz86opZgHeSNG10wrfvAWW2P6dvqiY9AEttQmZDtI6BAIqb+ehBswFl7d7Uw1QA==
+  version "4.25.24"
+  resolved "https://registry.yarnpkg.com/@strapi/provider-upload-cloudinary/-/provider-upload-cloudinary-4.25.24.tgz#9afc837aaf5e485d0f00191ae2e8cb5f57e8ad8b"
+  integrity sha512-LraD9EjiE1OBx29SxdoewL0M61YQyl4UQDbT354wVMntCJt+UwSIrGK6z4OVUuY8nq20Mlrj4PT9NSI76mGEsw==
   dependencies:
-    "@strapi/utils" "4.25.6"
+    "@strapi/utils" "4.25.24"
     cloudinary "^1.41.0"
     into-stream "^5.1.0"
 
@@ -3291,10 +3291,10 @@
     p-map "4.0.0"
     yup "0.32.9"
 
-"@strapi/utils@4.25.4", "@strapi/utils@^4.0.0", "@strapi/utils@^4.11.5", "@strapi/utils@^4.14.0":
-  version "4.25.4"
-  resolved "https://registry.yarnpkg.com/@strapi/utils/-/utils-4.25.4.tgz#4ca8e8d7dbe1cf27ec25be40fbeb6ed05cef94dd"
-  integrity sha512-WY6khQ3jCuhxF5PJ9Rzbn1d8U82pjLHaKDzmYlMWh+b4k3e0TWyTkqaz9+9YqwA4PtXTWvMdx9C6u5wZxBI/Mw==
+"@strapi/utils@4.25.24", "@strapi/utils@^4.0.0", "@strapi/utils@^4.11.5", "@strapi/utils@^4.14.0":
+  version "4.25.24"
+  resolved "https://registry.yarnpkg.com/@strapi/utils/-/utils-4.25.24.tgz#2c81a2525c6c6f14177454ceb2eef786f4e44c7d"
+  integrity sha512-YQUsrRbrcR0Pk7UwYwmrvYPDSqVdctosve7KRjt9EeGc5MKHPN4lDQdnHXSePayiPgvt2Tu9OPg3U9I//gIROw==
   dependencies:
     "@sindresorhus/slugify" "1.1.0"
     date-fns "2.30.0"
@@ -3303,10 +3303,10 @@
     p-map "4.0.0"
     yup "0.32.9"
 
-"@strapi/utils@4.25.6":
-  version "4.25.6"
-  resolved "https://registry.yarnpkg.com/@strapi/utils/-/utils-4.25.6.tgz#a2a52826d7d8902f190181459fe5aa7ff36aa65d"
-  integrity sha512-pzunLY0CpNp62dbd484kgc/BJTWbYThuxp1sLANZKHvP8Weo1Qfhup7E14D3tvVlckVfPaNKmDRuhJnEIZdGTQ==
+"@strapi/utils@4.25.4":
+  version "4.25.4"
+  resolved "https://registry.yarnpkg.com/@strapi/utils/-/utils-4.25.4.tgz#4ca8e8d7dbe1cf27ec25be40fbeb6ed05cef94dd"
+  integrity sha512-WY6khQ3jCuhxF5PJ9Rzbn1d8U82pjLHaKDzmYlMWh+b4k3e0TWyTkqaz9+9YqwA4PtXTWvMdx9C6u5wZxBI/Mw==
   dependencies:
     "@sindresorhus/slugify" "1.1.0"
     date-fns "2.30.0"
