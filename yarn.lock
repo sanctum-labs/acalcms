@@ -2619,12 +2619,12 @@
     react-query "3.39.3"
     react-select "5.7.0"
 
-"@strapi/helper-plugin@4.25.4", "@strapi/helper-plugin@^4.0.0", "@strapi/helper-plugin@^4.11.5", "@strapi/helper-plugin@^4.12.1", "@strapi/helper-plugin@^4.14.4", "@strapi/helper-plugin@^4.20.2", "@strapi/helper-plugin@^4.6.0":
-  version "4.25.4"
-  resolved "https://registry.yarnpkg.com/@strapi/helper-plugin/-/helper-plugin-4.25.4.tgz#3a6b249e5cdd3fec859c15a3c2c4275444842a3f"
-  integrity sha512-1Gvrsn1hLTFupFHn3XoirlCKtnxQ1i4utD67ixKynQ1YnXonpa+A1mfqX/FEmvygy1e/KMSLNoQ/TTXAyv6xDA==
+"@strapi/helper-plugin@4.25.24", "@strapi/helper-plugin@^4.0.0", "@strapi/helper-plugin@^4.11.5", "@strapi/helper-plugin@^4.12.1", "@strapi/helper-plugin@^4.14.4", "@strapi/helper-plugin@^4.20.2", "@strapi/helper-plugin@^4.24.0", "@strapi/helper-plugin@^4.6.0":
+  version "4.25.24"
+  resolved "https://registry.yarnpkg.com/@strapi/helper-plugin/-/helper-plugin-4.25.24.tgz#411ed400197604b48257ef0a69a279ed88bce8a3"
+  integrity sha512-k4kB7CFCs/jllmaKywFUt439tU4Ee8jdeSR5y1tamPgilbEjaaWbOiJFS8kTVs9kbbAxstNc2yEgiG0/92o1Lg==
   dependencies:
-    axios "1.6.0"
+    axios "1.8.2"
     date-fns "2.30.0"
     formik "2.4.0"
     immer "9.0.19"
@@ -2635,10 +2635,10 @@
     react-query "3.39.3"
     react-select "5.7.0"
 
-"@strapi/helper-plugin@^4.24.0":
-  version "4.25.6"
-  resolved "https://registry.yarnpkg.com/@strapi/helper-plugin/-/helper-plugin-4.25.6.tgz#22075e444257138c39d20b803e7deeaec44e60d2"
-  integrity sha512-T45lfzPOJZXbQ6nGc9WjkAciTcZvCMQeEk4o0u6pQiSAabhMzpN0gsGgrapFQ2EuPwE91O4TXh53mdIdEcEiDQ==
+"@strapi/helper-plugin@4.25.4":
+  version "4.25.4"
+  resolved "https://registry.yarnpkg.com/@strapi/helper-plugin/-/helper-plugin-4.25.4.tgz#3a6b249e5cdd3fec859c15a3c2c4275444842a3f"
+  integrity sha512-1Gvrsn1hLTFupFHn3XoirlCKtnxQ1i4utD67ixKynQ1YnXonpa+A1mfqX/FEmvygy1e/KMSLNoQ/TTXAyv6xDA==
   dependencies:
     axios "1.6.0"
     date-fns "2.30.0"
@@ -2885,13 +2885,13 @@
     pluralize "8.0.0"
 
 "@strapi/plugin-sentry@^4.25.4":
-  version "4.25.4"
-  resolved "https://registry.yarnpkg.com/@strapi/plugin-sentry/-/plugin-sentry-4.25.4.tgz#79acd457b8c95d505e230f689e171d2988e2d969"
-  integrity sha512-xgfXQqPt4QFz/7kkrR1DCb550b+TLPli/JZIWLxG1vMCctSXCmnNwKHKeEGGpQwH2K6MaUUFAAFQMkaIxym/9g==
+  version "4.25.24"
+  resolved "https://registry.yarnpkg.com/@strapi/plugin-sentry/-/plugin-sentry-4.25.24.tgz#43e7e3ea53aba186217f2e61bf87ff1a1581f07f"
+  integrity sha512-sZHRre0G5PISvRvXzuGuJwyL4q/0kiVP9hlEQD8z4Xb1rrEG5aIT1yQzyi74Nina5h86NgBTWDScph6LD/LDoA==
   dependencies:
     "@sentry/node" "6.19.7"
     "@strapi/design-system" "1.19.0"
-    "@strapi/helper-plugin" "4.25.4"
+    "@strapi/helper-plugin" "4.25.24"
     "@strapi/icons" "1.19.0"
 
 "@strapi/plugin-seo@^1.9.9":
@@ -4586,6 +4586,15 @@ axios@1.7.4:
   version "1.7.4"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.4.tgz#4c8ded1b43683c8dd362973c393f3ede24052aa2"
   integrity sha512-DukmaFRnY6AzAALSH4J2M3k6PkaC+MfaAGdEERRWcC9q3/TWQwLpHR8ZRLKTdQ3aBDL64EdluRDjJqKw+BPZEw==
+  dependencies:
+    follow-redirects "^1.15.6"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
+axios@1.8.2:
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.8.2.tgz#fabe06e241dfe83071d4edfbcaa7b1c3a40f7979"
+  integrity sha512-ls4GYBm5aig9vWx8AWDSGLpnpDQRtWAfrjU+EuytuODrFBkqesN2RkOQCBzrA1RQNHw1SmRMSDDDSwzNAYQ6Rg==
   dependencies:
     follow-redirects "^1.15.6"
     form-data "^4.0.0"
