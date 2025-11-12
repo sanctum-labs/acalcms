@@ -1747,6 +1747,15 @@ export interface ApiProjectProject extends Schema.CollectionType {
       Attribute.Required;
     ProjectType: Attribute.String & Attribute.Required;
     publishedAt: Attribute.DateTime;
+    Rank: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      > &
+      Attribute.DefaultTo<999>;
     Scope: Attribute.RichText;
     slug: Attribute.UID<'api::project.project', 'Name'> & Attribute.Required;
     updatedAt: Attribute.DateTime;

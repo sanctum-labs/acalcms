@@ -96,6 +96,13 @@
     },
     "Goal": {
       "type": "richtext"
+    },
+    "Rank": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "unique": false,
+      "default": 999
     }
   }
 }

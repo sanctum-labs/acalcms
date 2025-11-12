@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-09-01T14:23:37.703Z"
+    "x-generation-date": "2025-11-12T10:51:53.316Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -3076,6 +3076,9 @@
                                                     },
                                                     "Goal": {
                                                       "type": "string"
+                                                    },
+                                                    "Rank": {
+                                                      "type": "integer"
                                                     },
                                                     "createdAt": {
                                                       "type": "string",
@@ -7558,6 +7561,9 @@
                         "Goal": {
                           "type": "string"
                         },
+                        "Rank": {
+                          "type": "integer"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -10564,6 +10570,9 @@
                                                     "Goal": {
                                                       "type": "string"
                                                     },
+                                                    "Rank": {
+                                                      "type": "integer"
+                                                    },
                                                     "createdAt": {
                                                       "type": "string",
                                                       "format": "date-time"
@@ -13088,6 +13097,9 @@
                                                                   },
                                                                   "Goal": {
                                                                     "type": "string"
+                                                                  },
+                                                                  "Rank": {
+                                                                    "type": "integer"
                                                                   },
                                                                   "createdAt": {
                                                                     "type": "string",
@@ -18360,6 +18372,9 @@
                                                     "Goal": {
                                                       "type": "string"
                                                     },
+                                                    "Rank": {
+                                                      "type": "integer"
+                                                    },
                                                     "createdAt": {
                                                       "type": "string",
                                                       "format": "date-time"
@@ -20704,6 +20719,9 @@
                                       "Goal": {
                                         "type": "string"
                                       },
+                                      "Rank": {
+                                        "type": "integer"
+                                      },
                                       "createdAt": {
                                         "type": "string",
                                         "format": "date-time"
@@ -21621,7 +21639,8 @@
               "Abbreviation",
               "ProjectType",
               "Description",
-              "slug"
+              "slug",
+              "Rank"
             ],
             "type": "object",
             "properties": {
@@ -21695,6 +21714,9 @@
               },
               "Goal": {
                 "type": "string"
+              },
+              "Rank": {
+                "type": "integer"
               }
             }
           }
@@ -21757,7 +21779,8 @@
           "Abbreviation",
           "ProjectType",
           "Description",
-          "slug"
+          "slug",
+          "Rank"
         ],
         "properties": {
           "_softDeletedAt": {
@@ -22972,6 +22995,9 @@
                                     "Goal": {
                                       "type": "string"
                                     },
+                                    "Rank": {
+                                      "type": "integer"
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -23234,6 +23260,9 @@
           },
           "Goal": {
             "type": "string"
+          },
+          "Rank": {
+            "type": "integer"
           },
           "createdAt": {
             "type": "string",
