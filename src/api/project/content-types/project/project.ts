@@ -32,6 +32,7 @@ export interface Project {
     Impact?: string;
     Scope?: string;
     Goal?: string;
+    Rank: number;
   };
 }
 export interface Project_Plain {
@@ -53,6 +54,7 @@ export interface Project_Plain {
   Impact?: string;
   Scope?: string;
   Goal?: string;
+  Rank: number;
 }
 
 export interface Project_NoRelations {
@@ -74,6 +76,7 @@ export interface Project_NoRelations {
   Impact?: string;
   Scope?: string;
   Goal?: string;
+  Rank: number;
 }
 
 export interface Project_AdminPanelLifeCycle {
@@ -95,4 +98,5 @@ export interface Project_AdminPanelLifeCycle {
   Impact?: string;
   Scope?: string;
   Goal?: string;
+  Rank: number;
 }
