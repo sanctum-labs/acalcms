@@ -7,28 +7,40 @@ import { AdminPanelRelationPropertyModification } from '../../../../common/schem
 export interface Jobadvert {
   id: number;
   attributes: {
-    createdAt: Date;    updatedAt: Date;    publishedAt?: Date;    Title: string;
-    Advert: { data: Media };
+    createdAt: Date;    updatedAt: Date;    publishedAt?: Date;    _softDeletedAt?: Date;
+    _softDeletedById?: number;
+    _softDeletedByType?: string;
+    title: string;
+    advert: { data: Media };
     slug: string;
   };
 }
 export interface Jobadvert_Plain {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Title: string;
-  Advert: Media_Plain;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
+  title: string;
+  advert: Media_Plain;
   slug: string;
 }
 
 export interface Jobadvert_NoRelations {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Title: string;
-  Advert: number;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
+  title: string;
+  advert: number;
   slug: string;
 }
 
 export interface Jobadvert_AdminPanelLifeCycle {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  Title: string;
-  Advert: AdminPanelRelationPropertyModification<Media_Plain>;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  _softDeletedAt?: Date;
+  _softDeletedById?: number;
+  _softDeletedByType?: string;
+  title: string;
+  advert: AdminPanelRelationPropertyModification<Media_Plain>;
   slug: string;
 }

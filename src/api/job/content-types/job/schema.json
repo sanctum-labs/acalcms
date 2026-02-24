@@ -108,6 +108,16 @@
     },
     "howToApply": {
       "type": "richtext"
+    },
+    "applyOnline": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "jobAdvert": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::jobadvert.jobadvert"
     }
   }
 }

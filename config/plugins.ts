@@ -23,6 +23,10 @@ export default ({ env }) => ({
         job: {
           field: 'slug',
           references: 'slug'
+        },
+        jobAdvert: {
+          field: 'slug',
+          references: 'slug'
         }
       }
     }

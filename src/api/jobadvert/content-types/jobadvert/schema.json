@@ -4,29 +4,51 @@
   "info": {
     "singularName": "jobadvert",
     "pluralName": "jobadverts",
-    "displayName": "Job Adverts"
+    "displayName": "Job Adverts",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
-    "Title": {
+    "_softDeletedAt": {
+      "type": "datetime",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedById": {
+      "type": "integer",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "_softDeletedByType": {
+      "type": "string",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "private": true
+    },
+    "title": {
       "type": "string",
       "required": true,
       "unique": true
     },
-    "Advert": {
-      "allowedTypes": [
-        "files"
-      ],
+    "advert": {
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
     },
     "slug": {
       "type": "uid",
-      "targetField": "Title",
-      "required": true
+      "required": true,
+      "targetField": "title"
     }
   }
 }

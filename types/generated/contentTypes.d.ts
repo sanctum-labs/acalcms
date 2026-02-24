@@ -1302,6 +1302,7 @@ export interface ApiJobJob extends Schema.CollectionType {
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
+    applyOnline: Attribute.Boolean & Attribute.DefaultTo<false>;
     available: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<true>;
@@ -1316,6 +1317,11 @@ export interface ApiJobJob extends Schema.CollectionType {
       'api::job.job',
       'oneToMany',
       'api::job-application.job-application'
+    >;
+    jobAdvert: Attribute.Relation<
+      'api::job.job',
+      'oneToOne',
+      'api::jobadvert.jobadvert'
     >;
     jobSpecifications: Attribute.RichText;
     keyCompetenciesAndSkills: Attribute.RichText;
@@ -1348,6 +1354,7 @@ export interface ApiJobJob extends Schema.CollectionType {
 export interface ApiJobadvertJobadvert extends Schema.CollectionType {
   collectionName: 'jobadverts';
   info: {
+    description: '';
     displayName: 'Job Adverts';
     pluralName: 'jobadverts';
     singularName: 'jobadvert';
@@ -1359,7 +1366,7 @@ export interface ApiJobadvertJobadvert extends Schema.CollectionType {
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    Advert: Attribute.Media<'files'> & Attribute.Required;
+    advert: Attribute.Media<'files'> & Attribute.Required;
     createdAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::jobadvert.jobadvert',
@@ -1368,9 +1375,9 @@ export interface ApiJobadvertJobadvert extends Schema.CollectionType {
     > &
       Attribute.Private;
     publishedAt: Attribute.DateTime;
-    slug: Attribute.UID<'api::jobadvert.jobadvert', 'Title'> &
+    slug: Attribute.UID<'api::jobadvert.jobadvert', 'title'> &
       Attribute.Required;
-    Title: Attribute.String & Attribute.Required & Attribute.Unique;
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::jobadvert.jobadvert',
