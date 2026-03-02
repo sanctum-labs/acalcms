@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_links_apply_onlines",
+  "info": {
+    "displayName": "applyOnline"
+  },
+  "options": {},
+  "attributes": {
+    "visible": {
+      "type": "boolean",
+      "default": false
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

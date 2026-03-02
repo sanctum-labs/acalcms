@@ -203,6 +203,17 @@ export interface LayoutNavbar extends Schema.Component {
   };
 }
 
+export interface LinksApplyOnline extends Schema.Component {
+  collectionName: 'components_links_apply_onlines';
+  info: {
+    displayName: 'applyOnline';
+  };
+  attributes: {
+    link: Attribute.String;
+    visible: Attribute.Boolean & Attribute.DefaultTo<false>;
+  };
+}
+
 export interface LinksButton extends Schema.Component {
   collectionName: 'components_links_simple_buttons';
   info: {
@@ -527,6 +538,7 @@ declare module '@strapi/types' {
       'elements.url': ElementsUrl;
       'layout.footer': LayoutFooter;
       'layout.navbar': LayoutNavbar;
+      'links.apply-online': LinksApplyOnline;
       'links.button': LinksButton;
       'links.button-link': LinksButtonLink;
       'links.link': LinksLink;

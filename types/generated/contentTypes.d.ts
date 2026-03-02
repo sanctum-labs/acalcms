@@ -1302,7 +1302,7 @@ export interface ApiJobJob extends Schema.CollectionType {
     _softDeletedAt: Attribute.DateTime & Attribute.Private;
     _softDeletedById: Attribute.Integer & Attribute.Private;
     _softDeletedByType: Attribute.String & Attribute.Private;
-    applyOnline: Attribute.Boolean & Attribute.DefaultTo<false>;
+    applyOnline: Attribute.Component<'links.apply-online'>;
     available: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<true>;
@@ -1330,6 +1330,14 @@ export interface ApiJobJob extends Schema.CollectionType {
     name: Attribute.String & Attribute.Required;
     personSpecifications: Attribute.RichText;
     publishedAt: Attribute.DateTime;
+    rank: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
     requirements: Attribute.RichText & Attribute.Required;
     responsibilities: Attribute.RichText & Attribute.Required;
     salary: Attribute.BigInteger;

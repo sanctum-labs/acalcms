@@ -2,8 +2,11 @@
 
 import { JobApplication } from '../../../job-application/content-types/job-application/job-application';
 import { Jobadvert } from '../../../jobadvert/content-types/jobadvert/jobadvert';
+import { ApplyOnline } from '../../../../components/links/interfaces/ApplyOnline';
 import { JobApplication_Plain } from '../../../job-application/content-types/job-application/job-application';
 import { Jobadvert_Plain } from '../../../jobadvert/content-types/jobadvert/jobadvert';
+import { ApplyOnline_Plain } from '../../../../components/links/interfaces/ApplyOnline';
+import { ApplyOnline_NoRelations } from '../../../../components/links/interfaces/ApplyOnline';
 import { AdminPanelRelationPropertyModification } from '../../../../common/schemas-to-ts/AdminPanelRelationPropertyModification';
 
 export enum Type {
@@ -36,8 +39,9 @@ export interface Job {
     keyCompetenciesAndSkills?: string;
     termsOfService?: string;
     howToApply?: string;
-    applyOnline?: boolean;
     jobAdvert?: { data: Jobadvert };
+    applyOnline?: ApplyOnline;
+    rank: number;
   };
 }
 export interface Job_Plain {
@@ -63,8 +67,9 @@ export interface Job_Plain {
   keyCompetenciesAndSkills?: string;
   termsOfService?: string;
   howToApply?: string;
-  applyOnline?: boolean;
   jobAdvert?: Jobadvert_Plain;
+  applyOnline?: ApplyOnline_Plain;
+  rank: number;
 }
 
 export interface Job_NoRelations {
@@ -90,8 +95,9 @@ export interface Job_NoRelations {
   keyCompetenciesAndSkills?: string;
   termsOfService?: string;
   howToApply?: string;
-  applyOnline?: boolean;
   jobAdvert?: number;
+  applyOnline?: ApplyOnline_NoRelations;
+  rank: number;
 }
 
 export interface Job_AdminPanelLifeCycle {
@@ -117,6 +123,7 @@ export interface Job_AdminPanelLifeCycle {
   keyCompetenciesAndSkills?: string;
   termsOfService?: string;
   howToApply?: string;
-  applyOnline?: boolean;
   jobAdvert?: AdminPanelRelationPropertyModification<Jobadvert_Plain>;
+  applyOnline?: ApplyOnline_Plain;
+  rank: number;
 }

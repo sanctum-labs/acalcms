@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2026-02-24T07:54:55.311Z"
+    "x-generation-date": "2026-03-02T10:11:11.494Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -13753,7 +13753,8 @@
               "location",
               "closingDate",
               "slug",
-              "level"
+              "level",
+              "rank"
             ],
             "type": "object",
             "properties": {
@@ -13841,9 +13842,6 @@
               "howToApply": {
                 "type": "string"
               },
-              "applyOnline": {
-                "type": "boolean"
-              },
               "jobAdvert": {
                 "oneOf": [
                   {
@@ -13854,6 +13852,12 @@
                   }
                 ],
                 "example": "string or id"
+              },
+              "applyOnline": {
+                "$ref": "#/components/schemas/LinksApplyOnlineComponent"
+              },
+              "rank": {
+                "type": "integer"
               }
             }
           }
@@ -13918,7 +13922,8 @@
           "location",
           "closingDate",
           "slug",
-          "level"
+          "level",
+          "rank"
         ],
         "properties": {
           "_softDeletedAt": {
@@ -14101,9 +14106,6 @@
                                     },
                                     "howToApply": {
                                       "type": "string"
-                                    },
-                                    "applyOnline": {
-                                      "type": "boolean"
                                     },
                                     "jobAdvert": {
                                       "type": "object",
@@ -14807,6 +14809,23 @@
                                         }
                                       }
                                     },
+                                    "applyOnline": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "number"
+                                        },
+                                        "visible": {
+                                          "type": "boolean"
+                                        },
+                                        "link": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "rank": {
+                                      "type": "integer"
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -15085,9 +15104,6 @@
           "howToApply": {
             "type": "string"
           },
-          "applyOnline": {
-            "type": "boolean"
-          },
           "jobAdvert": {
             "type": "object",
             "properties": {
@@ -15104,6 +15120,12 @@
                 }
               }
             }
+          },
+          "applyOnline": {
+            "$ref": "#/components/schemas/LinksApplyOnlineComponent"
+          },
+          "rank": {
+            "type": "integer"
           },
           "createdAt": {
             "type": "string",
@@ -15172,6 +15194,20 @@
           },
           "meta": {
             "type": "object"
+          }
+        }
+      },
+      "LinksApplyOnlineComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "visible": {
+            "type": "boolean"
+          },
+          "link": {
+            "type": "string"
           }
         }
       },
@@ -16132,9 +16168,6 @@
                       "howToApply": {
                         "type": "string"
                       },
-                      "applyOnline": {
-                        "type": "boolean"
-                      },
                       "jobAdvert": {
                         "type": "object",
                         "properties": {
@@ -16353,6 +16386,23 @@
                             }
                           }
                         }
+                      },
+                      "applyOnline": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "visible": {
+                            "type": "boolean"
+                          },
+                          "link": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "rank": {
+                        "type": "integer"
                       },
                       "createdAt": {
                         "type": "string",
