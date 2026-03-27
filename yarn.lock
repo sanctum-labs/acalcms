@@ -40,9 +40,9 @@
     long "^4.0.0"
 
 "@apollo/sandbox@^2.5.0":
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/@apollo/sandbox/-/sandbox-2.6.0.tgz#0910d4fbd52cabdcd18671641e53f33ed0adef9d"
-  integrity sha512-VPaVWt75Pi/G5W/QjxXB5PzgV/k7XTRIo/sb5aaEzTZQAekHzI2nbqh0bCe6YqTqof0SnOj+I1QD+g7ruL+/WQ==
+  version "2.7.2"
+  resolved "https://registry.yarnpkg.com/@apollo/sandbox/-/sandbox-2.7.2.tgz#077854f2082229649c59a8340c5d6df28d23f702"
+  integrity sha512-NlH6bcPPkL8tA1mVJFno3ZvhQMzx77Scd+8KTgZl48sikbULKTR5LVdzMd8gFJIxd6uRhBd6nrWY7E80IP7J8Q==
   dependencies:
     "@types/whatwg-mimetype" "^3.0.0"
     eventemitter3 "3.1.0"
